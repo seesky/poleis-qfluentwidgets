@@ -107,6 +107,11 @@ void MIcon::drawIcon(QVariant *icon, QPainter *painter, QRect rect, std::map<QSt
     {   
         //TODO: icon.render(painter, rect, **attributes)
         icon->value<FluentIcon>().render(painter, rect, Theme::AUTO, 0, attributes);
+    }else if(icon->canConvert<FluentIcon*>()){
+        FluentIcon *fluentIcon = icon->value<FluentIcon*>();
+        if(fluentIcon){
+            fluentIcon->render(painter, rect, Theme::AUTO, 0, attributes);
+        }
     }else if(icon->canConvert<InfoBarIcon*>()){
         icon->value<InfoBarIcon*>()->render(painter, rect, Theme::AUTO, 0, attributes);
     }else if(icon->canConvert<SpinIcon>()){

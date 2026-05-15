@@ -21,6 +21,7 @@ public:
     QString configName;
     QLabel *choiceLabel;
     QButtonGroup *buttonGroup;
+    bool isUpdatingValue;
 
 signals:
     void optionChanged(OptionsConfigItem*);

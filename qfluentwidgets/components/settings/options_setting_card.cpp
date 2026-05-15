@@ -1,22 +1,5 @@
 #include "options_setting_card.h"
 #include <QtCore/QSignalBlocker>
-#include <QtCore/QFile>
-#include <QtCore/QTextStream>
-
-namespace {
-void writeSettingsTrace(const QString &message)
-{
-    if(!qEnvironmentVariableIsSet("QFLUENT_TRACE_SETTINGS")){
-        return;
-    }
-
-    QFile file("qfluentwidgets_config_trace.log");
-    if(file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)){
-        QTextStream stream(&file);
-        stream << message << Qt::endl;
-    }
-}
-}
 
 OptionsSettingCard::OptionsSettingCard(QVariant configItem, QVariant *icon, QString title, QString content, QList<QString> texts, QWidget *parent) : ExpandSettingCard(icon, title, content, parent)
 {
@@ -25,6 +8,8 @@ OptionsSettingCard::OptionsSettingCard(QVariant configItem, QVariant *icon, QStr
     this->configName = configItem.value<OptionsConfigItem*>()->name;
     this->choiceLabel = new QLabel(this);
     this->buttonGroup = new QButtonGroup(this);
+    this->buttonGroup->setExclusive(true);
+    this->isUpdatingValue = false;
 
     this->addWidget(this->choiceLabel);
 
@@ -39,7 +24,7 @@ OptionsSettingCard::OptionsSettingCard(QVariant configItem, QVariant *icon, QStr
 
     this->_adjustViewSize();
     this->setValue(qconfig->get(this->configItem).value<QString>());
-    connect(configItem.value<OptionsConfigItem*>(), &OptionsConfigItem::valueChanged, this, &OptionsSettingCard::setValue, Qt::QueuedConnection);
+    connect(configItem.value<OptionsConfigItem*>(), &OptionsConfigItem::valueChanged, this, &OptionsSettingCard::setValue);
     connect(this->buttonGroup, QOverload<QAbstractButton*>::of(&QButtonGroup::buttonClicked), this, [this](QAbstractButton *b){
         RadioButton *radioButton = qobject_cast<RadioButton *>(b);
         if(!radioButton){
@@ -52,35 +37,47 @@ OptionsSettingCard::OptionsSettingCard(QVariant configItem, QVariant *icon, QStr
 
 void OptionsSettingCard::__onButtonClicked(RadioButton *button)
 {
-    writeSettingsTrace(QString("OptionsSettingCard click begin: %1").arg(this->configName));
+    if(this->isUpdatingValue){
+        return;
+    }
+
     if(button->text() == this->choiceLabel->text()){
-        writeSettingsTrace(QString("OptionsSettingCard click ignored: %1").arg(this->configName));
         return;
     }
 
     QString value = button->property(this->configName.toUtf8()).value<QString>();
-    writeSettingsTrace(QString("OptionsSettingCard qconfig set: %1=%2").arg(this->configName, value));
     qconfig->set(this->configItem, QVariant::fromValue<QString>(value), true, false);
 
     this->choiceLabel->setText(button->text());
     this->choiceLabel->adjustSize();
     emit(this->optionChanged(this->configItem.value<OptionsConfigItem*>()));
-    writeSettingsTrace(QString("OptionsSettingCard click end: %1").arg(this->configName));
 }
 
 void OptionsSettingCard::setValue(QString value)
 {
-    writeSettingsTrace(QString("OptionsSettingCard setValue begin: %1=%2").arg(this->configName, value));
+    this->isUpdatingValue = true;
     for(int i = 0; i < this->buttonGroup->buttons().length(); i++){
         QAbstractButton *button = this->buttonGroup->buttons().at(i);
         bool isChecked = button->property(this->configName.toUtf8()).value<QString>() == value;
-        QSignalBlocker blocker(button);
-        button->setChecked(isChecked);
-
-        if(isChecked){
-            this->choiceLabel->setText(button->text());
-            this->choiceLabel->adjustSize();
+        if(!isChecked){
+            continue;
         }
+
+        QSignalBlocker groupBlocker(this->buttonGroup);
+        QList<bool> previousSignalStates;
+        for(QAbstractButton *blockedButton : this->buttonGroup->buttons()){
+            previousSignalStates.append(blockedButton->blockSignals(true));
+        }
+
+        button->setChecked(true);
+        this->choiceLabel->setText(button->text());
+        this->choiceLabel->adjustSize();
+
+        const QList<QAbstractButton *> buttons = this->buttonGroup->buttons();
+        for(int j = 0; j < buttons.length(); ++j){
+            buttons.at(j)->blockSignals(previousSignalStates.at(j));
+        }
+        break;
     }
-    writeSettingsTrace(QString("OptionsSettingCard setValue end: %1").arg(this->configName));
+    this->isUpdatingValue = false;
 }

@@ -41,7 +41,6 @@ void IniSettings::setValue(const QString &section, const QString &key, const QVa
 	m_iniFile->beginGroup(section);     // 璁剧疆鑺傜偣鍚?
 	m_iniFile->setValue(key, value);    //璁剧疆閿悕鍜岄敭鍊?
 	m_iniFile->endGroup();              // 缁撴潫褰撳墠鑺傜殑鎿嶄綔
-    m_iniFile->sync();
 }
 
 void IniSettings::removeNode(const QString &section)

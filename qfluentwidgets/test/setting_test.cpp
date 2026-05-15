@@ -5,8 +5,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
 #include <QtGui/QScreen>
-#include <QtCore/QTimer>
-#include <QtCore/QDebug>
 
 #include "../../qfluentwidgets/qframelesswindow/windows/qframe_less_window.h"
 #include "../../qfluentwidgets/common/config.h"
@@ -58,7 +56,6 @@ public:
 };
 
 
-
 int main(int argc, char *argv[])
 {
     QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
@@ -87,42 +84,6 @@ int main(int argc, char *argv[])
    
     Window *w = new Window(nullptr);
     w->show();
-
-    if(qEnvironmentVariableIsSet("QFLUENT_AUTOTEST_SETTINGS")){
-        QTimer::singleShot(500, w, [w](){
-            qDebug() << "autotest: expand theme card";
-            w->settingInterface->themeCard->card->expandButton->click();
-        });
-        QTimer::singleShot(900, w, [w](){
-            qDebug() << "autotest: click theme dark";
-            w->settingInterface->themeCard->buttonGroup->buttons().at(1)->click();
-        });
-        QTimer::singleShot(1300, w, [w](){
-            qDebug() << "autotest: click theme light";
-            w->settingInterface->themeCard->buttonGroup->buttons().at(0)->click();
-        });
-        QTimer::singleShot(1700, w, [w](){
-            qDebug() << "autotest: move page size";
-            w->settingInterface->onlinePageSizeCard->slider->setValue(35);
-        });
-        QTimer::singleShot(2100, w, [w](){
-            qDebug() << "autotest: expand song quality card";
-            w->settingInterface->onlineMusicQualityCard->card->expandButton->click();
-        });
-        QTimer::singleShot(2500, w, [w](){
-            qDebug() << "autotest: click song quality";
-            w->settingInterface->onlineMusicQualityCard->buttonGroup->buttons().at(1)->click();
-        });
-        QTimer::singleShot(2900, w, [w](){
-            qDebug() << "autotest: expand mv quality card";
-            w->settingInterface->onlineMvQualityCard->card->expandButton->click();
-        });
-        QTimer::singleShot(3300, w, [w](){
-            qDebug() << "autotest: click mv quality";
-            w->settingInterface->onlineMvQualityCard->buttonGroup->buttons().at(1)->click();
-        });
-        QTimer::singleShot(3800, app, &QApplication::quit);
-    }
 
     return app->exec();
 }

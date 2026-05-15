@@ -252,6 +252,7 @@ private:
 };
 
 Q_DECLARE_METATYPE(FluentIcon)
+Q_DECLARE_METATYPE(FluentIcon*)
 
 class QFLUENTWIDGETS_EXPORT Icon : public QIcon{
 public:

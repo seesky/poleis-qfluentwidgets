@@ -1,22 +1,5 @@
 #include "setting_card.h"
 #include <QtCore/QSignalBlocker>
-#include <QtCore/QFile>
-#include <QtCore/QTextStream>
-
-namespace {
-void writeSettingsTrace(const QString &message)
-{
-    if(!qEnvironmentVariableIsSet("QFLUENT_TRACE_SETTINGS")){
-        return;
-    }
-
-    QFile file("qfluentwidgets_config_trace.log");
-    if(file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)){
-        QTextStream stream(&file);
-        stream << message << Qt::endl;
-    }
-}
-}
 
 
 SettingCard::SettingCard(QVariant *icon, QString title, QString content, QWidget *parent) : QFrame(parent)
@@ -111,7 +94,7 @@ SwitchSettingCard::SwitchSettingCard(QVariant *icon, QString title, QString cont
             }else{
                 this->setChecked(true);
             }
-        }, Qt::QueuedConnection);
+        });
     }
 
     this->hBoxLayout->addWidget(this->switchButton, 0, Qt::AlignRight);
@@ -124,14 +107,12 @@ SwitchSettingCard::SwitchSettingCard(QVariant *icon, QString title, QString cont
 
 void SwitchSettingCard::__onCheckedChanged(bool isChecked)
 {
-    writeSettingsTrace(QString("SwitchSettingCard changed begin: %1").arg(isChecked));
     if(this->configItem.isValid()){
         qconfig->set(this->configItem, isChecked ? QVariant(QString("true")) : QVariant(QString("false")), true, false);
     }
 
     this->setValue(isChecked);
     emit(this->checkedChanged(isChecked));
-    writeSettingsTrace(QString("SwitchSettingCard changed end: %1").arg(isChecked));
 }
 
 
@@ -176,20 +157,18 @@ RangeSettingCard::RangeSettingCard(QVariant configItem, QVariant *icon, QString 
     this->setValue(qconfig->get(this->configItem).toInt());
 
     this->valueLabel->setObjectName(QString("valueLabel"));
-    connect(configItem.value<RangeConfigItem*>(), &RangeConfigItem::valueChanged, this, &RangeSettingCard::setValue, Qt::QueuedConnection);
+    connect(configItem.value<RangeConfigItem*>(), &RangeConfigItem::valueChanged, this, &RangeSettingCard::setValue);
     connect(this->slider, &Slider::valueChanged, this, &RangeSettingCard::__onValueChanged);
 }
 
 
 void RangeSettingCard::__onValueChanged(int value)
 {
-    writeSettingsTrace(QString("RangeSettingCard changed begin: %1").arg(value));
     qconfig->set(this->configItem, QVariant::fromValue<int>(value), true, false);
 
     int correctedValue = this->configItem.value<RangeConfigItem*>()->getValue();
     this->setValue(correctedValue);
     emit(this->valueChanged(correctedValue));
-    writeSettingsTrace(QString("RangeSettingCard changed end: %1").arg(correctedValue));
 }
 
 void RangeSettingCard::setValue(int value)
@@ -285,7 +264,7 @@ ColorSettingCard::ColorSettingCard(QVariant configItem, QVariant *icon, QString 
     this->hBoxLayout->addWidget(this->colorPicker, 0, Qt::AlignRight);
     this->hBoxLayout->addSpacing(16);
     connect(this->colorPicker, &ColorPickerButton::colorChanged, this, &ColorSettingCard::__onColorChanged);
-    connect(configItem.value<ColorConfigItem*>(), &ColorConfigItem::valueChanged, this, &ColorSettingCard::setValue, Qt::QueuedConnection);
+    connect(configItem.value<ColorConfigItem*>(), &ColorConfigItem::valueChanged, this, &ColorSettingCard::setValue);
 }
 
 
@@ -316,21 +295,18 @@ ComboBoxSettingCard::ComboBoxSettingCard(QVariant configItem, QVariant *icon, QS
 
     this->comboBox->setCurrentText(this->optionToText.value(qconfig->get(configItem).value<QString>()));
     connect(this->comboBox, &ComboBox::currentIndexChanged, this, &ComboBoxSettingCard::_onCurrentIndexChanged);
-    connect(configItem.value<OptionsConfigItem*>(), &OptionsConfigItem::valueChanged, this, &ComboBoxSettingCard::setValue, Qt::QueuedConnection);
+    connect(configItem.value<OptionsConfigItem*>(), &OptionsConfigItem::valueChanged, this, &ComboBoxSettingCard::setValue);
 }
 
 
 void ComboBoxSettingCard::_onCurrentIndexChanged(int index)
 {
-    writeSettingsTrace(QString("ComboBoxSettingCard changed begin: %1").arg(index));
     QVariant *value = this->comboBox->itemData(index);
     if(!value){
-        writeSettingsTrace(QString("ComboBoxSettingCard changed ignored: %1").arg(index));
         return;
     }
 
     qconfig->set(this->configItem, QVariant::fromValue<QString>(value->value<QString>()), true, false);
-    writeSettingsTrace(QString("ComboBoxSettingCard changed end: %1").arg(value->value<QString>()));
 }
 
 void ComboBoxSettingCard::setValue(QString value)

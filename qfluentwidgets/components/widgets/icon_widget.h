@@ -9,6 +9,7 @@
 class QFLUENTWIDGETS_EXPORT IconWidget : public QWidget{
     Q_OBJECT
 public:
+    ~IconWidget() override;
     IconWidget(QWidget *parent);
     IconWidget(QVariant *icon, QWidget *parent);
     IconWidget(FluentIcon icon, QWidget *parent);
@@ -17,7 +18,9 @@ public:
     IconWidget(QString icon, QWidget *parent);
     QIcon getIcon();
     void setIcon(QVariant *icon);
+    void setOwnedIcon(const QVariant &icon);
     void paintEvent(QPaintEvent *event) override;
 
     QVariant *_icon;
+    bool ownsIcon;
 };

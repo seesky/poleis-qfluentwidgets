@@ -25,7 +25,7 @@ SettingInterface::SettingInterface(QWidget *parent) : ScrollArea(parent)
     rangeSettingCardIcon->setIconName(QString("SEARCH"));
     this->onlinePageSizeCard = new RangeSettingCard(
         QVariant::fromValue<RangeConfigItem*>(this->onlinePageSize), 
-        new QVariant(QVariant::fromValue<FluentIcon>(*rangeSettingCardIcon)), 
+        new QVariant(QVariant::fromValue<FluentIcon*>(rangeSettingCardIcon)), 
         this->tr("Number of online music displayed on each page"), 
         QString(), 
         this->onlineMusicGroup);
@@ -36,7 +36,7 @@ SettingInterface::SettingInterface(QWidget *parent) : ScrollArea(parent)
     QList<QString> onlineMusicQualityList = {"Standard quality", "Super quality", "Lossless quality"};
     this->onlineMusicQualityCard = new OptionsSettingCard(
         QVariant::fromValue<OptionsConfigItem*>(this->onlineSongQuality), 
-        new QVariant(QVariant::fromValue<FluentIcon>(*onlineMusicQualitySettingCardIcon)), 
+        new QVariant(QVariant::fromValue<FluentIcon*>(onlineMusicQualitySettingCardIcon)), 
         this->tr("Online music quality"), 
         QString(), 
         onlineMusicQualityList, 
@@ -47,7 +47,7 @@ SettingInterface::SettingInterface(QWidget *parent) : ScrollArea(parent)
     QList<QString> onlineMvQualityList = {"Full HD", "HD", "SD", "LD"};
     this->onlineMvQualityCard = new OptionsSettingCard(
         QVariant::fromValue<OptionsConfigItem*>(this->onlineMvQuality), 
-        new QVariant(QVariant::fromValue<FluentIcon>(*onlineMvQualitySettingCardIcon)), 
+        new QVariant(QVariant::fromValue<FluentIcon*>(onlineMvQualitySettingCardIcon)), 
         this->tr("Online MV quality"), 
         QString(), 
         onlineMvQualityList, 
@@ -58,7 +58,7 @@ SettingInterface::SettingInterface(QWidget *parent) : ScrollArea(parent)
     FluentIcon *enableAcrylicSettingCardIcon = new FluentIcon();
     enableAcrylicSettingCardIcon->setIconName(QString("TRANSPARENT"));
     this->enableAcrylicCard = new SwitchSettingCard(
-        new QVariant(QVariant::fromValue<FluentIcon>(*enableAcrylicSettingCardIcon)), 
+        new QVariant(QVariant::fromValue<FluentIcon*>(enableAcrylicSettingCardIcon)), 
         this->tr("Use Acrylic effect"), 
         this->tr("Acrylic effect has better visual experience, but it may cause the window to become stuck"), 
         QVariant::fromValue<OptionsConfigItem*>(this->enableAcrylicBackground), 
@@ -82,7 +82,7 @@ SettingInterface::SettingInterface(QWidget *parent) : ScrollArea(parent)
     languageCardSettingCardIcon->setIconName(QString("LANGUAGE"));
     this->languageCard = new ComboBoxSettingCard(
         QVariant(QVariant::fromValue<OptionsConfigItem*>(qconfig->language)),
-        new QVariant(QVariant::fromValue<FluentIcon>(*languageCardSettingCardIcon)),
+        new QVariant(QVariant::fromValue<FluentIcon*>(languageCardSettingCardIcon)),
         this->tr("Language"),
         this->tr("Set your preferred language for UI"),
         languageList,
@@ -94,7 +94,7 @@ SettingInterface::SettingInterface(QWidget *parent) : ScrollArea(parent)
     helpCardSettingCardIcon->setIconName(QString("HELP"));
     this->helpCard = new HyperlinkCard("http://www.github.com", 
         this->tr("Open help page"),
-        new QVariant(QVariant::fromValue<FluentIcon>(*helpCardSettingCardIcon)),
+        new QVariant(QVariant::fromValue<FluentIcon*>(helpCardSettingCardIcon)),
         this->tr("Help"),
         this->tr("Discover new features and learn useful tips about PyQt-Fluent-Widgets"),
         this->aboutGroup
@@ -104,7 +104,7 @@ SettingInterface::SettingInterface(QWidget *parent) : ScrollArea(parent)
     feedbackCardSettingCardIcon->setIconName(QString("FEEDBACK"));
     this->feedbackCard = new PrimaryPushSettingCard(
         this->tr("Provide feedback"),
-        new QVariant(QVariant::fromValue<FluentIcon>(*feedbackCardSettingCardIcon)),
+        new QVariant(QVariant::fromValue<FluentIcon*>(feedbackCardSettingCardIcon)),
         this->tr("Provide feedback"),
         this->tr("Help us improve PyQt-Fluent-Widgets by providing feedback"),
         this->aboutGroup
@@ -114,7 +114,7 @@ SettingInterface::SettingInterface(QWidget *parent) : ScrollArea(parent)
     aboutCardSettingCardIcon->setIconName(QString("INFO"));
     this->aboutCard = new PrimaryPushSettingCard(
         this->tr("Check update"),
-        new QVariant(QVariant::fromValue<FluentIcon>(*aboutCardSettingCardIcon)),
+        new QVariant(QVariant::fromValue<FluentIcon*>(aboutCardSettingCardIcon)),
         this->tr("About"),
         QString("© Copyright") + QString(" 2024, SeeSky."),
         this->aboutGroup
