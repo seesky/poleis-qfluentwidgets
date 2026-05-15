@@ -85,7 +85,7 @@ public slots:
         InfoBarIcon *_icon = new InfoBarIcon();
         _icon->setIconName(QString("SUCCESS"));
         QVariant *__icon = new QVariant();
-        __icon->setValue<InfoBarIcon>(*_icon);
+        __icon->setValue(InfoBarIcon(*_icon));
         TeachingTip::create(this->button2, QString("Lesson 4"), QString("表达敬意吧，表达出敬意，然后迈向回旋的另一个全新阶段！"), __icon, new QVariant(), true, 2000, TeachingTipTailPosition::TOP, this, true);
     };
 

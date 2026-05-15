@@ -5,7 +5,7 @@
 
 #include <QApplication>
 
-void PushButton::initialize(QWidget *parent = nullptr)
+void PushButton::initialize(QWidget *parent)
 {   
     FluentStyleSheet().apply(this, FluentStyleSheetMap.value("BUTTON"), Theme::AUTO);
     this->isPressed = false;
@@ -15,12 +15,12 @@ void PushButton::initialize(QWidget *parent = nullptr)
     this->_postInit();
 }
 
-PushButton::PushButton(QWidget *parent = nullptr) : QPushButton(parent)
+PushButton::PushButton(QWidget *parent) : QPushButton(parent)
 {
     this->initialize(parent);
 }
 
-PushButton::PushButton(QString text, QWidget *parent = nullptr, QVariant *icon = nullptr) : QPushButton(parent)
+PushButton::PushButton(QString text, QWidget *parent, QVariant *icon) : QPushButton(parent)
 {
     this->initialize(parent);
     this->_postInit();

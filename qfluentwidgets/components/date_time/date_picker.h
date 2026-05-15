@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <QtCore/Qt>
 #include <QtCore/QDate>
@@ -79,19 +79,19 @@ public:
 class QFLUENTWIDGETS_EXPORT ZhYearFormatter : public ZhFormatter{
     Q_OBJECT
 public:
-    ZhYearFormatter(){this->suffix = "å¹?;};
+    ZhYearFormatter(){this->suffix = "Y";};
 };
 
 class QFLUENTWIDGETS_EXPORT ZhMonthFormatter : public ZhFormatter{
     Q_OBJECT
 public:
-    ZhMonthFormatter(){this->suffix = "æœ?;};
+    ZhMonthFormatter(){this->suffix = "M";};
 };
 
 class QFLUENTWIDGETS_EXPORT ZhDayFormatter : public ZhFormatter{
     Q_OBJECT
 public:
-    ZhDayFormatter(){this->suffix = "æ—?;};
+    ZhDayFormatter(){this->suffix = "D";};
 };
 
 

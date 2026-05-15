@@ -159,7 +159,7 @@ void DialogInterface::showBottomTeachingTip()
     InfoBarIcon *_icon = new InfoBarIcon();
     _icon->setIconName(QString("SUCCESS"));
     QVariant *__icon = new QVariant();
-    __icon->setValue<InfoBarIcon>(*_icon);
+    __icon->setValue(InfoBarIcon(*_icon));
     TeachingTip::create(
         this->teachingButton, 
         QString("Lesson 4"), 

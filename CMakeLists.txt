@@ -169,14 +169,42 @@ if(QFLUENTWIDGETS_BUILD_EXAMPLES)
         "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/test/gallery/*.cpp"
     )
 
+    add_custom_target(qfluentwidgets_examples)
+    set(QFLUENTWIDGETS_DEPLOY_COMMANDS)
+    if(WIN32)
+        find_program(QFLUENTWIDGETS_WINDEPLOYQT_EXECUTABLE
+            NAMES windeployqt
+            HINTS "${CMAKE_BINARY_DIR}/vcpkg_installed/${VCPKG_TARGET_TRIPLET}/tools/Qt6/bin"
+        )
+    endif()
+
     foreach(example_source IN LISTS QFLUENTWIDGETS_EXAMPLE_SOURCES)
         get_filename_component(example_name "${example_source}" NAME_WE)
         add_executable("${example_name}" "${example_source}")
         target_link_libraries("${example_name}" PRIVATE qfluentwidgets::qfluentwidgets)
         target_include_directories("${example_name}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+        add_dependencies(qfluentwidgets_examples "${example_name}")
         set_target_properties("${example_name}" PROPERTIES
             RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/examples"
         )
+
+        if(WIN32)
+            add_custom_command(TARGET "${example_name}" POST_BUILD
+                COMMAND "${CMAKE_COMMAND}" -E copy_if_different
+                    "$<TARGET_FILE:qfluentwidgets>"
+                    "$<TARGET_FILE_DIR:${example_name}>"
+                COMMENT "Copying qfluentwidgets runtime library for ${example_name}"
+            )
+        endif()
+
+        if(QFLUENTWIDGETS_WINDEPLOYQT_EXECUTABLE)
+            list(APPEND QFLUENTWIDGETS_DEPLOY_COMMANDS
+                COMMAND "${QFLUENTWIDGETS_WINDEPLOYQT_EXECUTABLE}"
+                    --release
+                    --no-translations
+                    "$<TARGET_FILE:${example_name}>"
+            )
+        endif()
 
         if(example_name STREQUAL "gallery_test")
             target_sources("${example_name}" PRIVATE ${QFLUENTWIDGETS_GALLERY_SOURCES})
@@ -193,4 +221,12 @@ if(QFLUENTWIDGETS_BUILD_EXAMPLES)
             target_sources("${example_name}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/test/login_window.cpp")
         endif()
     endforeach()
+
+    if(QFLUENTWIDGETS_WINDEPLOYQT_EXECUTABLE)
+        add_custom_target(qfluentwidgets_deploy_examples
+            ${QFLUENTWIDGETS_DEPLOY_COMMANDS}
+            DEPENDS qfluentwidgets_examples
+            COMMENT "Deploying Qt runtime files for qfluentwidgets examples"
+        )
+    endif()
 endif()

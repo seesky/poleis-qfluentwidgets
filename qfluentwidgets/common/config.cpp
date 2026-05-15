@@ -1,8 +1,9 @@
-#include "config.h"
+﻿#include "config.h"
 
 #include <algorithm>
 #include <vector>
 #include <stdexcept>
+#include <QtCore/QFileInfo>
 //#include "json/json.h"
 
 IniSettings* IniSettings::instance = nullptr;
@@ -28,15 +29,19 @@ IniSettings* IniSettings::getInstance()
 
 void IniSettings::settings_init(const QString &path)
 {
-    //qDebug() << path;
-	m_iniFile = QSharedPointer<QSettings>(new QSettings(path, QSettings::IniFormat));
+    QFileInfo fileInfo(path);
+    if(!fileInfo.absoluteDir().exists()){
+        fileInfo.absoluteDir().mkpath(QString("."));
+    }
+    m_iniFile = QSharedPointer<QSettings>(new QSettings(path, QSettings::IniFormat));
 }
 
 void IniSettings::setValue(const QString &section, const QString &key, const QVariant &value)
 {
-	m_iniFile->beginGroup(section);     // 设置节点名
-	m_iniFile->setValue(key, value);    //设置键名和键值
-	m_iniFile->endGroup();              // 结束当前节的操作
+	m_iniFile->beginGroup(section);     // 璁剧疆鑺傜偣鍚?
+	m_iniFile->setValue(key, value);    //璁剧疆閿悕鍜岄敭鍊?
+	m_iniFile->endGroup();              // 缁撴潫褰撳墠鑺傜殑鎿嶄綔
+    m_iniFile->sync();
 }
 
 void IniSettings::removeNode(const QString &section)
@@ -77,7 +82,8 @@ RangeValidator::RangeValidator(int min, int max)
     this->min_value = min;
     this->max_value = max;
     this->range_value[0] = min;
-    this->range_value[1] = max;
+    this->range_value[1] = max;
+    this->__value = this->correct(default_);
 }
 
 bool RangeValidator::validate(QVariant *value)
@@ -406,7 +412,8 @@ RangeConfigItem::RangeConfigItem(QString group, QString name, int default_, int 
     this->defaultValue = default_;
     this->restart = restart;
     this->range_value[0] = min;
-    this->range_value[1] = max;
+    this->range_value[1] = max;
+    this->__value = this->correct(default_);
 }
 
 int RangeConfigItem::getValue()
@@ -464,7 +471,8 @@ OptionsConfigItem::OptionsConfigItem(QString group, QString name, QString defaul
     this->name = name;
     this->defaultValue = default_;
     this->restart = restart;
-    this->_options = options;
+    this->_options = options;
+    this->__value = this->correct(default_);
 }
 
 QString OptionsConfigItem::getValue()
@@ -509,7 +517,11 @@ bool OptionsConfigItem::validate(QString value)
 
 QString OptionsConfigItem::correct(QString value)
 {
-    return this->validate(value) ? value : this->_options[0];
+    if(this->_options.isEmpty()){
+        return value;
+    }
+
+    return this->validate(value) ? value : this->_options.first();
 }
 
 QList<QString> OptionsConfigItem::options()
@@ -523,7 +535,8 @@ ColorConfigItem::ColorConfigItem(QString group, QString name, QColor default_, b
     this->group = group;
     this->name = name;
     this->defaultValue = default_;
-    this->restart = restart;
+    this->restart = restart;
+    this->__value = this->correct(default_);
 }
 
 QColor ColorConfigItem::getValue()
@@ -593,15 +606,28 @@ QConfig* QConfig::getInstance()
 QVariant QConfig::get(QVariant item)
 {
     if(item.canConvert<RangeConfigItem*>()){
-        QVariant v = iniSettings->getValue(item.value<RangeConfigItem*>()->group, item.value<RangeConfigItem*>()->name, item.value<RangeConfigItem*>()->defaultValue);
-        return v;
+        RangeConfigItem *rangeItem = item.value<RangeConfigItem*>();
+        int value = rangeItem->correct(iniSettings->getValue(rangeItem->group, rangeItem->name, rangeItem->defaultValue).toInt());
+        rangeItem->__value = value;
+        return QVariant::fromValue<int>(value);
     }else if(item.canConvert<OptionsConfigItem*>()){
-        QVariant v = iniSettings->getValue(item.value<OptionsConfigItem*>()->group, item.value<OptionsConfigItem*>()->name, item.value<OptionsConfigItem*>()->defaultValue);
-        return v;
+        OptionsConfigItem *optionsItem = item.value<OptionsConfigItem*>();
+        QString value = optionsItem->correct(iniSettings->getValue(optionsItem->group, optionsItem->name, optionsItem->defaultValue).toString());
+        optionsItem->__value = value;
+        return QVariant::fromValue<QString>(value);
     }else if(item.canConvert<ColorConfigItem*>()){
-        QVariant v = iniSettings->getValue(item.value<ColorConfigItem*>()->group, item.value<ColorConfigItem*>()->name, item.value<ColorConfigItem*>()->defaultValue);
-        return v;
+        ColorConfigItem *colorItem = item.value<ColorConfigItem*>();
+        QVariant storedValue = iniSettings->getValue(colorItem->group, colorItem->name, colorItem->defaultValue);
+        QColor value = storedValue.value<QColor>();
+        if(!value.isValid()){
+            value = QColor(storedValue.toString());
+        }
+        value = colorItem->correct(value);
+        colorItem->__value = value;
+        return QVariant::fromValue<QColor>(value);
     }
+
+    return QVariant();
 }
 
 
@@ -612,16 +638,16 @@ Theme QConfig::getTheme()
 
 
 bool isWindowsDarkModeActive() {
-    // Windows注册表路径，用于存储个性化设置
+    // Windows娉ㄥ唽琛ㄨ矾寰勶紝鐢ㄤ簬瀛樺偍涓€у寲璁剧疆
     const QString regKey = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize";
-    const QString regValue = "AppsUseLightTheme"; // 当此值为0时，表示暗模式
+    const QString regValue = "AppsUseLightTheme"; // 褰撴鍊间负0鏃讹紝琛ㄧず鏆楁ā寮?
 
     QSettings settings(regKey, QSettings::NativeFormat);
 
-    // 查询注册表中的AppsUseLightTheme值
-    QVariant value = settings.value(regValue, 1); // 默认为1，即亮模式
+    // 鏌ヨ娉ㄥ唽琛ㄤ腑鐨凙ppsUseLightTheme鍊?
+    QVariant value = settings.value(regValue, 1); // 榛樿涓?锛屽嵆浜ā寮?
 
-    // 如果值为0，则表示 Windows 处于暗模式
+    // 濡傛灉鍊间负0锛屽垯琛ㄧず Windows 澶勪簬鏆楁ā寮?
     return value.toInt() == 0;
 }
 
@@ -637,31 +663,37 @@ void QConfig::setTheme(Theme t)
 
 void QConfig::set(QVariant item, QVariant value, bool save, bool copy)
 {
+    Q_UNUSED(copy);
+
     if(item.canConvert<RangeConfigItem*>()){
-        if(item.value<RangeConfigItem*>()->getValue() == value.value<int>()){
+        RangeConfigItem *rangeItem = item.value<RangeConfigItem*>();
+        int correctedValue = rangeItem->correct(value.toInt());
+
+        if(rangeItem->getValue() == correctedValue){
             return;
         }
 
-        item.value<RangeConfigItem*>()->setValue(value.value<int>());
+        rangeItem->setValue(correctedValue);
 
         if(save){
-            iniSettings->setValue(item.value<RangeConfigItem*>()->group, item.value<RangeConfigItem*>()->name, value);
+            iniSettings->setValue(rangeItem->group, rangeItem->name, correctedValue);
         }
 
-        if(item.value<RangeConfigItem*>()->restart){
+        if(rangeItem->restart){
             emit(this->appRestartSig());
         }
     }else if(item.canConvert<OptionsConfigItem*>()){
         OptionsConfigItem *optionsItem = item.value<OptionsConfigItem*>();
+        QString correctedValue = optionsItem->correct(value.toString());
 
-        if(optionsItem->getValue() == value.value<QString>()){
+        if(optionsItem->getValue() == correctedValue){
             return;
         }
 
-        optionsItem->setValue(value.value<QString>());
+        optionsItem->setValue(correctedValue);
 
         if(save){
-            iniSettings->setValue(optionsItem->group, optionsItem->name, value);
+            iniSettings->setValue(optionsItem->group, optionsItem->name, correctedValue);
         }
 
         if(optionsItem->restart){
@@ -683,21 +715,28 @@ void QConfig::set(QVariant item, QVariant value, bool save, bool copy)
             }
         }
     }else if(item.canConvert<ColorConfigItem*>()){
-        if(item.value<ColorConfigItem*>()->getValue() == value.value<QColor>()){
+        ColorConfigItem *colorItem = item.value<ColorConfigItem*>();
+        QColor inputColor = value.value<QColor>();
+        if(!inputColor.isValid()){
+            inputColor = QColor(value.toString());
+        }
+        QColor correctedValue = colorItem->correct(inputColor);
+
+        if(colorItem->getValue() == correctedValue){
             return;
         }
 
-        item.value<ColorConfigItem*>()->setValue(value.value<QColor>());
+        colorItem->setValue(correctedValue);
 
         if(save){
-            iniSettings->setValue(item.value<ColorConfigItem*>()->group, item.value<ColorConfigItem*>()->name, value);
+            iniSettings->setValue(colorItem->group, colorItem->name, correctedValue);
         }
 
-        if(item.value<ColorConfigItem*>()->restart){
+        if(colorItem->restart){
             emit(this->appRestartSig());
         }
 
-        emit(this->themeColorChanged(item.value<ColorConfigItem*>()->getValue()));
+        emit(this->themeColorChanged(colorItem->getValue()));
     }
 }
 
@@ -865,7 +904,7 @@ ColorConfigItem::ColorConfigItem(QString group, QString name, QVariant *default_
         }
     }
 
-    //脱裤子放屁
+    //鑴辫￥瀛愭斁灞?
     template<typename T>
     BoolValidator<T>::BoolValidator()
     {

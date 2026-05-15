@@ -2,6 +2,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QWidget>
 #include <QtGui/QAction>
+#include <QtGui/QActionGroup>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <QtGui/QEnterEvent>
 
@@ -136,7 +136,7 @@ public:
     };
     virtual void setExpanded(bool isExpanded){};
     QList<NavigationWidget*> childItems(){
-
+        return QList<NavigationWidget*>();
     };
 };
 

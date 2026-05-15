@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <QtCore/Qt>
 #include <QtCore/QObject>
@@ -11,23 +11,23 @@ class QFLUENTWIDGETS_EXPORT MediaPlayerBase : public QObject{
     Q_OBJECT
 public:
     MediaPlayerBase(QWidget *parent) : QObject(parent){};
-    virtual bool isPlaying(){};
-    virtual QMediaPlayer::MediaStatus mediaStatus(){};
-    virtual QMediaPlayer::PlaybackState playbackState(){};
-    virtual int duration(){};
-    virtual QPoint position(){};
-    virtual int volume(){};
-    virtual QUrl source(){};
+    virtual bool isPlaying(){ return false; };
+    virtual QMediaPlayer::MediaStatus mediaStatus(){ return QMediaPlayer::NoMedia; };
+    virtual QMediaPlayer::PlaybackState playbackState(){ return QMediaPlayer::StoppedState; };
+    virtual int duration(){ return 0; };
+    virtual QPoint position(){ return QPoint(); };
+    virtual int volume(){ return 0; };
+    virtual QUrl source(){ return QUrl(); };
     virtual void pause(){};
     virtual void play(){};
     virtual void stop(){};
-    virtual float playbackRate(){};
+    virtual float playbackRate(){ return 1.0f; };
     virtual void setPosition(int position){};
     virtual void setSource(QUrl media){};
     virtual void setPlaybackRate(float rate){};
     virtual void setVolume(int volume){};
     virtual void setMuted(bool isMuted){};
-    virtual QObject *videoOutput(){};
+    virtual QObject *videoOutput(){ return nullptr; };
     virtual void setVideoOutput(QObject *output){};
 
 signals:

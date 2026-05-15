@@ -103,7 +103,7 @@ public:
     QString content(QString fluentStyleSheet, Theme theme);
     void apply(QWidget *widget, QString fluentStyleSheet, Theme theme);
     bool operator==(const StyleSheetBase& other) const {
-        return *this == other;
+        return this == &other;
     }
 private:
     StyleSheetBase *self;   

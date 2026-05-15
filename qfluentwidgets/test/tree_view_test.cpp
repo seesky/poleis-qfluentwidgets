@@ -1,7 +1,7 @@
 #include <QtCore/Qt>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QWidget>
-#include <QtWidgets/QFileSystemModel>
+#include <QtGui/QFileSystemModel>
 #include <QtWidgets/QHBoxLayout>
 
 #include "../components/widgets/tree_view.h"

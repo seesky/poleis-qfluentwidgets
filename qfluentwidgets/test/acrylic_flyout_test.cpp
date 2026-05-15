@@ -71,7 +71,7 @@ public slots:
         InfoBarIcon *_icon = new InfoBarIcon();
         _icon->setIconName(QString("SUCCESS"));
         QVariant *__icon = new QVariant();
-        __icon->setValue<InfoBarIcon>(*_icon);
+        __icon->setValue(InfoBarIcon(*_icon));
 
 
         AcrylicFlyout::create(
