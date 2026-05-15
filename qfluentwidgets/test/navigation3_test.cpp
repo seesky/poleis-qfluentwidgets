@@ -2,7 +2,7 @@
 #include <QtCore/QEvent>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QDesktopWidget>
+#include <QtGui/QScreen>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -213,9 +213,9 @@ public:
         this->setWindowTitle(QString("Fluentt Widgets"));
         this->titleBar->setAttribute(Qt::WA_StyledBackground);
 
-        QDesktopWidget *desktopWidget = QApplication::desktop();
-        int w = desktopWidget->width();
-        int h = desktopWidget->height();
+        QRect desktop = QGuiApplication::primaryScreen()->availableGeometry();
+        int w = desktop.width();
+        int h = desktop.height();
         this->move(w / 2 - this->width() / 2, h / 2 - this->height() / 2);
 
         this->setQss();
@@ -269,8 +269,6 @@ public slots:
 int main(int argc, char *argv[])
 {
     QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     
     QApplication *app = new QApplication(argc, argv);
     Window *w = new Window();

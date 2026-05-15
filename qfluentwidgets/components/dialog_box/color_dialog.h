@@ -2,7 +2,7 @@
 
 #include <QtCore/Qt>
 #include <QtCore/QPoint>
-#include <QtCore/QRegExp>
+#include <QtCore/QRegularExpression>
 #include <QtCore/QSize>
 #include <QtGui/QBrush>
 #include <QtGui/QColor>
@@ -10,7 +10,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QPen>
 #include <QtGui/QIntValidator>
-#include <QtGui/QRegExpValidator>
+#include <QtGui/QRegularExpressionValidator>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
@@ -26,7 +26,7 @@
 #include "mask_dialog_base.h"
 
 
-class HuePanel : public QWidget{
+class QFLUENTWIDGETS_EXPORT HuePanel : public QWidget{
     Q_OBJECT
 public:
     HuePanel(QColor color, QWidget *parent);
@@ -46,7 +46,7 @@ signals:
 };
 
 
-class BrightnessSlider : public ClickableSlider{
+class QFLUENTWIDGETS_EXPORT BrightnessSlider : public ClickableSlider{
     Q_OBJECT
 public:
     BrightnessSlider(QColor color, QWidget *parent);
@@ -61,7 +61,7 @@ public slots:
 };
 
 
-class ColorCard : public QWidget{
+class QFLUENTWIDGETS_EXPORT ColorCard : public QWidget{
     Q_OBJECT
 public:
     ColorCard(QColor color, QWidget *parent, bool enableAlpha);
@@ -74,7 +74,7 @@ public:
     QColor color;
 };
 
-class ColorLineEdit : public LineEdit{
+class QFLUENTWIDGETS_EXPORT ColorLineEdit : public LineEdit{
     Q_OBJECT
 public:
     ColorLineEdit(int value, QWidget *parent);
@@ -84,7 +84,7 @@ signals:
     void valueChanged(QString);
 };
 
-class HexColorLineEdit : public ColorLineEdit{
+class QFLUENTWIDGETS_EXPORT HexColorLineEdit : public ColorLineEdit{
     Q_OBJECT
 public:
     HexColorLineEdit(QColor color, QWidget *parent, bool enableAlpha);
@@ -94,7 +94,7 @@ public:
     QLabel *prefixLabel;
 };
 
-class OpacityLineEdit : public ColorLineEdit{
+class QFLUENTWIDGETS_EXPORT OpacityLineEdit : public ColorLineEdit{
     Q_OBJECT
 public:
     OpacityLineEdit(int value, QWidget *parent, bool enableAlpha);
@@ -105,7 +105,7 @@ public:
 };
 
 
-class ColorDialog : public MaskDialogBase{
+class QFLUENTWIDGETS_EXPORT ColorDialog : public MaskDialogBase{
     Q_OBJECT
 public:
     ColorDialog(QColor color, QString title, QWidget *parent, bool enableAlpha);

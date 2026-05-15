@@ -25,8 +25,10 @@ DWMMenu::DWMMenu(QString title, QWidget *parent) : QMenu(title, parent)
 
 bool DWMMenu::event(QEvent *e)
 {
+#ifdef Q_OS_WIN
     if(e->type() == QEvent::WinIdChange)
         this->windowEffect->addMenuShadowEffect((HWND)(this->winId()));
+#endif
     return QMenu::event(e);
 }
 
@@ -36,7 +38,7 @@ SubMenuItemWidget::SubMenuItemWidget(QMenu *menu, QListWidgetItem *item, QWidget
     this->item = item;
 }
 
-void SubMenuItemWidget::enterEvent(QEvent *event)
+void SubMenuItemWidget::enterEvent(QEnterEvent *event)
 {
     QWidget::enterEvent(event);
     emit(this->showMenuSig(this->item));
@@ -99,7 +101,7 @@ void ShortcutMenuItemDelegate::paint(QPainter *painter, const QStyleOptionViewIt
     QFontMetrics *fm = new QFontMetrics(font);
     QString shortcut = action->shortcut().toString(QKeySequence::NativeText);
 
-    int sw = fm->width(shortcut);
+    int sw = fm->horizontalAdvance(shortcut);
     painter->translate(option.rect.width() - sw - 20, 0);
 
     QRectF *rect = new QRectF(0, option.rect.y(), sw, option.rect.height());
@@ -324,11 +326,11 @@ int RoundMenu::_adjustItemText(QListWidgetItem *item, QAction *action)
     int w, space;
     if(!this->_hasItemIcon()){
         item->setText(action->text());
-        w = 40 + this->view->fontMetrics().width(action->text()) + sw;
+        w = 40 + this->view->fontMetrics().horizontalAdvance(action->text()) + sw;
     }else{
         item->setText(QString(" ") + action->text());
-        space = 4 - this->view->fontMetrics().width(" ");
-        w = 60 + this->view->fontMetrics().width(item->text()) + sw + space;
+        space = 4 - this->view->fontMetrics().horizontalAdvance(" ");
+        w = 60 + this->view->fontMetrics().horizontalAdvance(item->text()) + sw + space;
     }
 
     item->setSizeHint(QSize(w, this->itemHeight));
@@ -342,8 +344,8 @@ int RoundMenu::_longestShortcutWidth()
     QList<QAction *>::iterator it;
     for (it = this->menuActions()->begin(); it != this->menuActions()->end(); ++it) {
         QAction * value = *it;
-        if(fm->width(value->shortcut().toString()) > r){
-            r = fm->width(value->shortcut().toString());
+        if(fm->horizontalAdvance(value->shortcut().toString()) > r){
+            r = fm->horizontalAdvance(value->shortcut().toString());
         }
     }
     return r;
@@ -512,10 +514,10 @@ std::tuple<QListWidgetItem *, SubMenuItemWidget*> RoundMenu::_createSubMenuItem(
     
     int w;
     if(!this->_hasItemIcon()){
-        w = 60 + this->view->fontMetrics().width(menu->title());
+        w = 60 + this->view->fontMetrics().horizontalAdvance(menu->title());
     }else{
         item->setText(QString(" ") + item->text());
-        w = 72 + this->view->fontMetrics().width(item->text());
+        w = 72 + this->view->fontMetrics().horizontalAdvance(item->text());
     }
 
     menu->_setParentMenu(this, item);
@@ -837,7 +839,7 @@ void MenuActionListWidget::publicSetViewportMargins(int left, int top, int right
 
 bool MenuActionListWidget::publicEvent(QEvent *e)
 {
-    this->event(e);
+    return this->event(e);
 }
 
 bool MenuActionListWidget::event(QEvent *e)

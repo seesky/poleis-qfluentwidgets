@@ -7,7 +7,7 @@
 #include <QtGui/QPainter>
 #include <QtSvg/QSvgRenderer>
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
+#include <QtGui/QAction>
 #include <QtCore/QMetaType>
 #include "config.h"
 
@@ -206,7 +206,7 @@ const static std::map<QString, QString> FluentIconMap = {
         {"GRID", "Grid"}
 };
 
-class SvgIconEngine : public QIconEngine{
+class QFLUENTWIDGETS_EXPORT SvgIconEngine : public QIconEngine{
 public:
     SvgIconEngine(QString svg);
     void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override;
@@ -217,7 +217,7 @@ private:
 };
 
 
-class FluentIconBase{
+class QFLUENTWIDGETS_EXPORT FluentIconBase{
 public:
     FluentIconBase(){
         this->_icon = nullptr;
@@ -241,7 +241,7 @@ private:
 Q_DECLARE_METATYPE(FluentIconBase)
 Q_DECLARE_METATYPE(FluentIconBase *)
 
-class FluentIcon : public FluentIconBase{
+class QFLUENTWIDGETS_EXPORT FluentIcon : public FluentIconBase{
 public:
     FluentIcon(){};
     QIcon *icon(Theme theme, QColor color);
@@ -253,7 +253,7 @@ private:
 
 Q_DECLARE_METATYPE(FluentIcon)
 
-class Icon : public QIcon{
+class QFLUENTWIDGETS_EXPORT Icon : public QIcon{
 public:
     Icon();
     Icon(FluentIcon *fluentIcon);
@@ -264,7 +264,7 @@ private:
 
 Q_DECLARE_METATYPE(Icon)
 
-class FluentIconEngine : public QIconEngine{
+class QFLUENTWIDGETS_EXPORT FluentIconEngine : public QIconEngine{
 public:
 
     FluentIconEngine(QVariant *icon, bool reverse);
@@ -276,13 +276,13 @@ private:
     bool isThemeReversed;
 };
 
-class MIcon{
+class QFLUENTWIDGETS_EXPORT MIcon{
 public:
     QIcon toQIcon(QVariant *icon);
     void drawIcon(QVariant *icon, QPainter *painter, QRect rect, std::map<QString, QString> *attributes, QIcon::State state);
 };
 
-class Action : public QAction{
+class QFLUENTWIDGETS_EXPORT Action : public QAction{
     Q_OBJECT
 public:
     Action(QObject *parent);
@@ -302,7 +302,7 @@ QString getIconColor(Theme theme, bool reverse);
 //QString writeSvg(QString iconPath, int indexes = 0, std::map<QString, QString> attributes = {});
 
 
-class InfoBarIcon : public FluentIconBase{
+class QFLUENTWIDGETS_EXPORT InfoBarIcon : public FluentIconBase{
 public:
     InfoBarIcon(){};
     void render(QPainter *painter, QRect rect, Theme theme, int indexes, std::map<QString, QString> *attributes) override;
@@ -314,7 +314,7 @@ Q_DECLARE_METATYPE(InfoBarIcon)
 Q_DECLARE_METATYPE(InfoBarIcon*)
 
 
-class SpinIcon : public FluentIconBase{
+class QFLUENTWIDGETS_EXPORT SpinIcon : public FluentIconBase{
 public:
     SpinIcon(){};
     QString path(Theme theme) override;

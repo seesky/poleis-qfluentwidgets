@@ -22,7 +22,7 @@
 #include "media_player.h"
 
 
-class MediaPlayBarButton : public TransparentToolButton{
+class QFLUENTWIDGETS_EXPORT MediaPlayBarButton : public TransparentToolButton{
     Q_OBJECT
 public:
     MediaPlayBarButton(QWidget *parent) : TransparentToolButton(parent){};
@@ -33,7 +33,7 @@ public:
 };
 
 
-class PlayButton : public MediaPlayBarButton{
+class QFLUENTWIDGETS_EXPORT PlayButton : public MediaPlayBarButton{
     Q_OBJECT
 public:
     PlayButton(QWidget *parent) : MediaPlayBarButton(parent){};
@@ -45,7 +45,7 @@ public:
 };
 
 
-class VolumeView : public FlyoutViewBase{
+class QFLUENTWIDGETS_EXPORT VolumeView : public FlyoutViewBase{
     Q_OBJECT
 public:
     VolumeView(QWidget *parent);
@@ -59,7 +59,7 @@ public:
 };
 
 
-class VolumeButton : public MediaPlayBarButton{
+class QFLUENTWIDGETS_EXPORT VolumeButton : public MediaPlayBarButton{
     Q_OBJECT
 public:
     VolumeButton(QWidget *parent) : MediaPlayBarButton(parent){
@@ -91,7 +91,7 @@ public slots:
 };
 
 
-class MediaPlayBarBase : public QWidget{
+class QFLUENTWIDGETS_EXPORT MediaPlayBarBase : public QWidget{
     Q_OBJECT
 public:
     MediaPlayBarBase(QWidget *parent);
@@ -122,7 +122,7 @@ public slots:
 
 
 
-class SimpleMediaPlayBar : public MediaPlayBarBase{
+class QFLUENTWIDGETS_EXPORT SimpleMediaPlayBar : public MediaPlayBarBase{
     Q_OBJECT
 public:
     SimpleMediaPlayBar(QWidget *parent);
@@ -132,7 +132,7 @@ public:
 };
 
 
-class StandardMediaPlayBar : public MediaPlayBarBase{
+class QFLUENTWIDGETS_EXPORT StandardMediaPlayBar : public MediaPlayBarBase{
     Q_OBJECT
 public:
     StandardMediaPlayBar(QWidget *parent);

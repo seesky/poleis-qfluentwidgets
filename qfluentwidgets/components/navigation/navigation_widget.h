@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/Qt>
 #include <QtCore/QQueue>
 #include <QtCore/QRect>
@@ -32,11 +34,11 @@
 
 static int EXPAND_WIDTH = 312;
 
-class NavigationWidget : public QWidget{
+class QFLUENTWIDGETS_EXPORT NavigationWidget : public QWidget{
     Q_OBJECT
 public:
     NavigationWidget(bool isSelectable, QWidget *parent);
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
@@ -64,7 +66,7 @@ public slots:
 
 
 
-class NavigationPushButton : public NavigationWidget{
+class QFLUENTWIDGETS_EXPORT NavigationPushButton : public NavigationWidget{
     Q_OBJECT
 public:
     NavigationPushButton(QVariant *icon, QString text, bool isSelectable, QWidget *parent);
@@ -81,7 +83,7 @@ public:
 };
 
 
-class NavigationToolButton : public NavigationPushButton{
+class QFLUENTWIDGETS_EXPORT NavigationToolButton : public NavigationPushButton{
     Q_OBJECT
 public:
     NavigationToolButton(QVariant *icon, QWidget *parent);
@@ -90,7 +92,7 @@ public:
 };
 
 
-class NavigationSeparator : public NavigationWidget{
+class QFLUENTWIDGETS_EXPORT NavigationSeparator : public NavigationWidget{
     Q_OBJECT
 public:
     NavigationSeparator(QWidget *parent);
@@ -99,7 +101,7 @@ public:
 };
 
 class NavigationTreeWidget;
-class NavigationTreeItem : public NavigationPushButton{
+class QFLUENTWIDGETS_EXPORT NavigationTreeItem : public NavigationPushButton{
     Q_OBJECT
     Q_PROPERTY(float arrowAngle READ getArrowAngle WRITE setArrowAngle)
 public:
@@ -119,7 +121,7 @@ signals:
 };
 
 
-class NavigationTreeWidgetBase : public NavigationWidget{
+class QFLUENTWIDGETS_EXPORT NavigationTreeWidgetBase : public NavigationWidget{
     Q_OBJECT
 public:
     NavigationTreeWidgetBase(bool isSelectable, QWidget *parent): NavigationWidget(isSelectable, parent){};
@@ -139,7 +141,7 @@ public:
 };
 
 
-class NavigationTreeWidget : public NavigationTreeWidgetBase{
+class QFLUENTWIDGETS_EXPORT NavigationTreeWidget : public NavigationTreeWidgetBase{
     Q_OBJECT
 public:
     NavigationTreeWidget(QVariant *icon, QString text, bool isSelectable, QWidget *parent);
@@ -178,7 +180,7 @@ public slots:
 
 
 
-class NavigationAvatarWidget : public NavigationWidget{
+class QFLUENTWIDGETS_EXPORT NavigationAvatarWidget : public NavigationWidget{
     Q_OBJECT
 public:
     NavigationAvatarWidget(QString name, QVariant *avatar, QWidget *parent);
@@ -192,7 +194,7 @@ public:
 
 
 
-class NavigationFlyoutMenu : public ScrollArea{
+class QFLUENTWIDGETS_EXPORT NavigationFlyoutMenu : public ScrollArea{
     Q_OBJECT
 public:
     NavigationFlyoutMenu(NavigationTreeWidget *tree, QWidget *parent);

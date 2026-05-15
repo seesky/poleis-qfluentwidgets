@@ -13,7 +13,7 @@
 #include <QtWidgets/QLayoutItem>
 
 
-class FlowLayout : public QLayout{
+class QFLUENTWIDGETS_EXPORT FlowLayout : public QLayout{
     Q_OBJECT
 public:
     FlowLayout(QWidget *parent, bool needAni, bool isTight);

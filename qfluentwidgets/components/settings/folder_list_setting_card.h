@@ -18,7 +18,7 @@
 #include "../../components/dialog_box/dialog.h"
 #include "expand_setting_card.h"
 
-class FolderItem : public QWidget{
+class QFLUENTWIDGETS_EXPORT FolderItem : public QWidget{
     Q_OBJECT
 public:
     FolderItem(QString folder, QWidget *parent);
@@ -33,7 +33,7 @@ signals:
 };
 
 
-class FolderListSettingCard : public ExpandSettingCard{
+class QFLUENTWIDGETS_EXPORT FolderListSettingCard : public ExpandSettingCard{
     Q_OBJECT
 public:
     FolderListSettingCard(QVariant configItem, QString title, QString content, QString directory, QWidget *parent);

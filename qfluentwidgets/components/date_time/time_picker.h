@@ -4,7 +4,7 @@
 #include <QtCore/QSize>
 #include "picker_base.h"
 
-class TimePickerBase : public PickerBase{
+class QFLUENTWIDGETS_EXPORT TimePickerBase : public PickerBase{
     Q_OBJECT
 public:
     TimePickerBase(QWidget *parent, bool showSeconds);
@@ -19,20 +19,20 @@ signals:
     void timeChanged(QTime);
 };
 
-class MiniuteFormatter : public DigitFormatter{
+class QFLUENTWIDGETS_EXPORT MiniuteFormatter : public DigitFormatter{
     Q_OBJECT
 public:
     QString encode(QVariant value) override;
 };
 
-class AMHourFormatter : public DigitFormatter{
+class QFLUENTWIDGETS_EXPORT AMHourFormatter : public DigitFormatter{
     Q_OBJECT
 public:
     QString encode(QVariant value) override;
 };
 
 
-class AMPMFormatter : public PickerColumnFormatter{
+class QFLUENTWIDGETS_EXPORT AMPMFormatter : public PickerColumnFormatter{
     Q_OBJECT
 public:
     AMPMFormatter();
@@ -43,7 +43,7 @@ public:
 };
 
 
-class TimePicker : public TimePickerBase{
+class QFLUENTWIDGETS_EXPORT TimePicker : public TimePickerBase{
     Q_OBJECT
     Q_PROPERTY(QTime* time READ getTime WRITE setTime)
     Q_PROPERTY(bool secondVisible READ isSecondVisible WRITE setSecondVisible)
@@ -59,7 +59,7 @@ public:
 
 
 
-class AMTimePicker : public TimePickerBase{
+class QFLUENTWIDGETS_EXPORT AMTimePicker : public TimePickerBase{
     Q_OBJECT
     Q_PROPERTY(QTime* time READ getTime WRITE setTime)
     Q_PROPERTY(bool secondVisible READ isSecondVisible WRITE setSecondVisible)

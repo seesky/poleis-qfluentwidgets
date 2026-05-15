@@ -1,4 +1,6 @@
 #pragma once
+
+#include <QtGui/QEnterEvent>
 #include "../../common/icon.h"
 #include "../../common/animation.h"
 #include "menu.h"
@@ -8,7 +10,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QDesktopServices>
 
-class PushButton : public QPushButton{
+class QFLUENTWIDGETS_EXPORT PushButton : public QPushButton{
     Q_OBJECT
 public:
     PushButton(){};
@@ -24,7 +26,7 @@ public:
 
     void mousePressEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
     virtual void _drawIcon(QVariant *icon, QPainter *painter, QRect rect, QIcon::State state);
@@ -36,7 +38,7 @@ public:
 
 Q_DECLARE_METATYPE(QIcon *)
 
-class PrimaryPushButton : public PushButton{
+class QFLUENTWIDGETS_EXPORT PrimaryPushButton : public PushButton{
     Q_OBJECT
 public:
     //PrimaryPushButton(){};
@@ -47,7 +49,7 @@ public:
     void _drawIcon(QVariant *icon, QPainter *painter, QRect rect, QIcon::State state) override;
 };
 
-class TransparentPushButton : public PushButton{
+class QFLUENTWIDGETS_EXPORT TransparentPushButton : public PushButton{
     Q_OBJECT
 public:
     TransparentPushButton(QWidget *parent) : PushButton(parent){};
@@ -56,7 +58,7 @@ public:
     void _postInit() override {};
 };
 
-class ToggleButton : public PushButton{
+class QFLUENTWIDGETS_EXPORT ToggleButton : public PushButton{
     Q_OBJECT
 public:
     ToggleButton(QWidget *parent) : PushButton(parent){};
@@ -70,7 +72,7 @@ public:
     void _drawIcon(QVariant *icon, QPainter *painter, QRect rect, QIcon::State state) override;
 };
 
-class TransparentTogglePushButton : public ToggleButton{
+class QFLUENTWIDGETS_EXPORT TransparentTogglePushButton : public ToggleButton{
     Q_OBJECT
 public:
     TransparentTogglePushButton(QWidget *parent) : ToggleButton(parent){};
@@ -78,7 +80,7 @@ public:
     TransparentTogglePushButton(FluentIcon *icon, QString text, QWidget *parent) : ToggleButton(icon, text, parent){};
 };
 
-class HyperlinkButton : public PushButton{
+class QFLUENTWIDGETS_EXPORT HyperlinkButton : public PushButton{
     Q_OBJECT
 public:
     void initialize(QWidget *parent);
@@ -94,7 +96,7 @@ private:
 };
 
 
-class RadioButton : public QRadioButton{
+class QFLUENTWIDGETS_EXPORT RadioButton : public QRadioButton{
     Q_OBJECT
 public:
     void initialize(QWidget *parent);
@@ -103,7 +105,7 @@ private:
 };
 
 
-class ToolButton : public QToolButton{
+class QFLUENTWIDGETS_EXPORT ToolButton : public QToolButton{
     Q_OBJECT
 public:
     void initialize(QWidget *parent);
@@ -119,7 +121,7 @@ public:
     bool setProperty(QString name, QVariant *value);
     void mousePressEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
     virtual void _drawIcon(QVariant *icon, QPainter *painter, QRect rect, QIcon::State state);
@@ -131,7 +133,7 @@ private:
 };
 
 
-class TransparentToolButton : public ToolButton{
+class QFLUENTWIDGETS_EXPORT TransparentToolButton : public ToolButton{
     Q_OBJECT
 public:
     TransparentToolButton(QWidget *parent) : ToolButton(parent){};
@@ -143,7 +145,7 @@ private:
 };
 
 
-class PrimaryToolButton : public ToolButton{
+class QFLUENTWIDGETS_EXPORT PrimaryToolButton : public ToolButton{
     Q_OBJECT
 public:
     PrimaryToolButton(QWidget *parent) : ToolButton(parent){};
@@ -154,7 +156,7 @@ public:
     void _drawIcon(QVariant *icon, QPainter *painter, QRect rect, QIcon::State state) override;
 };
 
-class ToggleToolButton : public ToolButton{
+class QFLUENTWIDGETS_EXPORT ToggleToolButton : public ToolButton{
     Q_OBJECT
 public:
     ToggleToolButton(QWidget *parent) : ToolButton(parent){};
@@ -166,7 +168,7 @@ public:
 private:
 };
 
-class TransparentToggleToolButton : public ToggleToolButton{
+class QFLUENTWIDGETS_EXPORT TransparentToggleToolButton : public ToggleToolButton{
     Q_OBJECT
 public:
     TransparentToggleToolButton(QWidget *parent) : ToggleToolButton(parent){};
@@ -176,7 +178,7 @@ public:
 };
 
 
-class DropDownButtonBase{
+class QFLUENTWIDGETS_EXPORT DropDownButtonBase{
 public:
     DropDownButtonBase();
     void setMenu(RoundMenu *menu);
@@ -194,7 +196,7 @@ private:
 };
 
 
-class DropDownPushButton : public PushButton{
+class QFLUENTWIDGETS_EXPORT DropDownPushButton : public PushButton{
     Q_OBJECT
 public:
     DropDownPushButton(QString text, QWidget *parent, QVariant *icon) : PushButton(text, parent, icon){
@@ -222,7 +224,7 @@ private:
 };
 
 
-class TransparentDropDownPushButton : public DropDownPushButton{
+class QFLUENTWIDGETS_EXPORT TransparentDropDownPushButton : public DropDownPushButton{
     Q_OBJECT
 public:
     TransparentDropDownPushButton(QString text, QWidget *parent, QVariant *icon) : DropDownPushButton(text, parent, icon){};
@@ -231,7 +233,7 @@ private:
 };
 
 
-class DropDownToolButton : public ToolButton{
+class QFLUENTWIDGETS_EXPORT DropDownToolButton : public ToolButton{
     Q_OBJECT
 public:
     DropDownToolButton(FluentIcon *icon, QWidget *parent): ToolButton(icon, parent){
@@ -260,7 +262,7 @@ private:
 };
 
 
-class TransparentDropDownToolButton : public DropDownToolButton{
+class QFLUENTWIDGETS_EXPORT TransparentDropDownToolButton : public DropDownToolButton{
     Q_OBJECT
 public:
     TransparentDropDownToolButton(FluentIcon *icon, QWidget *parent): DropDownToolButton(icon, parent){};
@@ -268,7 +270,7 @@ public:
 };
 
 
-class PrimaryDropDownPushButton : public PrimaryPushButton{
+class QFLUENTWIDGETS_EXPORT PrimaryDropDownPushButton : public PrimaryPushButton{
     Q_OBJECT
 public:
     PrimaryDropDownPushButton(QString text, QWidget *parent, QVariant *icon) : PrimaryPushButton(text, parent, icon){
@@ -295,7 +297,7 @@ public:
 };
 
 
-class PrimaryDropDownToolButton : public PrimaryToolButton{
+class QFLUENTWIDGETS_EXPORT PrimaryDropDownToolButton : public PrimaryToolButton{
     Q_OBJECT
 public:
     PrimaryDropDownToolButton(QWidget *parent) : PrimaryToolButton(parent){};
@@ -319,7 +321,7 @@ public:
     bool isPressed;
 };
 
-class SplitDropButton : public ToolButton{
+class QFLUENTWIDGETS_EXPORT SplitDropButton : public ToolButton{
     Q_OBJECT
 public:
     SplitDropButton(QWidget *parent) : ToolButton(parent){
@@ -341,7 +343,7 @@ public:
 };
 
 
-class PrimarySplitDropButton : public PrimaryToolButton{
+class QFLUENTWIDGETS_EXPORT PrimarySplitDropButton : public PrimaryToolButton{
     Q_OBJECT
 public:
     PrimarySplitDropButton(QWidget *parent) : PrimaryToolButton(parent){
@@ -369,7 +371,7 @@ public:
 };
 
 
-class SplitWidgetBase : public QWidget{
+class QFLUENTWIDGETS_EXPORT SplitWidgetBase : public QWidget{
     Q_OBJECT
 public:
     SplitWidgetBase(){};
@@ -393,7 +395,7 @@ public slots:
 };
 
 
-class SplitPushButton : public SplitWidgetBase{
+class QFLUENTWIDGETS_EXPORT SplitPushButton : public SplitWidgetBase{
     Q_OBJECT
 public:
     SplitPushButton(){};
@@ -417,7 +419,7 @@ signals:
 
 
 
-class SplitWidgetBase2PrimaryButton : public QWidget{
+class QFLUENTWIDGETS_EXPORT SplitWidgetBase2PrimaryButton : public QWidget{
     Q_OBJECT
 public:
     SplitWidgetBase2PrimaryButton(){};
@@ -441,7 +443,7 @@ public slots:
 
 
 
-class PrimarySplitPushButton : public SplitWidgetBase2PrimaryButton{
+class QFLUENTWIDGETS_EXPORT PrimarySplitPushButton : public SplitWidgetBase2PrimaryButton{
     Q_OBJECT
 public:
     //PrimarySplitPushButton(){};
@@ -463,7 +465,7 @@ signals:
 };
 
 
-class SplitToolButton : public SplitWidgetBase{
+class QFLUENTWIDGETS_EXPORT SplitToolButton : public SplitWidgetBase{
     Q_OBJECT
 public:
     SplitToolButton(){};
@@ -485,7 +487,7 @@ signals:
 };
 
 
-class PrimarySplitToolButton : public SplitWidgetBase2PrimaryButton{
+class QFLUENTWIDGETS_EXPORT PrimarySplitToolButton : public SplitWidgetBase2PrimaryButton{
     Q_OBJECT
 public:
     PrimarySplitToolButton(){};
@@ -507,7 +509,7 @@ signals:
 };
 
 
-class PillPushButton : public ToggleButton{
+class QFLUENTWIDGETS_EXPORT PillPushButton : public ToggleButton{
     Q_OBJECT
 public:
     PillPushButton(QWidget *parent) : ToggleButton(parent){};
@@ -519,7 +521,7 @@ public:
 
 
 
-class PillToolButton : public ToggleToolButton{
+class QFLUENTWIDGETS_EXPORT PillToolButton : public ToggleToolButton{
     Q_OBJECT
 public:
     PillToolButton(FluentIcon *icon, QWidget *parent) : ToggleToolButton(icon, parent){};

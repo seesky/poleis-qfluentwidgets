@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/Qt>
 #include <QtCore/QRectF>
 #include <QtCore/QSize>
@@ -44,22 +46,22 @@ class TabBar;
 template<typename Func, typename... Defaults>
 std::function<typename std::result_of<Func(TabBar*, int)>::type(TabBar*, int)>
 checkIndex(Func func, Defaults... defaults) {
-    // 返回一个 lambda 表达式，捕获 func 和 defaults...
+    // 返回一�?lambda 表达式，捕获 func �?defaults...
     return [func, defaults...](TabBar* tabBar, int index) {
-        // 检查索引是否有效
+        // 检查索引是否有�?
         if (0 <= index && index < tabBar->items->size()) {
             // 如果有效，调用原函数
             return func(tabBar, index);
         } else {
-            // 如果索引无效，返回默认值
-            return (... , defaults); // 折叠表达式，返回最后一个默认值
+            // 如果索引无效，返回默认�?
+            return (... , defaults); // 折叠表达式，返回最后一个默认�?
         }
     };
 }
 */
 
 
-class TabToolButton : public TransparentToolButton{
+class QFLUENTWIDGETS_EXPORT TabToolButton : public TransparentToolButton{
     Q_OBJECT
 public:
     TabToolButton(QWidget *parent);
@@ -74,7 +76,7 @@ public:
 };
 
 
-class TabItem : public PushButton{
+class QFLUENTWIDGETS_EXPORT TabItem : public PushButton{
     Q_OBJECT
 public:
     TabItem(){};
@@ -96,7 +98,7 @@ public:
     void setTextColor(QColor color);
     void setSelectedBackgroundColor(QColor light, QColor dark);
     void resizeEvent(QResizeEvent *event) override;
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -125,7 +127,7 @@ signals:
 };
 
 
-class TabBar : public SingleDirectionScrollArea{
+class QFLUENTWIDGETS_EXPORT TabBar : public SingleDirectionScrollArea{
     Q_OBJECT
     Q_PROPERTY(bool movable READ isMovable WRITE setMovable)
     Q_PROPERTY(bool scrollable READ isScrollable WRITE setScrollable)

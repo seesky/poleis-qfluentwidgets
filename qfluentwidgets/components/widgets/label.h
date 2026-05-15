@@ -25,7 +25,7 @@
 #include "../../common/style_sheet.h"
 #include "../../common/config.h"
 
-class PixmapLabel : public QLabel{
+class QFLUENTWIDGETS_EXPORT PixmapLabel : public QLabel{
     Q_OBJECT
 public:
     PixmapLabel(QWidget *parent);
@@ -37,13 +37,13 @@ public:
 };
 
 
-class FluentLabelBase : public QLabel{
+class QFLUENTWIDGETS_EXPORT FluentLabelBase : public QLabel{
     Q_OBJECT
 public:
     FluentLabelBase(QWidget *parent);
     FluentLabelBase(QString text, QWidget *parent);
     void _init();
-    virtual QFont getFont(){};
+    virtual QFont getFont(){ return this->font(); };
     void setTextColor(QColor light, QColor dark);
     QColor getLightColor();
     void setLightColor(QColor color);
@@ -61,7 +61,7 @@ public:
 };
 
 
-class CaptionLabel : public FluentLabelBase{
+class QFLUENTWIDGETS_EXPORT CaptionLabel : public FluentLabelBase{
     Q_OBJECT
 public:
     CaptionLabel(QWidget *parent);
@@ -70,7 +70,7 @@ public:
 };
 
 
-class BodyLabel : public FluentLabelBase{
+class QFLUENTWIDGETS_EXPORT BodyLabel : public FluentLabelBase{
     Q_OBJECT
 public:
     BodyLabel(QWidget *parent);
@@ -79,7 +79,7 @@ public:
 };
 
 
-class StrongBodyLabel : public FluentLabelBase{
+class QFLUENTWIDGETS_EXPORT StrongBodyLabel : public FluentLabelBase{
     Q_OBJECT
 public:
     StrongBodyLabel(QWidget *parent);
@@ -88,7 +88,7 @@ public:
 };
 
 
-class SubtitleLabel : public FluentLabelBase{
+class QFLUENTWIDGETS_EXPORT SubtitleLabel : public FluentLabelBase{
     Q_OBJECT
 public:
     SubtitleLabel(QWidget *parent);
@@ -97,7 +97,7 @@ public:
 };
 
 
-class TitleLabel : public FluentLabelBase{
+class QFLUENTWIDGETS_EXPORT TitleLabel : public FluentLabelBase{
     Q_OBJECT
 public:
     TitleLabel(QWidget *parent);
@@ -106,7 +106,7 @@ public:
 };
 
 
-class LargeTitleLabel : public FluentLabelBase{
+class QFLUENTWIDGETS_EXPORT LargeTitleLabel : public FluentLabelBase{
     Q_OBJECT
 public:
     LargeTitleLabel(QWidget *parent);
@@ -114,7 +114,7 @@ public:
     QFont getFont() override; 
 };
 
-class DisplayLabel : public FluentLabelBase{
+class QFLUENTWIDGETS_EXPORT DisplayLabel : public FluentLabelBase{
     Q_OBJECT
 public:
     DisplayLabel(QWidget *parent);
@@ -123,7 +123,7 @@ public:
 };
 
 
-class ImageLabel : public QLabel{
+class QFLUENTWIDGETS_EXPORT ImageLabel : public QLabel{
     Q_OBJECT
 public:
     ImageLabel(QWidget *parent);
@@ -163,7 +163,7 @@ public slots:
 };
 
 
-class AvatarWidget : public ImageLabel{
+class QFLUENTWIDGETS_EXPORT AvatarWidget : public ImageLabel{
     Q_OBJECT
     Q_PROPERTY(int radius READ getRadius WRITE setRadius)
 public:
@@ -181,7 +181,7 @@ public:
 };
 
 
-class HyperlinkLabel : public QPushButton{
+class QFLUENTWIDGETS_EXPORT HyperlinkLabel : public QPushButton{
     Q_OBJECT
     Q_PROPERTY(QUrl url READ getUrl WRITE setUrl)
     Q_PROPERTY(bool underlineVisible READ isUnderlineVisible WRITE setUnderlineVisible)

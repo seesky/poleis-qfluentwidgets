@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/QPropertyAnimation>
 #include <QtCore/Qt>
 #include <QtCore/QTimer>
@@ -15,11 +17,11 @@
 #include "../../common/config.h"
 #include "../../common/icon.h"
 
-class StateCloseButton : public QToolButton{
+class QFLUENTWIDGETS_EXPORT StateCloseButton : public QToolButton{
     Q_OBJECT
 public:
     StateCloseButton(QWidget *parent);
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
@@ -30,7 +32,7 @@ public:
 };
 
 
-class StateToolTip : public QWidget{
+class QFLUENTWIDGETS_EXPORT StateToolTip : public QWidget{
     Q_OBJECT
 public:
     StateToolTip(QString title, QString content, QWidget *parent);

@@ -16,7 +16,7 @@
 
 //namespace Qfw{
 
-class AnimationBase : public QWidget
+class QFLUENTWIDGETS_EXPORT AnimationBase : public QWidget
 {
     Q_OBJECT
 public:
@@ -31,7 +31,7 @@ public:
 };
 
 
-class TranslateYAnimation : public AnimationBase
+class QFLUENTWIDGETS_EXPORT TranslateYAnimation : public AnimationBase
 {
     Q_OBJECT
     Q_PROPERTY(float y READ getY WRITE setY)
@@ -51,7 +51,7 @@ signals:
 };
 
 class BackgroundColorObject;
-class BackgroundAnimationWidget : public QWidget
+class QFLUENTWIDGETS_EXPORT BackgroundAnimationWidget : public QWidget
 {
     Q_OBJECT
 public:
@@ -79,7 +79,7 @@ public:
     QPropertyAnimation *backgroundColorAni; //= 
 };
 
-class BackgroundColorObject : public QWidget
+class QFLUENTWIDGETS_EXPORT BackgroundColorObject : public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(QColor backgroundColor READ getBackgroundColor WRITE setBackgroundColor)
@@ -90,7 +90,7 @@ public:
     QColor _backgroundColor;
 };
 
-class DropShadowAnimation : public QPropertyAnimation
+class QFLUENTWIDGETS_EXPORT DropShadowAnimation : public QPropertyAnimation
 {
     Q_OBJECT
 public:
@@ -143,7 +143,7 @@ const static QMap<QString, QString> FluentAnimationPropertyMap = {
 };
 
 
-class FluentAnimationProperObject : public QObject{
+class QFLUENTWIDGETS_EXPORT FluentAnimationProperObject : public QObject{
     Q_OBJECT
 public:
     FluentAnimationProperObject(QWidget *parent);
@@ -153,7 +153,7 @@ public:
 };
 
     
-class PositionObject : public FluentAnimationProperObject{
+class QFLUENTWIDGETS_EXPORT PositionObject : public FluentAnimationProperObject{
     Q_OBJECT
     Q_PROPERTY(QPoint position READ getValue WRITE setValue)
 public:
@@ -165,7 +165,7 @@ public:
 };
 
 
-class ScaleObject : public FluentAnimationProperObject{
+class QFLUENTWIDGETS_EXPORT ScaleObject : public FluentAnimationProperObject{
     Q_OBJECT
     Q_PROPERTY(float scale READ getValue WRITE setValue)
 public:
@@ -178,7 +178,7 @@ public:
 
 
 
-class AngleObject : public FluentAnimationProperObject{
+class QFLUENTWIDGETS_EXPORT AngleObject : public FluentAnimationProperObject{
     Q_OBJECT
     Q_PROPERTY(float angle READ getValue WRITE setValue)
 public:
@@ -190,7 +190,7 @@ public:
 };
 
 
-class OpacityObject : public FluentAnimationProperObject{
+class QFLUENTWIDGETS_EXPORT OpacityObject : public FluentAnimationProperObject{
     Q_OBJECT
     Q_PROPERTY(float opacity READ getValue WRITE setValue)
 public:
@@ -202,7 +202,7 @@ public:
 };
 
 
-class FluentAnimation : public QPropertyAnimation{
+class QFLUENTWIDGETS_EXPORT FluentAnimation : public QPropertyAnimation{
     Q_OBJECT
 public:
     FluentAnimation(QWidget *parent);
@@ -218,7 +218,7 @@ public:
 };
 
 
-class FastInvokeAnimation : public FluentAnimation{
+class QFLUENTWIDGETS_EXPORT FastInvokeAnimation : public FluentAnimation{
     Q_OBJECT
 public:
     FastInvokeAnimation(QWidget *parent) : FluentAnimation(parent){};
@@ -227,7 +227,7 @@ public:
 };
 
 
-class StrongInvokeAnimation : public FluentAnimation{
+class QFLUENTWIDGETS_EXPORT StrongInvokeAnimation : public FluentAnimation{
     Q_OBJECT
 public:
     StrongInvokeAnimation(QWidget *parent) : FluentAnimation(parent){};
@@ -237,14 +237,14 @@ public:
 
 
 
-class FastDismissAnimation : public FluentAnimation{
+class QFLUENTWIDGETS_EXPORT FastDismissAnimation : public FluentAnimation{
     Q_OBJECT
 public:
     FastDismissAnimation(QWidget *parent) : FluentAnimation(parent){};
 };
 
 
-class SoftDismissAnimation : public FluentAnimation{
+class QFLUENTWIDGETS_EXPORT SoftDismissAnimation : public FluentAnimation{
     Q_OBJECT
 public:
     SoftDismissAnimation(QWidget *parent) : FluentAnimation(parent){};
@@ -253,7 +253,7 @@ public:
 };
 
 
-class PointToPointAnimation : public FluentAnimation{
+class QFLUENTWIDGETS_EXPORT PointToPointAnimation : public FluentAnimation{
     Q_OBJECT
 public:
     PointToPointAnimation(QWidget *parent) : FluentAnimation(parent){};
@@ -261,7 +261,7 @@ public:
 };
 
 
-class FadeInOutAnimation : public FluentAnimation{
+class QFLUENTWIDGETS_EXPORT FadeInOutAnimation : public FluentAnimation{
     Q_OBJECT
 public:
     FadeInOutAnimation(QWidget *parent) : FluentAnimation(parent){};

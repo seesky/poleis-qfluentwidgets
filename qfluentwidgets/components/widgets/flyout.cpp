@@ -309,7 +309,7 @@ QPoint FlyoutAnimationManager::_adjustPosition(QPoint pos)
 
 QPoint FlyoutAnimationManager::position(QWidget *target)
 {
-
+    return target->mapToGlobal(QPoint());
 }
 
 FlyoutAnimationManager* FlyoutAnimationManager::make(FlyoutAnimationType aniType, Flyout *flyout)
@@ -327,6 +327,7 @@ FlyoutAnimationManager* FlyoutAnimationManager::make(FlyoutAnimationType aniType
     }else if(aniType == FlyoutAnimationType::NONE){
         return new DummyFlyoutAnimationManager(flyout);
     }
+    return new DummyFlyoutAnimationManager(flyout);
 }
 
 

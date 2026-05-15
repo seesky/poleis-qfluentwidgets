@@ -10,7 +10,7 @@
 #include "../widgets/button.h"
 #include "expand_setting_card.h"
 
-class OptionsSettingCard : public ExpandSettingCard{
+class QFLUENTWIDGETS_EXPORT OptionsSettingCard : public ExpandSettingCard{
     Q_OBJECT
 public:
     OptionsSettingCard(QVariant configItem, QVariant *icon, QString title, QString content, QList<QString> texts, QWidget *parent);

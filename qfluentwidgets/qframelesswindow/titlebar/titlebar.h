@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../utils/win32_utils.h"
 #include "title_bar_buttons.h"
 #include <QtCore/QEvent>
 #include <QtCore/Qt>
@@ -9,8 +8,11 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
+#ifdef Q_OS_WIN
+#include "../utils/win32_utils.h"
+#endif
 
-class TitleBarBase : public QWidget{
+class QFLUENTWIDGETS_EXPORT TitleBarBase : public QWidget{
     Q_OBJECT
 public:
     TitleBarBase(QWidget *parent);
@@ -32,7 +34,7 @@ public slots:
     void __toggleMaxState();
 };
 
-class TitleBar : public TitleBarBase{
+class QFLUENTWIDGETS_EXPORT TitleBar : public TitleBarBase{
     Q_OBJECT
 public:
     TitleBar(QWidget *parent);
@@ -40,7 +42,7 @@ public:
 private:
 };
 
-class StandardTitleBar : public TitleBar{
+class QFLUENTWIDGETS_EXPORT StandardTitleBar : public TitleBar{
     Q_OBJECT
 public:
     StandardTitleBar(QWidget *parent);

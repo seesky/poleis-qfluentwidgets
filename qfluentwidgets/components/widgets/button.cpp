@@ -42,7 +42,7 @@ PushButton::PushButton(FluentIcon *icon, QString text, QWidget *parent) : QPushB
     this->setText(text);
     //QVariant *_icon = new QVariant(QVariant::fromValue<FluentIcon>(*icon));
     QVariant *_icon = new QVariant();
-    _icon->setValue<FluentIcon>(*icon);
+    _icon->setValue(*icon);
     this->setIcon(_icon);
 }
 
@@ -96,7 +96,7 @@ void PushButton::mouseReleaseEvent(QMouseEvent *e)
     QPushButton::mouseReleaseEvent(e);
 }
 
-void PushButton::enterEvent(QEvent *event)
+void PushButton::enterEvent(QEnterEvent *event)
 {
     this->isHover = true;
     QPushButton::update();
@@ -226,7 +226,7 @@ HyperlinkButton::HyperlinkButton(FluentIcon *icon, QVariant *url, QString text, 
     setText(text);
     setUrl(url);
     QVariant *_icon = new QVariant();
-    _icon->setValue<FluentIcon>(*icon);
+    _icon->setValue(*icon);
     this->setIcon(_icon);
 }
 
@@ -316,7 +316,7 @@ ToolButton::ToolButton(FluentIcon *icon, QWidget *parent) : QToolButton(parent)
 {
     this->initialize(parent);
     QVariant *__icon = new QVariant();
-    __icon->setValue<FluentIcon>(*icon);
+    __icon->setValue(*icon);
     this->setIcon(__icon);
     delete __icon;
 }
@@ -325,7 +325,7 @@ ToolButton::ToolButton(SpinIcon *icon, QWidget *parent) : QToolButton(parent)
 {
     this->initialize(parent);
     QVariant *__icon = new QVariant();
-    __icon->setValue<SpinIcon>(*icon);
+    __icon->setValue(*icon);
     this->setIcon(__icon);
     delete __icon;
 }
@@ -385,7 +385,7 @@ void ToolButton::mouseReleaseEvent(QMouseEvent *e)
     QToolButton::mouseReleaseEvent(e);
 }
 
-void ToolButton::enterEvent(QEvent *event)
+void ToolButton::enterEvent(QEnterEvent *event)
 {
     this->isHover = true;
     QToolButton::update();

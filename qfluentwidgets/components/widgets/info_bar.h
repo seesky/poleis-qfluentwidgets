@@ -44,7 +44,7 @@ enum class InfoBarPosition{
     NONE = 6
 };
 
-class InfoIconWidget : public QWidget{
+class QFLUENTWIDGETS_EXPORT InfoIconWidget : public QWidget{
     Q_OBJECT
 public:
     InfoIconWidget(InfoBarIcon *icon, QWidget *parent);
@@ -53,7 +53,7 @@ public:
 };
 
 
-class InfoBar : public QFrame{
+class QFLUENTWIDGETS_EXPORT InfoBar : public QFrame{
     Q_OBJECT
 public:
     InfoBar(InfoBarIcon *icon, QString title, QString content, Qt::Orientation orient, bool isClosable, int duration, InfoBarPosition position, QWidget *parent);
@@ -100,7 +100,7 @@ signals:
 };
 
 
-class InfoBarManager : public QObject{
+class QFLUENTWIDGETS_EXPORT InfoBarManager : public QObject{
     Q_OBJECT
 public:
     InfoBarManager();
@@ -124,7 +124,7 @@ private:
 };
 
 
-class TopInfoBarManager : public InfoBarManager{
+class QFLUENTWIDGETS_EXPORT TopInfoBarManager : public InfoBarManager{
     Q_OBJECT
 public:
     TopInfoBarManager();
@@ -134,7 +134,7 @@ public:
 
 
 
-class TopRightInfoBarManager : public InfoBarManager{
+class QFLUENTWIDGETS_EXPORT TopRightInfoBarManager : public InfoBarManager{
     Q_OBJECT
 public:
     TopRightInfoBarManager();
@@ -143,7 +143,7 @@ public:
 };
 
 
-class BottomRightInfoBarManager : public InfoBarManager{
+class QFLUENTWIDGETS_EXPORT BottomRightInfoBarManager : public InfoBarManager{
     Q_OBJECT
 public:
     BottomRightInfoBarManager();
@@ -152,7 +152,7 @@ public:
 };
 
 
-class TopLeftInfoBarManager : public InfoBarManager{
+class QFLUENTWIDGETS_EXPORT TopLeftInfoBarManager : public InfoBarManager{
     Q_OBJECT
 public:
     TopLeftInfoBarManager();
@@ -161,7 +161,7 @@ public:
 };
 
 
-class BottomLeftInfoBarManager : public InfoBarManager{
+class QFLUENTWIDGETS_EXPORT BottomLeftInfoBarManager : public InfoBarManager{
     Q_OBJECT
 public:
     BottomLeftInfoBarManager();
@@ -170,7 +170,7 @@ public:
 };
 
 
-class BottomInfoBarManager : public InfoBarManager{
+class QFLUENTWIDGETS_EXPORT BottomInfoBarManager : public InfoBarManager{
     Q_OBJECT
 public:
     BottomInfoBarManager();

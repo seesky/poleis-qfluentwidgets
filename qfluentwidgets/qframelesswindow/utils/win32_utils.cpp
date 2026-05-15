@@ -58,7 +58,7 @@ bool _isFullScreen(HWND hWnd)
 
 bool isCompositionEnabled()
 {
-    WINBOOL pfEnabled;
+    BOOL pfEnabled;
     if(DwmIsCompositionEnabled(&pfEnabled) == S_OK){
         return pfEnabled;
     }else{
@@ -80,10 +80,11 @@ QWindow *findWindow(HWND hWnd)
     QList<QWindow *>::iterator it;
     for (it = windows.begin(); it != windows.end(); ++it) {
         HWND _hWnd = reinterpret_cast<HWND>((*it)->winId());
-        if((*it) != nullptr and _hWnd == _hWnd){
+        if((*it) != nullptr && _hWnd == hWnd){
             return *it;
         }
     }
+    return nullptr;
 }
 
 int getDpiForWindow(HWND hWnd, bool horizontal)
@@ -204,7 +205,7 @@ TASKBAR Taskbar::getPosition(HWND hWnd)
 
     APPBARDATA appbarData;
     appbarData.cbSize = sizeof(APPBARDATA);
-    appbarData.hWnd = FindWindow("Shell_TrayWnd", nullptr);
+    appbarData.hWnd = FindWindowW(L"Shell_TrayWnd", nullptr);
     appbarData.lParam = 0;
     appbarData.uCallbackMessage = 0;
     appbarData.uEdge = 0;

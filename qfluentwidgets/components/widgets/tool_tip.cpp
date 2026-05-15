@@ -122,7 +122,7 @@ QPoint ToolTipPositionManager::position(ToolTip *tooltip, QWidget *parent)
 
 QPoint ToolTipPositionManager::_pos(ToolTip *tooltip, QWidget *parent)
 {
-    
+    return parent->mapToGlobal(QPoint());
 }
 
 

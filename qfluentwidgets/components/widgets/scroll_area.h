@@ -9,14 +9,14 @@
 #include "../../common/smooth_scroll.h"
 #include "scroll_bar.h"
 
-class ScrollArea : public QScrollArea{
+class QFLUENTWIDGETS_EXPORT ScrollArea : public QScrollArea{
     Q_OBJECT
 public:
     ScrollArea(QWidget *parent);
     SmoothScrollDelegate *scrollDelagate;
 };
 
-class SingleDirectionScrollArea : public QScrollArea{
+class QFLUENTWIDGETS_EXPORT SingleDirectionScrollArea : public QScrollArea{
     Q_OBJECT
 public:
     SingleDirectionScrollArea(QWidget *parent, Qt::Orientation orient);
@@ -33,7 +33,7 @@ public:
     SmoothScrollBar *hScrollBar;
 };
 
-class SmoothScrollArea : public QScrollArea{
+class QFLUENTWIDGETS_EXPORT SmoothScrollArea : public QScrollArea{
     Q_OBJECT
 public:
     SmoothScrollArea(QWidget *parent);

@@ -1,20 +1,19 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/Qt>
 #include <QtCore/QUrl>
 #include <QtCore/QSizeF>
 #include <QtCore/QTimer>
-#include <QtGui/QPainter>
-#include <QtMultimediaWidgets/QGraphicsVideoItem>
+#include <QtMultimediaWidgets/QVideoWidget>
 #include <QtWidgets/QWidget>
-#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QGraphicsScene>
 #include "../common/style_sheet.h"
 #include "../multimedia/media_play_bar.h"
 
 /*
-class GraphicsVideoItem : public QGraphicsVideoItem{
+class QFLUENTWIDGETS_EXPORT GraphicsVideoItem : public QGraphicsVideoItem{
     Q_OBJECT
 public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
@@ -22,14 +21,14 @@ public:
 */
 
 
-class VideoWidget : public QGraphicsView{
+class QFLUENTWIDGETS_EXPORT VideoWidget : public QWidget{
     Q_OBJECT
 public:
     VideoWidget(QWidget *parent);
     void setVideo(QUrl url);
     void hideEvent(QHideEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     
     void play();
@@ -42,8 +41,7 @@ public:
     bool isHover;
     QTimer *timer;
     QVBoxLayout *vBoxLayout;
-    QGraphicsVideoItem *videoItem;
-    QGraphicsScene *graphicsScene;
+    QVideoWidget *videoItem;
     StandardMediaPlayBar *playBar;
 
 public slots:

@@ -6,7 +6,7 @@
 
 #include "../../common/icon.h"
 
-class IconWidget : public QWidget{
+class QFLUENTWIDGETS_EXPORT IconWidget : public QWidget{
     Q_OBJECT
 public:
     IconWidget(QWidget *parent);

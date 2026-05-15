@@ -38,7 +38,7 @@ void ExpandButton::paintEvent(QPaintEvent *e)
 }
 
 
-void ExpandButton::enterEvent(QEvent *event)
+void ExpandButton::enterEvent(QEnterEvent *event)
 {
     this->setHover(true);
 }   

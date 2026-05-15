@@ -6,7 +6,7 @@
 #include "../../common/style_sheet.h"
 #include "mask_dialog_base.h"
 
-class MessageDialog : public MaskDialogBase{
+class QFLUENTWIDGETS_EXPORT MessageDialog : public MaskDialogBase{
     Q_OBJECT
 public:
     MessageDialog(QString title, QString content, QWidget *parent);

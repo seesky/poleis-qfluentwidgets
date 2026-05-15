@@ -43,7 +43,7 @@ enum class FlyoutAnimationType{
     NONE = 5
 };
 
-class IconWidgetForFlyout : public IconWidget{
+class QFLUENTWIDGETS_EXPORT IconWidgetForFlyout : public IconWidget{
     Q_OBJECT
 public:
     IconWidgetForFlyout(QWidget *parent) : IconWidget(parent){
@@ -58,7 +58,7 @@ public:
 };
 
 
-class FlyoutViewBase : public QWidget{
+class QFLUENTWIDGETS_EXPORT FlyoutViewBase : public QWidget{
     Q_OBJECT
 public:
     FlyoutViewBase(QWidget *parent);
@@ -69,7 +69,7 @@ public:
 };
 
 
-class FlyoutView : public FlyoutViewBase{
+class QFLUENTWIDGETS_EXPORT FlyoutView : public FlyoutViewBase{
     Q_OBJECT
 public:
     FlyoutView(QString title, QString content, QVariant *icon, QVariant *image, bool isClosable, QWidget *parent);
@@ -101,7 +101,7 @@ signals:
 };
 
 class FlyoutAnimationManager;
-class Flyout : public QWidget{
+class QFLUENTWIDGETS_EXPORT Flyout : public QWidget{
     Q_OBJECT
 public:
     Flyout(FlyoutViewBase *view, QWidget *parent, bool isDeleteOnClose);
@@ -124,7 +124,7 @@ signals:
 
 
 
-class FlyoutAnimationManager : public QObject{
+class QFLUENTWIDGETS_EXPORT FlyoutAnimationManager : public QObject{
     Q_OBJECT
 public:
     FlyoutAnimationManager(Flyout *flyout);
@@ -141,7 +141,7 @@ public:
 };
 
 
-class PullUpFlyoutAnimationManager : public FlyoutAnimationManager{
+class QFLUENTWIDGETS_EXPORT PullUpFlyoutAnimationManager : public FlyoutAnimationManager{
     Q_OBJECT
 public:
     PullUpFlyoutAnimationManager(Flyout *flyout);
@@ -151,7 +151,7 @@ public:
 
 
 
-class DropDownFlyoutAnimationManager : public FlyoutAnimationManager{
+class QFLUENTWIDGETS_EXPORT DropDownFlyoutAnimationManager : public FlyoutAnimationManager{
     Q_OBJECT
 public:
     DropDownFlyoutAnimationManager(Flyout *flyout);
@@ -160,7 +160,7 @@ public:
 };
 
 
-class SlideLeftFlyoutAnimationManager : public FlyoutAnimationManager{
+class QFLUENTWIDGETS_EXPORT SlideLeftFlyoutAnimationManager : public FlyoutAnimationManager{
     Q_OBJECT
 public:
     SlideLeftFlyoutAnimationManager(Flyout *flyout);
@@ -169,7 +169,7 @@ public:
 };
 
 
-class SlideRightFlyoutAnimationManager : public FlyoutAnimationManager{
+class QFLUENTWIDGETS_EXPORT SlideRightFlyoutAnimationManager : public FlyoutAnimationManager{
     Q_OBJECT
 public:
     SlideRightFlyoutAnimationManager(Flyout *flyout);
@@ -178,7 +178,7 @@ public:
 };
 
 
-class FadeInFlyoutAnimationManager : public FlyoutAnimationManager{
+class QFLUENTWIDGETS_EXPORT FadeInFlyoutAnimationManager : public FlyoutAnimationManager{
     Q_OBJECT
 public:
     FadeInFlyoutAnimationManager(Flyout *flyout);
@@ -187,7 +187,7 @@ public:
 };
 
 
-class DummyFlyoutAnimationManager : public FlyoutAnimationManager{
+class QFLUENTWIDGETS_EXPORT DummyFlyoutAnimationManager : public FlyoutAnimationManager{
     Q_OBJECT
 public:
     DummyFlyoutAnimationManager(Flyout *flyout);

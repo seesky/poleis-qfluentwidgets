@@ -443,7 +443,7 @@ void FlipView::resizeEvent(QResizeEvent *event)
 
 
 
-void FlipView::enterEvent(QEvent *event)
+void FlipView::enterEvent(QEnterEvent *event)
 {
     QListWidget::enterEvent(event);
     this->isHover = true;

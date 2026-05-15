@@ -5,7 +5,7 @@
 #include <QtGui/QIcon>
 #include <QtGui/QDesktopServices>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QDesktopWidget>
+#include <QtGui/QScreen>
 
 #include "../../../components/navigation/navigation_widget.h"
 #include "../../../components/navigation/navigation_panel.h"

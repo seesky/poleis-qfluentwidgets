@@ -17,7 +17,7 @@
 #include "../../common/config.h"
 #include "../../common/icon.h"
 
-class CustomColorSettingCard : public ExpandGroupSettingCard{
+class QFLUENTWIDGETS_EXPORT CustomColorSettingCard : public ExpandGroupSettingCard{
     Q_OBJECT
 public:
     CustomColorSettingCard(QVariant configItem, QVariant *icon, QString title, QString content, QWidget *parent, bool enableAlpha);

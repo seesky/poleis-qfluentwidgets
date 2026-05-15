@@ -40,7 +40,7 @@ enum class InfoBadgePosition{
 };
 
 class InfoBadgeManager;
-class InfoBadge : public QLabel{
+class QFLUENTWIDGETS_EXPORT InfoBadge : public QLabel{
     Q_OBJECT
 public:
     InfoBadge(QWidget *parent, QString level);
@@ -67,7 +67,7 @@ public:
 };
 
 
-class DotInfoBadge : public InfoBadge{
+class QFLUENTWIDGETS_EXPORT DotInfoBadge : public InfoBadge{
     Q_OBJECT
 public:
     DotInfoBadge(QWidget *parent, QString level);
@@ -83,7 +83,7 @@ public:
 
 
 
-class IconInfoBadge : public InfoBadge{
+class QFLUENTWIDGETS_EXPORT IconInfoBadge : public InfoBadge{
     Q_OBJECT
 public:
     IconInfoBadge(QWidget *parent, QString level);
@@ -107,7 +107,7 @@ public:
 };
 
 
-class InfoBadgeManager : public QObject{
+class QFLUENTWIDGETS_EXPORT InfoBadgeManager : public QObject{
     Q_OBJECT
 public:
     InfoBadgeManager(QWidget *target, InfoBadge *badge);
@@ -120,7 +120,7 @@ public:
 };
 
 
-class NavigationItemInfoBadgeManager : public InfoBadgeManager{
+class QFLUENTWIDGETS_EXPORT NavigationItemInfoBadgeManager : public InfoBadgeManager{
     Q_OBJECT
 public:
     NavigationItemInfoBadgeManager(QWidget *target, InfoBadge *badge) : InfoBadgeManager(target, badge){};
@@ -129,7 +129,7 @@ public:
 };
 
 
-class TopRightInfoBadgeManager : public InfoBadgeManager{
+class QFLUENTWIDGETS_EXPORT TopRightInfoBadgeManager : public InfoBadgeManager{
     Q_OBJECT
 public:
     TopRightInfoBadgeManager(QWidget *target, InfoBadge *badge) : InfoBadgeManager(target, badge){};
@@ -137,7 +137,7 @@ public:
 };
 
 
-class RightInfoBadgeManager : public InfoBadgeManager{
+class QFLUENTWIDGETS_EXPORT RightInfoBadgeManager : public InfoBadgeManager{
     Q_OBJECT
 public:
     RightInfoBadgeManager(QWidget *target, InfoBadge *badge) : InfoBadgeManager(target, badge){};
@@ -145,14 +145,14 @@ public:
 };
 
 
-class BottomRightInfoBadgeManager : public InfoBadgeManager{
+class QFLUENTWIDGETS_EXPORT BottomRightInfoBadgeManager : public InfoBadgeManager{
     Q_OBJECT
 public:
     BottomRightInfoBadgeManager(QWidget *target, InfoBadge *badge) : InfoBadgeManager(target, badge){};
     QPoint position() override;
 };
 
-class TopLeftInfoBadgeManager : public InfoBadgeManager{
+class QFLUENTWIDGETS_EXPORT TopLeftInfoBadgeManager : public InfoBadgeManager{
     Q_OBJECT
 public:
     TopLeftInfoBadgeManager(QWidget *target, InfoBadge *badge) : InfoBadgeManager(target, badge){};
@@ -160,7 +160,7 @@ public:
 };
 
 
-class LeftInfoBadgeManager : public InfoBadgeManager{
+class QFLUENTWIDGETS_EXPORT LeftInfoBadgeManager : public InfoBadgeManager{
     Q_OBJECT
 public:
     LeftInfoBadgeManager(QWidget *target, InfoBadge *badge) : InfoBadgeManager(target, badge){};
@@ -168,7 +168,7 @@ public:
 };
 
 
-class BottomLeftInfoBadgeManager : public InfoBadgeManager{
+class QFLUENTWIDGETS_EXPORT BottomLeftInfoBadgeManager : public InfoBadgeManager{
     Q_OBJECT
 public:
     BottomLeftInfoBadgeManager(QWidget *target, InfoBadge *badge) : InfoBadgeManager(target, badge){};

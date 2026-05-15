@@ -16,13 +16,13 @@ const static std::map<QString, QString> CheckBoxIconMap = {
         {"PARTIAL_ACCEPT", "PartialAccept"}
 };
 
-class CheckBoxIcon : public FluentIconBase{
+class QFLUENTWIDGETS_EXPORT CheckBoxIcon : public FluentIconBase{
 public:
     QString path(Theme theme) override;
 };
 
 
-class CheckBox : public QCheckBox{
+class QFLUENTWIDGETS_EXPORT CheckBox : public QCheckBox{
     Q_OBJECT
 public:
     CheckBox(QWidget *parent);

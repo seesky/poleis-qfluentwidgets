@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/Qt>
 #include <QtCore/QModelIndex>
 #include <QtCore/QPoint>
@@ -27,7 +29,7 @@ enum class PipsScrollButtonDisplayMode{
     NEVER = 2
 };
 
-class PipPagerScrollButton : public ToolButton{
+class QFLUENTWIDGETS_EXPORT PipPagerScrollButton : public ToolButton{
     Q_OBJECT
 public:
     PipPagerScrollButton(QWidget *parent);
@@ -40,7 +42,7 @@ public:
 };
 
 class PipsPager;
-class PipsDelegate : public QStyledItemDelegate{
+class QFLUENTWIDGETS_EXPORT PipsDelegate : public QStyledItemDelegate{
     Q_OBJECT
 public:
     PipsDelegate(QWidget *parent);
@@ -53,7 +55,7 @@ public:
 };
 
 
-class PipsPager : public QListWidget{
+class QFLUENTWIDGETS_EXPORT PipsPager : public QListWidget{
     Q_OBJECT
     Q_PROPERTY(int visibleNumber READ getVisibleNumber WRITE setVisibleNumber)
     Q_PROPERTY(int pageNumber READ getPageNumber WRITE setPageNumber)
@@ -75,7 +77,7 @@ public:
     void setPreviousButtonDisplayMode(PipsScrollButtonDisplayMode mode);
     void setNextButtonDisplayMode(PipsScrollButtonDisplayMode mode);
     void mouseReleaseEvent(QMouseEvent *e) override;
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void _updateScrollButtonVisibility();
     void wheelEvent(QWheelEvent *e) override;
@@ -101,14 +103,14 @@ public slots:
 };
 
 
-class HorizontalPipsPager : public PipsPager{
+class QFLUENTWIDGETS_EXPORT HorizontalPipsPager : public PipsPager{
     Q_OBJECT
 public:
     HorizontalPipsPager(QWidget *parent);
 };
 
 
-class VerticalPipsPager : public PipsPager{
+class QFLUENTWIDGETS_EXPORT VerticalPipsPager : public PipsPager{
     Q_OBJECT
 public:
     VerticalPipsPager(QWidget *parent);

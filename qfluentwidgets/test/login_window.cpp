@@ -19,7 +19,7 @@ LoginWindow::LoginWindow(QWidget *parent) : AcrylicWindow(parent)
     this->windowEffect->setMicaEffect(reinterpret_cast<HWND>(this->winId()), false, false);
     this->setStyleSheet("LoginWindow{background: rgba(242, 242, 242, 0.8)}");
     
-    QRect desktop = QApplication::desktop()->availableGeometry();
+    QRect desktop = QGuiApplication::primaryScreen()->availableGeometry();
     int w = desktop.width();
     int h = desktop.height();
     this->move(w / 2 - this->width() / 2, h / 2 - this->height() / 2);

@@ -8,7 +8,7 @@
 #include <QtWidgets/QAbstractScrollArea>
 #include "../components/widgets/stacked_widget.h"
 
-class StackedWidget : public QStackedWidget{
+class QFLUENTWIDGETS_EXPORT StackedWidget : public QStackedWidget{
     Q_OBJECT
 public:
     StackedWidget(QWidget *parent);

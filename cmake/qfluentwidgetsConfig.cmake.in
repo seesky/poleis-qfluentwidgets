@@ -1,0 +1,8 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(Qt6 REQUIRED COMPONENTS Core Gui Widgets Svg Xml Multimedia MultimediaWidgets)
+find_dependency(jsoncpp CONFIG REQUIRED)
+
+include("${CMAKE_CURRENT_LIST_DIR}/qfluentwidgetsTargets.cmake")

@@ -231,6 +231,19 @@ void BackgroundColorObject::setBackgroundColor(QColor color)
 
 
 
+DropShadowAnimation::DropShadowAnimation()
+{
+    this->parent = nullptr;
+    this->normalColor = new QColor(0, 0, 0, 0);
+    this->hoverColor = new QColor(0, 0, 0, 0);
+    this->offset = new QPoint(0, 0);
+    this->blurRadius = 38;
+    this->radius = 0;
+    this->isHover = false;
+    this->shadowEffect = new QGraphicsDropShadowEffect(this);
+    this->shadowEffect->setColor(*this->normalColor);
+}
+
 DropShadowAnimation::DropShadowAnimation(QWidget *parent, QColor *normalColor, QColor *hoverColor)
 {
     this->parent = parent;

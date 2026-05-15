@@ -77,7 +77,9 @@ QColor FluentWindowBase::_normalBackgroundColor()
 void FluentWindowBase::_onThemeChangedFinished()
 {
     if(this->isMicaEffctEnabled()){
+#ifdef Q_OS_WIN
         this->windowEffect->setMicaEffect((HWND)(this->winId()), isDarkTheme(), false);
+#endif
     }
 }
 
@@ -96,9 +98,13 @@ void FluentWindowBase::setMicaEffectEnabled(bool isEnabled)
     this->_isMicaEnabled = isEnabled;
 
     if(isEnabled){
+#ifdef Q_OS_WIN
         this->windowEffect->setMicaEffect((HWND)(this->winId()), isDarkTheme(), false);
+#endif
     }else{
+#ifdef Q_OS_WIN
         this->windowEffect->removeBackgroundEffect((HWND)(this->winId()));
+#endif
     }
 
     this->setBackgroundColor(this->_normalBackgroundColor());
@@ -439,7 +445,9 @@ QColor MSFluentWindow::_normalBackgroundColor()
 void MSFluentWindow::_onThemeChangedFinished()
 {
     if(this->isMicaEffctEnabled()){
+#ifdef Q_OS_WIN
         this->windowEffect->setMicaEffect((HWND)(this->winId()), isDarkTheme(), false);
+#endif
     }
 }
 
@@ -459,9 +467,13 @@ void MSFluentWindow::setMicaEffectEnabled(bool isEnabled)
     this->_isMicaEnabled = isEnabled;
 
     if(isEnabled){
+#ifdef Q_OS_WIN
         this->windowEffect->setMicaEffect((HWND)(this->winId()), isDarkTheme(), false);
+#endif
     }else{
+#ifdef Q_OS_WIN
         this->windowEffect->removeBackgroundEffect((HWND)(this->winId()));
+#endif
     }
 
     this->setBackgroundColor(this->_normalBackgroundColor());

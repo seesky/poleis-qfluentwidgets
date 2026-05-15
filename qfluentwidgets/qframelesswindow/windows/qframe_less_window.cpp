@@ -56,7 +56,7 @@ void WindowsFramelessWindow::resizeEvent(QResizeEvent *event)
     this->titleBar->resize(this->width(), this->titleBar->height());
 }
 
-bool WindowsFramelessWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
+bool WindowsFramelessWindow::nativeEvent(const QByteArray &eventType, void *message, qintptr *result)
 {
     
     MSG *msg = reinterpret_cast<MSG *>(message);
@@ -225,7 +225,7 @@ void FramelessDialog::resizeEvent(QResizeEvent *event)
     this->titleBar->resize(this->width(), this->titleBar->height());
 }
 
-bool FramelessDialog::nativeEvent(const QByteArray &eventType, void *message, long *result)
+bool FramelessDialog::nativeEvent(const QByteArray &eventType, void *message, qintptr *result)
 {
     
     MSG *msg = reinterpret_cast<MSG *>(message);
@@ -396,7 +396,7 @@ void FramelessMainWindow::resizeEvent(QResizeEvent *event)
     this->titleBar->resize(this->width(), this->titleBar->height());
 }
 
-bool FramelessMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
+bool FramelessMainWindow::nativeEvent(const QByteArray &eventType, void *message, qintptr *result)
 {
     
     MSG *msg = reinterpret_cast<MSG *>(message);
@@ -560,7 +560,7 @@ void AcrylicWindow::updateFrameless()
 }
 
 
-bool AcrylicWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
+bool AcrylicWindow::nativeEvent(const QByteArray &eventType, void *message, qintptr *result)
 {
     MSG *msg = reinterpret_cast<MSG *>(message);
     if(msg->message == WM_SYSKEYDOWN){

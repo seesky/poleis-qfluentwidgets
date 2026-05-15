@@ -41,7 +41,7 @@
 #include "../widgets/button.h"
 #include "../widgets/scroll_bar.h"
 
-class ScrollButton : public TransparentToolButton{
+class QFLUENTWIDGETS_EXPORT ScrollButton : public TransparentToolButton{
     Q_OBJECT
 public:
     ScrollButton(FluentIcon *icon, QWidget *parent) : TransparentToolButton(icon, parent){};
@@ -58,7 +58,7 @@ public:
 };
 
 
-class ScrollItemDelegate : public QStyledItemDelegate{
+class QFLUENTWIDGETS_EXPORT ScrollItemDelegate : public QStyledItemDelegate{
     Q_OBJECT
 public:
     ScrollItemDelegate(QVariant min, QVariant max, QObject *parent);
@@ -80,7 +80,7 @@ public:
 };
 
 
-class YearScrollItemDelegate : public ScrollItemDelegate{
+class QFLUENTWIDGETS_EXPORT YearScrollItemDelegate : public ScrollItemDelegate{
     Q_OBJECT
 public:
     YearScrollItemDelegate(QVariant min, QVariant max, QObject *parent) : ScrollItemDelegate(min, max, parent){};
@@ -88,7 +88,7 @@ public:
 };
 
 
-class DayScrollItemDelegate : public ScrollItemDelegate{
+class QFLUENTWIDGETS_EXPORT DayScrollItemDelegate : public ScrollItemDelegate{
     Q_OBJECT
 public:
     DayScrollItemDelegate(QVariant min, QVariant max, QObject *parent) : ScrollItemDelegate(min, max, parent){};
@@ -96,7 +96,7 @@ public:
 };
 
 
-class ScrollViewBase : public QListWidget{
+class QFLUENTWIDGETS_EXPORT ScrollViewBase : public QListWidget{
     Q_OBJECT
 public:public:
 
@@ -130,7 +130,7 @@ public slots:
 };
 
 
-class CalendarViewBase : public QFrame{
+class QFLUENTWIDGETS_EXPORT CalendarViewBase : public QFrame{
     Q_OBJECT
 public:
     CalendarViewBase(QWidget *parent);
@@ -160,7 +160,7 @@ public slots:
 };
 
 
-class YearScrollView : public ScrollViewBase{
+class QFLUENTWIDGETS_EXPORT YearScrollView : public ScrollViewBase{
     Q_OBJECT
 public:
     YearScrollView(QWidget *parent);
@@ -169,7 +169,7 @@ public:
     std::tuple<QVariant, QVariant> currentPageRange() override;
 };
 
-class YearCalendarView : public CalendarViewBase{
+class QFLUENTWIDGETS_EXPORT YearCalendarView : public CalendarViewBase{
     Q_OBJECT
 public:
     YearCalendarView(QWidget *parent);
@@ -177,7 +177,7 @@ public:
 };
 
 
-class MonthScrollView : public ScrollViewBase{
+class QFLUENTWIDGETS_EXPORT MonthScrollView : public ScrollViewBase{
     Q_OBJECT
 public:
     MonthScrollView(QWidget *parent);
@@ -189,7 +189,7 @@ public:
 };
 
 
-class MonthCalendarView : public CalendarViewBase{
+class QFLUENTWIDGETS_EXPORT MonthCalendarView : public CalendarViewBase{
     Q_OBJECT
 public:
     MonthCalendarView(QWidget *parent);
@@ -198,7 +198,7 @@ public:
 };
 
 
-class DayScrollView : public ScrollViewBase{
+class QFLUENTWIDGETS_EXPORT DayScrollView : public ScrollViewBase{
     Q_OBJECT
 public:
     DayScrollView(QWidget *parent);
@@ -221,7 +221,7 @@ public:
     QHBoxLayout *weekDayLayout;
 };
 
-class DayCalendarView : public CalendarViewBase{
+class QFLUENTWIDGETS_EXPORT DayCalendarView : public CalendarViewBase{
     Q_OBJECT
 public:
     DayCalendarView(QWidget *parent);
@@ -231,7 +231,7 @@ public:
 };
 
 
-class CalendarView : public QWidget{
+class QFLUENTWIDGETS_EXPORT CalendarView : public QWidget{
     Q_OBJECT
 public:
     CalendarView(QWidget *parent);

@@ -8,7 +8,7 @@
 
 #include "../../common/style_sheet.h"
 
-class HorizontalSeparator : public QWidget{
+class QFLUENTWIDGETS_EXPORT HorizontalSeparator : public QWidget{
     Q_OBJECT
 public:
     HorizontalSeparator(QWidget *parent);
@@ -16,7 +16,7 @@ public:
 };
 
 
-class VerticalSeparator : public QWidget{
+class QFLUENTWIDGETS_EXPORT VerticalSeparator : public QWidget{
     Q_OBJECT
 public:
     VerticalSeparator(QWidget *parent);

@@ -66,7 +66,7 @@ void CardWidget::mouseReleaseEvent(QMouseEvent *e)
     emit(this->clicked());
 }
 
-void CardWidget::enterEvent(QEvent *e)
+void CardWidget::enterEvent(QEnterEvent *e)
 {
     this->isHover = true;
     this->_updateBackgroundColor();
@@ -286,7 +286,7 @@ ElevatedCardWidget::ElevatedCardWidget(QWidget *parent) : SimpleCardWidget(paren
 }
 
 
-void ElevatedCardWidget::enterEvent(QEvent *e)
+void ElevatedCardWidget::enterEvent(QEnterEvent *e)
 {
     SimpleCardWidget::enterEvent(e);
     

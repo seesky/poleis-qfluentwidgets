@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 
 #include <QtCore/QEvent>
 #include <QtCore/QEasingCurve>
@@ -27,7 +29,7 @@
 /*
 class SmoothScrollDelegat;
 
-class MQAbstractScrollArea : public QAbstractScrollArea{
+class QFLUENTWIDGETS_EXPORT MQAbstractScrollArea : public QAbstractScrollArea{
     Q_OBJECT
 public:
     MQAbstractScrollArea(QWidget *parent) : QAbstractScrollArea(parent){};
@@ -37,7 +39,7 @@ public:
 */
 
 
-class ArrowButton : public QToolButton{
+class QFLUENTWIDGETS_EXPORT ArrowButton : public QToolButton{
     Q_OBJECT
 public:
     ArrowButton(FluentIcon *icon, QWidget *parent);
@@ -46,7 +48,7 @@ public:
 private:
 };
 
-class ScrollBarGroove : public QWidget{
+class QFLUENTWIDGETS_EXPORT ScrollBarGroove : public QWidget{
     Q_OBJECT
 public:
     ScrollBarGroove(Qt::Orientation orient, QWidget *parent);
@@ -60,7 +62,7 @@ public:
 private:
 };
 
-class ScrollBarHandle : public QWidget{
+class QFLUENTWIDGETS_EXPORT ScrollBarHandle : public QWidget{
     Q_OBJECT
 public:
     ScrollBarHandle(Qt::Orientation orient, QWidget *parent);
@@ -69,7 +71,7 @@ public:
 private:
 };
 
-class ScrollBar : public QWidget{
+class QFLUENTWIDGETS_EXPORT ScrollBar : public QWidget{
     Q_OBJECT
     Q_PROPERTY(int val READ getVal WRITE setVal)
 public:
@@ -93,7 +95,7 @@ public:
     void setSliderDown(bool isDown);
     void expand();
     void collapse();
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     bool eventFilter(QObject *watched, QEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
@@ -143,7 +145,7 @@ public slots:
 };
 
 
-class SmoothScrollBar : public ScrollBar{
+class QFLUENTWIDGETS_EXPORT SmoothScrollBar : public ScrollBar{
     Q_OBJECT
 public:
     SmoothScrollBar(Qt::Orientation orient, QAbstractScrollArea *parent);
@@ -162,13 +164,13 @@ private:
 };
 
 
-class MQAbstractItemView : public QAbstractItemView{
+class QFLUENTWIDGETS_EXPORT MQAbstractItemView : public QAbstractItemView{
     Q_OBJECT
 public:
 
 };
 
-class SmoothScrollDelegate : public QObject{
+class QFLUENTWIDGETS_EXPORT SmoothScrollDelegate : public QObject{
     Q_OBJECT
 public:
     SmoothScrollDelegate(QAbstractScrollArea *parent, bool useAni);

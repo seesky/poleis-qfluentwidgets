@@ -11,7 +11,7 @@
 #include "../../common/style_sheet.h"
 #include "../../common/icon.h"
 
-class NavigationInterface : public QWidget{
+class QFLUENTWIDGETS_EXPORT NavigationInterface : public QWidget{
     Q_OBJECT
 public:
     NavigationInterface(QWidget *parent, bool showMenuButton, bool showReturnButton, bool collapsible);

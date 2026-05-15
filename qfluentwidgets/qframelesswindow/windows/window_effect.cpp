@@ -143,7 +143,7 @@ void PrintLastError() {
         NULL,
         error,
         0, // 默认语言
-        (LPSTR)&errorMessage,
+        (LPWSTR)&errorMessage,
         0,
         NULL
     );

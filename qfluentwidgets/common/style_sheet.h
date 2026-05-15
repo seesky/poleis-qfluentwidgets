@@ -72,7 +72,7 @@ const static QMap<QString, QString> FluentStyleSheetMap = {
     {"NAVIGATION_VIEW_INTERFACE", "navigation_view_interface"},
 };
 class StyleSheetBase;
-class StyleSheetManager : public QObject{
+class QFLUENTWIDGETS_EXPORT StyleSheetManager : public QObject{
     Q_OBJECT
 public:
     StyleSheetManager();
@@ -86,7 +86,7 @@ public slots:
     void deregisterWrapper(QObject* obj);
 };
 
-class QssTemplate{
+class QFLUENTWIDGETS_EXPORT QssTemplate{
 public:
     QssTemplate(QString qss);
     QString safe_substitute(QMap<QString, QString> mapping);
@@ -95,7 +95,7 @@ private:
     QString value;
 };
 
-class StyleSheetBase{
+class QFLUENTWIDGETS_EXPORT StyleSheetBase{
 public:
     StyleSheetBase();
     virtual QString path(Theme theme);
@@ -111,12 +111,12 @@ private:
 
 Q_DECLARE_METATYPE(StyleSheetBase)
 
-class FluentStyleSheet : public StyleSheetBase{
+class QFLUENTWIDGETS_EXPORT FluentStyleSheet : public StyleSheetBase{
 public:
     QString path(QString ThemeOptionsName, QString FluentStyleSheetName, Theme theme);
 };
 
-class StyleSheetFile : public StyleSheetBase{
+class QFLUENTWIDGETS_EXPORT StyleSheetFile : public StyleSheetBase{
 public:
     StyleSheetFile();
     StyleSheetFile(QString path);
@@ -127,7 +127,7 @@ private:
 
 Q_DECLARE_METATYPE(StyleSheetFile)
 
-class CustomStyleSheetWatcher : public QObject{
+class QFLUENTWIDGETS_EXPORT CustomStyleSheetWatcher : public QObject{
     Q_OBJECT
 public:
     bool eventFilter(QWidget *obj, QEvent *event);
@@ -135,7 +135,7 @@ private:
 };
 
 
-class StyleSheetCompose : public StyleSheetBase{
+class QFLUENTWIDGETS_EXPORT StyleSheetCompose : public StyleSheetBase{
 public:
     StyleSheetCompose();
     StyleSheetCompose(QList<StyleSheetBase> *sources);
@@ -149,7 +149,7 @@ private:
 Q_DECLARE_METATYPE(StyleSheetCompose)
 
 
-class CustomStyleSheet : public StyleSheetBase{
+class QFLUENTWIDGETS_EXPORT CustomStyleSheet : public StyleSheetBase{
 public:
     CustomStyleSheet(){};
     CustomStyleSheet(QWidget *widget);
@@ -169,7 +169,7 @@ private:
 
 Q_DECLARE_METATYPE(CustomStyleSheet)
 
-class ThemeColor{
+class QFLUENTWIDGETS_EXPORT ThemeColor{
 public:
     QString name(QString themeColorValue);
     QColor *color(QString themeColorValue);

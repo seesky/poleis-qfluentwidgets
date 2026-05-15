@@ -40,8 +40,8 @@ void TreeItemDelegate::initStyleOption(QStyleOptionViewItem *option, const QMode
     QColor textColor = isDarkTheme() ? Qt::white : Qt::black;
 
 
-    if(index.data(Qt::TextColorRole).isValid()){
-        QBrush textBrush = index.data(Qt::TextColorRole).value<QBrush>();
+    if(index.data(Qt::ForegroundRole).isValid()){
+        QBrush textBrush = index.data(Qt::ForegroundRole).value<QBrush>();
         textColor = textBrush.color();
     }
     

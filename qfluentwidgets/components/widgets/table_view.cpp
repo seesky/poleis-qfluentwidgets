@@ -99,7 +99,7 @@ void TableItemDelegate::initStyleOption(QStyleOptionViewItem *option, const QMod
     }
 
     QColor textColor = isDarkTheme() ? Qt::white : Qt::black;
-    QBrush textBrush = index.data(Qt::TextColorRole).value<QBrush>();
+    QBrush textBrush = index.data(Qt::ForegroundRole).value<QBrush>();
     if(textBrush.color().isValid()){
         textColor = textBrush.color();
     }

@@ -11,7 +11,7 @@
 #include "../widgets/button.h"
 #include "mask_dialog_base.h"
 
-class MessageBoxBase : public MaskDialogBase{
+class QFLUENTWIDGETS_EXPORT MessageBoxBase : public MaskDialogBase{
     Q_OBJECT
 public:
     MessageBoxBase(QWidget *parent);

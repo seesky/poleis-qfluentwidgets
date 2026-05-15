@@ -4,12 +4,12 @@
 #include <QtCore/Qt>
 #include <QtCore/QStandardPaths>
 #include <QtGui/QColor>
-#include <QtWidgets/QAction>
+#include <QtGui/QAction>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QFileDialog>
-#include <QtWidgets/QActionGroup>
+#include <QtGui/QActionGroup>
 
 #include "gallery_interface.h"
 #include "../common/translator.h"

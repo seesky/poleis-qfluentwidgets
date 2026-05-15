@@ -43,14 +43,14 @@ enum class TASKBAR{
     NO_POSITION = 4
 };
 
-class Taskbar{
+class QFLUENTWIDGETS_EXPORT Taskbar{
 public:
     static bool isAutoHide();
     TASKBAR getPosition(HWND hWnd);
 private:
 };
 
-class WindowsMoveResize{
+class QFLUENTWIDGETS_EXPORT WindowsMoveResize{
 public:
     static void startSystemMove(QWidget *window, QPoint globalPos);
     void startSystemResize(QWindow *window, QPoint globalPos, Qt::Edges edges){}

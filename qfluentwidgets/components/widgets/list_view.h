@@ -15,7 +15,7 @@
 #include "table_view.h"
 #include "../../common/style_sheet.h"
 
-class ListItemDelegate : public QStyledItemDelegate{
+class QFLUENTWIDGETS_EXPORT ListItemDelegate : public QStyledItemDelegate{
     Q_OBJECT
 public:
     ListItemDelegate(QListView *parent);
@@ -37,7 +37,7 @@ public:
 };
 
 
-class ListWidget : public QListWidget{
+class QFLUENTWIDGETS_EXPORT ListWidget : public QListWidget{
     Q_OBJECT
     Q_PROPERTY(bool selectRightClickedRow READ isSelectRightClickedRow WRITE setSelectRightClickedRow)
 public:
@@ -67,7 +67,7 @@ public:
 };
 
 
-class ListView : public QListView{
+class QFLUENTWIDGETS_EXPORT ListView : public QListView{
     Q_OBJECT
     Q_PROPERTY(bool selectRightClickedRow READ isSelectRightClickedRow WRITE setSelectRightClickedRow)
 public:

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/QSize>
 #include <QtCore/Qt>
 #include <QtCore/QPoint>
@@ -17,14 +19,14 @@
 
 
 
-class SliderHandle : public QWidget{
+class QFLUENTWIDGETS_EXPORT SliderHandle : public QWidget{
     Q_OBJECT
     Q_PROPERTY(float radius READ radius WRITE setRadius)
 public:
     SliderHandle(QWidget *parent);
     float radius();
     void setRadius(float r);
-    void enterEvent(QEvent *event);
+    void enterEvent(QEnterEvent *event);
     void leaveEvent(QEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void _startAni(float radius);
@@ -38,7 +40,7 @@ signals:
 };
 
 
-class Slider : public QSlider{
+class QFLUENTWIDGETS_EXPORT Slider : public QSlider{
     Q_OBJECT
 public:
     Slider(QWidget *parent);
@@ -65,7 +67,7 @@ public slots:
 };
 
 
-class ClickableSlider : public QSlider{
+class QFLUENTWIDGETS_EXPORT ClickableSlider : public QSlider{
     Q_OBJECT
 public:
     ClickableSlider(Qt::Orientation orientation, QWidget *parent) : QSlider(orientation, parent){};
@@ -75,7 +77,7 @@ signals:
     void clicked(int);
 };
 
-class HollowHandleStyle : public QProxyStyle{
+class QFLUENTWIDGETS_EXPORT HollowHandleStyle : public QProxyStyle{
 public:
     HollowHandleStyle(QMap<QString, QVariant*> *config, QStyle *style);
     QRect subControlRect(ComplexControl cc, const QStyleOptionComplex *opt, SubControl sc, const QWidget *widget) const;

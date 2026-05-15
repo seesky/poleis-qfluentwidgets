@@ -2,7 +2,7 @@
 
 #include <QtCore/QObject>
 
-class SignalBus : public QObject{
+class QFLUENTWIDGETS_EXPORT SignalBus : public QObject{
     Q_OBJECT
 public:
     static SignalBus* getInstance();

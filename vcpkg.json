@@ -1,0 +1,27 @@
+{
+  "name": "poleis-qfluentwidgets",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "jsoncpp",
+    {
+      "name": "qtbase",
+      "default-features": false,
+      "features": [
+        "gui",
+        "widgets",
+        "png",
+        "jpeg",
+        "opengl"
+      ]
+    },
+    {
+      "name": "qtmultimedia",
+      "default-features": false,
+      "features": [
+        "ffmpeg",
+        "widgets"
+      ]
+    },
+    "qtsvg"
+  ]
+}

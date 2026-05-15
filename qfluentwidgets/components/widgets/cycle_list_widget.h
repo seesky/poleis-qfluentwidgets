@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/Qt>
 #include <QtCore/QSize>
 #include <QtCore/QEvent>
@@ -12,7 +14,7 @@
 #include "../../common/icon.h"
 #include "../../common/config.h"
 
-class ScrollButtonC : public QToolButton{
+class QFLUENTWIDGETS_EXPORT ScrollButtonC : public QToolButton{
     Q_OBJECT
 public:
     ScrollButtonC(FluentIcon *icon, QWidget *parent);
@@ -23,7 +25,7 @@ public:
     bool isPressed;
 };
 
-class CycleListWidget : public QListWidget{
+class QFLUENTWIDGETS_EXPORT CycleListWidget : public QListWidget{
     Q_OBJECT
 public:
     CycleListWidget(QList<QVariant> *items, QSize *itemSize, Qt::Alignment align, QWidget *parent);
@@ -36,7 +38,7 @@ public:
     void wheelEvent(QWheelEvent *e) override;
     void scrollDown();
     void scrollUp();
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
     bool eventFilter(QObject *watched, QEvent *event) override;

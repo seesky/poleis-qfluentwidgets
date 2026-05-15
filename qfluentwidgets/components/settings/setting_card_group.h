@@ -9,7 +9,7 @@
 #include "../../common/font.h"
 #include "../layout/expand_layout.h"
 
-class SettingCardGroup : public QWidget{
+class QFLUENTWIDGETS_EXPORT SettingCardGroup : public QWidget{
     Q_OBJECT
 public:
     SettingCardGroup(QString title, QWidget *parent);

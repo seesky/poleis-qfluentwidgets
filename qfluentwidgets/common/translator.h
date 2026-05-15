@@ -4,7 +4,7 @@
 #include <QtCore/QLocale>
 #include <QtCore/QDebug>
 
-class FluentTranslator : public QTranslator{
+class QFLUENTWIDGETS_EXPORT FluentTranslator : public QTranslator{
     Q_OBJECT
 public:
     FluentTranslator(QLocale *locale, QObject *parent);

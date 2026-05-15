@@ -18,7 +18,7 @@
 #include "navigation_panel.h"
 
 
-class PivotItem : public PushButton{
+class QFLUENTWIDGETS_EXPORT PivotItem : public PushButton{
     Q_OBJECT
 public:
     PivotItem(){
@@ -46,7 +46,7 @@ signals:
 };
 
 
-class Pivot : public QWidget{
+class QFLUENTWIDGETS_EXPORT Pivot : public QWidget{
     Q_OBJECT
 public:
     Pivot(QWidget *parent);

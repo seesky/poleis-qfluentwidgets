@@ -19,7 +19,7 @@ void SliderHandle::setRadius(float r)
     this->update();
 }
 
-void SliderHandle::enterEvent(QEvent *event)
+void SliderHandle::enterEvent(QEnterEvent *event)
 {
     this->_startAni(6.5);
 }
@@ -55,7 +55,7 @@ void SliderHandle::paintEvent(QPaintEvent *event)
     painter.drawEllipse(this->rect().adjusted(1, 1, -1, -1));
 
     painter.setBrush(*(ThemeColor().themeColor()));
-    painter.drawEllipse(QPoint(11, 11), this->radius(), this->radius());
+    painter.drawEllipse(QPointF(11, 11), this->radius(), this->radius());
     painter.end();
 }
 
@@ -227,7 +227,9 @@ HollowHandleStyle::HollowHandleStyle(QMap<QString, QVariant*> *config, QStyle *s
     this->config->insert(QString("handle.margin"), new QVariant(QVariant::fromValue<int>(4)));
 
     _config = !config->isEmpty() ? config : new QMap<QString, QVariant*>();
-    this->config->unite(*_config);
+    for(auto it = _config->constBegin(); it != _config->constEnd(); ++it){
+        this->config->insert(it.key(), it.value());
+    }
 
     float w = this->config->value(QString("handle.margin"))->value<int>() + 
         this->config->value(QString("handle.ring-width"))->value<int>() + 

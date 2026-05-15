@@ -118,7 +118,7 @@ QPainterPath AcrylicCompleterMenuActionListWidget::clipPath()
 {
     QPainterPath path = QPainterPath();
     path.setFillRule(Qt::FillRule::WindingFill);
-    path.addRoundRect(QRectF(this->rect()).adjusted(1, 1, -2.5, -2.5), 8, 8);
+    path.addRoundedRect(QRectF(this->rect()).adjusted(1, 1, -2.5, -2.5), 8, 8);
 
     if(this->property("dropDown").value<bool>()){
         path.addRect(1, 1, 11, 11);

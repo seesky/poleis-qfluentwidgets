@@ -151,7 +151,11 @@ void FolderListDialog::__setQss()
 
 void FolderListDialog::__onButtonClicked()
 {   
-    if(this->__originalPaths.toSet() != this->folderPaths.toSet()){
+    QStringList originalPaths = this->__originalPaths;
+    QStringList currentPaths = this->folderPaths;
+    originalPaths.sort();
+    currentPaths.sort();
+    if(originalPaths != currentPaths){
         this->setEnabled(false);
         QApplication::processEvents();
         emit(this->folderChanged(this->folderPaths));
@@ -177,7 +181,7 @@ ClickableWindow::ClickableWindow(QWidget *parent) : QWidget(parent)
     this->_isEnter = false;
 }
 
-void ClickableWindow::enterEvent(QEvent *event)
+void ClickableWindow::enterEvent(QEnterEvent *event)
 {
     this->_isEnter = true;
     this->update();

@@ -8,7 +8,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/QCursor>
 #include <QtGui/QIcon>
-#include <QtWidgets/QAction>
+#include <QtGui/QAction>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QApplication>
 
@@ -19,7 +19,7 @@
 #include "../../common/font.h"
 #include "../../common/style_sheet.h"
 
-class ComboItem{
+class QFLUENTWIDGETS_EXPORT ComboItem{
 public:
     ComboItem(QString text, QVariant *icon, QVariant *userData);
     QIcon getIcon();
@@ -31,7 +31,7 @@ public:
 };
 
 class ComboBoxMenu;
-class ComboBox : public QPushButton{
+class QFLUENTWIDGETS_EXPORT ComboBox : public QPushButton{
     Q_OBJECT
 public:
     ComboBox(QWidget *parent);
@@ -86,7 +86,7 @@ public slots:
 };
 
 
-class EditableComboBox : public LineEdit{
+class QFLUENTWIDGETS_EXPORT EditableComboBox : public LineEdit{
     Q_OBJECT
 public:
     EditableComboBox(QWidget *parent);
@@ -144,7 +144,7 @@ public slots:
 };
 
 
-class ComboBoxMenu : public RoundMenu{
+class QFLUENTWIDGETS_EXPORT ComboBoxMenu : public RoundMenu{
     Q_OBJECT
 public:
     ComboBoxMenu(QWidget *parent);

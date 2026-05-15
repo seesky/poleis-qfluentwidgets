@@ -10,7 +10,7 @@
 
 #include "../window/stacked_widget.h"
 
-class RouteItem{
+class QFLUENTWIDGETS_EXPORT RouteItem{
 public:
     RouteItem(QStackedWidget *stacked, QString routeKey);
     bool __eq__(RouteItem *other);
@@ -19,7 +19,7 @@ public:
     QString routeKey;
 };
 
-class StackedHistory{
+class QFLUENTWIDGETS_EXPORT StackedHistory{
 public:
     StackedHistory(QStackedWidget *stacked);
     int __len__();
@@ -37,7 +37,7 @@ public:
 };
 
 
-class Router : public QObject{
+class QFLUENTWIDGETS_EXPORT Router : public QObject{
     Q_OBJECT
 public:
     static Router* getInstance();

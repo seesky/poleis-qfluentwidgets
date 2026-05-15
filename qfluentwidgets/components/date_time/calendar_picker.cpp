@@ -3,7 +3,7 @@
 CalendarPicker::CalendarPicker(QWidget *parent) : QPushButton(parent)
 {
     this->_date = QDate();
-    this->_dateFormat = new QVariant(QVariant::fromValue<Qt::DateFormat>(Qt::SystemLocaleDate));
+    this->_dateFormat = new QVariant(QVariant::fromValue<Qt::DateFormat>(Qt::TextDate));
 
     this->setText(this->tr("Pick a date"));
     FluentStyleSheet().apply(this, FluentStyleSheetMap.value("CALENDAR_PICKER"), Theme::AUTO);

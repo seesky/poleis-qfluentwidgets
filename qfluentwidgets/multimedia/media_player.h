@@ -3,17 +3,17 @@
 #include <QtCore/Qt>
 #include <QtCore/QObject>
 #include <QtCore/QUrl>
+#include <QtMultimedia/QAudioOutput>
 #include <QtMultimedia/QMediaPlayer>
-#include <QtMultimedia/QMediaContent>
 #include <QtWidgets/QWidget>
 
-class MediaPlayerBase : public QObject{
+class QFLUENTWIDGETS_EXPORT MediaPlayerBase : public QObject{
     Q_OBJECT
 public:
     MediaPlayerBase(QWidget *parent) : QObject(parent){};
     virtual bool isPlaying(){};
     virtual QMediaPlayer::MediaStatus mediaStatus(){};
-    virtual QMediaPlayer::State playbackState(){};
+    virtual QMediaPlayer::PlaybackState playbackState(){};
     virtual int duration(){};
     virtual QPoint position(){};
     virtual int volume(){};
@@ -42,13 +42,21 @@ signals:
 
 
 
-class MediaPlayer : public QMediaPlayer{
+class QFLUENTWIDGETS_EXPORT MediaPlayer : public QMediaPlayer{
     Q_OBJECT
 public:
     MediaPlayer(QWidget *parent);
     bool isPlaying();
+    int volume();
+    bool isMuted();
     QUrl source();
     void setSource(QUrl media);
+    void setVolume(int volume);
+    void setMuted(bool isMuted);
+
+    QAudioOutput *audioOutputDevice;
 signals:
     void sourceChanged(QUrl);
+    void volumeChanged(int);
+    void mutedChanged(bool);
 };

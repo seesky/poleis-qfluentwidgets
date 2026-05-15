@@ -4,7 +4,7 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QDesktopWidget>
+#include <QtGui/QScreen>
 
 #include "../../qfluentwidgets/qframelesswindow/windows/qframe_less_window.h"
 #include "../../qfluentwidgets/common/config.h"
@@ -26,7 +26,7 @@ public:
         this->setWindowTitle("Fluent Widgets");
         this->resize(1080, 784);
 
-        QRect desktop = QApplication::desktop()->availableGeometry();
+        QRect desktop = QGuiApplication::primaryScreen()->availableGeometry();
         int w = desktop.width();
         int h = desktop.height();
         this->move(w / 2 - this->width() / 2, h / 2 - this->height() / 2);
@@ -60,8 +60,6 @@ public:
 int main(int argc, char *argv[])
 {
     QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
-    QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     
     QApplication *app = new QApplication(argc, argv);
 

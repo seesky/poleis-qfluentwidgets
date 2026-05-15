@@ -48,7 +48,7 @@ enum class ImagePosition{
 };
 
 class TeachingTipManager;
-class TeachingTipView : public FlyoutView{
+class QFLUENTWIDGETS_EXPORT TeachingTipView : public FlyoutView{
     Q_OBJECT
 public:
     TeachingTipView(QString title, QString content, QVariant *icon, QVariant *image, bool isClosable, TeachingTipTailPosition tailPosition, QWidget *parent);
@@ -61,7 +61,7 @@ public:
 };
 
 
-class TeachTipBubble : public QWidget{
+class QFLUENTWIDGETS_EXPORT TeachTipBubble : public QWidget{
     Q_OBJECT
 public:
     TeachTipBubble(FlyoutViewBase *view, TeachingTipTailPosition tailPosition, QWidget *parent);
@@ -76,7 +76,7 @@ public:
 
 
 
-class TeachingTip : public QWidget{
+class QFLUENTWIDGETS_EXPORT TeachingTip : public QWidget{
     Q_OBJECT
 public:
     TeachingTip(FlyoutViewBase *view, QWidget *target, int duration, TeachingTipTailPosition tailPosition, QWidget *parent, bool isDeleteOnClose);
@@ -101,7 +101,7 @@ public:
     QGraphicsDropShadowEffect *shadowEffect;
 };
 
-class PopupTeachingTip : public TeachingTip{
+class QFLUENTWIDGETS_EXPORT PopupTeachingTip : public TeachingTip{
     Q_OBJECT
 public:
     PopupTeachingTip(FlyoutViewBase *view, QWidget *target, int duration, TeachingTipTailPosition tailPosition, QWidget *parent, bool isDeleteOnClose);
@@ -109,7 +109,7 @@ public:
 
 
 
-class TeachingTipManager : public QObject{
+class QFLUENTWIDGETS_EXPORT TeachingTipManager : public QObject{
     Q_OBJECT
 public:
     TeachingTipManager();
@@ -122,7 +122,7 @@ public:
 };
 
 
-class TopTailTeachingTipManager : public TeachingTipManager{
+class QFLUENTWIDGETS_EXPORT TopTailTeachingTipManager : public TeachingTipManager{
     Q_OBJECT
 public:
     TopTailTeachingTipManager();
@@ -135,7 +135,7 @@ public:
 
 
 
-class BottomTailTeachingTipManager : public TeachingTipManager{
+class QFLUENTWIDGETS_EXPORT BottomTailTeachingTipManager : public TeachingTipManager{
     Q_OBJECT
 public:
     BottomTailTeachingTipManager();
@@ -145,7 +145,7 @@ public:
 };
 
 
-class LeftTailTeachingTipManager : public TeachingTipManager{
+class QFLUENTWIDGETS_EXPORT LeftTailTeachingTipManager : public TeachingTipManager{
     Q_OBJECT
 public:
     LeftTailTeachingTipManager();
@@ -157,7 +157,7 @@ public:
 
 
 
-class RightTailTeachingTipManager : public TeachingTipManager{
+class QFLUENTWIDGETS_EXPORT RightTailTeachingTipManager : public TeachingTipManager{
     Q_OBJECT
 public:
     RightTailTeachingTipManager();
@@ -169,7 +169,7 @@ public:
 
 
 
-class TopLeftTailTeachingTipManager : public TopTailTeachingTipManager{
+class QFLUENTWIDGETS_EXPORT TopLeftTailTeachingTipManager : public TopTailTeachingTipManager{
     Q_OBJECT
 public:
     TopLeftTailTeachingTipManager();
@@ -178,7 +178,7 @@ public:
 };
 
 
-class TopRightTailTeachingTipManager : public TopTailTeachingTipManager{
+class QFLUENTWIDGETS_EXPORT TopRightTailTeachingTipManager : public TopTailTeachingTipManager{
     Q_OBJECT
 public:
     TopRightTailTeachingTipManager();
@@ -188,7 +188,7 @@ public:
 
 
 
-class BottomLeftTailTeachingTipManager : public BottomTailTeachingTipManager{
+class QFLUENTWIDGETS_EXPORT BottomLeftTailTeachingTipManager : public BottomTailTeachingTipManager{
     Q_OBJECT
 public:
     BottomLeftTailTeachingTipManager();
@@ -197,7 +197,7 @@ public:
 };
 
 
-class BottomRightTailTeachingTipManager : public BottomTailTeachingTipManager{
+class QFLUENTWIDGETS_EXPORT BottomRightTailTeachingTipManager : public BottomTailTeachingTipManager{
     Q_OBJECT
 public:
     BottomRightTailTeachingTipManager();
@@ -206,7 +206,7 @@ public:
 };
 
 
-class LeftTopTailTeachingTipManager : public LeftTailTeachingTipManager{
+class QFLUENTWIDGETS_EXPORT LeftTopTailTeachingTipManager : public LeftTailTeachingTipManager{
     Q_OBJECT
 public:
     LeftTopTailTeachingTipManager();
@@ -217,7 +217,7 @@ public:
 
 
 
-class LeftBottomTailTeachingTipManager : public LeftTailTeachingTipManager{
+class QFLUENTWIDGETS_EXPORT LeftBottomTailTeachingTipManager : public LeftTailTeachingTipManager{
     Q_OBJECT
 public:
     LeftBottomTailTeachingTipManager();
@@ -228,7 +228,7 @@ public:
 
 
 
-class RightTopTailTeachingTipManager : public RightTailTeachingTipManager{
+class QFLUENTWIDGETS_EXPORT RightTopTailTeachingTipManager : public RightTailTeachingTipManager{
     Q_OBJECT
 public:
     RightTopTailTeachingTipManager();
@@ -238,7 +238,7 @@ public:
 };
 
 
-class RightBottomTailTeachingTipManager : public RightTailTeachingTipManager{
+class QFLUENTWIDGETS_EXPORT RightBottomTailTeachingTipManager : public RightTailTeachingTipManager{
     Q_OBJECT
 public:
     RightBottomTailTeachingTipManager();

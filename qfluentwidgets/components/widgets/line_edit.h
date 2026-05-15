@@ -12,7 +12,7 @@
 #include <QtGui/QIcon>
 #include <QtGui/QCursor>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QAction>
+#include <QtGui/QAction>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QToolButton>
@@ -29,7 +29,7 @@
 
 
 class CompleterMenu;
-class LineEditButton : public QToolButton{
+class QFLUENTWIDGETS_EXPORT LineEditButton : public QToolButton{
     Q_OBJECT
 public:
     LineEditButton(QVariant *icon, QWidget *parent);
@@ -43,7 +43,7 @@ public:
 };
 
 
-class LineEdit : public QLineEdit{
+class QFLUENTWIDGETS_EXPORT LineEdit : public QLineEdit{
     Q_OBJECT
 public:
     LineEdit(QWidget *parent);
@@ -69,7 +69,7 @@ public slots:
 };
 
 
-class CompleterMenu : public RoundMenu{
+class QFLUENTWIDGETS_EXPORT CompleterMenu : public RoundMenu{
     Q_OBJECT
 public:
     CompleterMenu(LineEdit *lineEdit);
@@ -88,7 +88,7 @@ public slots:
     void _onItemClicked(QListWidgetItem *item);
 };
 
-class SearchLineEdit : public LineEdit{
+class QFLUENTWIDGETS_EXPORT SearchLineEdit : public LineEdit{
     Q_OBJECT
 public:
     SearchLineEdit(QWidget *parent);
@@ -102,7 +102,7 @@ signals:
 };
 
 
-class EditLayer : public QWidget{
+class QFLUENTWIDGETS_EXPORT EditLayer : public QWidget{
     Q_OBJECT
 public:
     EditLayer(QWidget *parent);
@@ -111,7 +111,7 @@ public:
 
 };
 
-class TextEdit : public QTextEdit{
+class QFLUENTWIDGETS_EXPORT TextEdit : public QTextEdit{
     Q_OBJECT
 public:
     TextEdit(QWidget *parent);
@@ -121,7 +121,7 @@ public:
 };
 
 
-class PlainTextEdit : public QPlainTextEdit{
+class QFLUENTWIDGETS_EXPORT PlainTextEdit : public QPlainTextEdit{
     Q_OBJECT
 public:
     PlainTextEdit(QWidget *parent);
@@ -131,7 +131,7 @@ public:
 };
 
 
-class PasswordLineEdit : public LineEdit{
+class QFLUENTWIDGETS_EXPORT PasswordLineEdit : public LineEdit{
     Q_OBJECT
 public:
     PasswordLineEdit(QWidget *parent);

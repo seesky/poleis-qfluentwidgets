@@ -10,7 +10,7 @@
 #include <QtWidgets/QLayout>
 #include <QtWidgets/QWidget>
 
-class ExpandLayout : public QLayout{
+class QFLUENTWIDGETS_EXPORT ExpandLayout : public QLayout{
     Q_OBJECT
 public:
     ExpandLayout(QWidget *parent);

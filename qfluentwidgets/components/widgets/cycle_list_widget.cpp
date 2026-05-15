@@ -205,7 +205,7 @@ void CycleListWidget::scrollUp()
 }
 
 
-void CycleListWidget::enterEvent(QEvent *event)
+void CycleListWidget::enterEvent(QEnterEvent *event)
 {
     this->upButton->show();
     this->downButton->show();

@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <vector>
 #include <stdexcept>
-#include <experimental/filesystem>
 //#include "json/json.h"
 
 IniSettings* IniSettings::instance = nullptr;
@@ -31,7 +30,6 @@ void IniSettings::settings_init(const QString &path)
 {
     //qDebug() << path;
 	m_iniFile = QSharedPointer<QSettings>(new QSettings(path, QSettings::IniFormat));
-	m_iniFile->setIniCodec(QTextCodec::codecForName("UTF-8"));
 }
 
 void IniSettings::setValue(const QString &section, const QString &key, const QVariant &value)

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/Qt>
 #include <QtGui/QBrush>
 #include <QtGui/QColor>
@@ -28,7 +30,7 @@
 
 class AddFolderCard;
 class FolderCard;
-class FolderListDialog : public MaskDialogBase{
+class QFLUENTWIDGETS_EXPORT FolderListDialog : public MaskDialogBase{
     Q_OBJECT
 public:
     FolderListDialog(QStringList folderPaths, QString title, QString content, QWidget *parent);
@@ -66,11 +68,11 @@ public slots:
 };
 
 
-class ClickableWindow : public QWidget{
+class QFLUENTWIDGETS_EXPORT ClickableWindow : public QWidget{
     Q_OBJECT
 public:
     ClickableWindow(QWidget *parent);
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
     void mousePressEvent(QMouseEvent *e) override;
@@ -84,7 +86,7 @@ signals:
 };
 
 
-class FolderCard : public ClickableWindow{
+class QFLUENTWIDGETS_EXPORT FolderCard : public ClickableWindow{
     Q_OBJECT
 public:
     FolderCard(QString folderPath, QWidget *parent);
@@ -97,7 +99,7 @@ public:
 };
 
 
-class AddFolderCard : public ClickableWindow{
+class QFLUENTWIDGETS_EXPORT AddFolderCard : public ClickableWindow{
     Q_OBJECT
 public:
     AddFolderCard(QWidget *parent);

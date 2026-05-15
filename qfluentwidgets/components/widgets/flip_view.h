@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/Qt>
 #include <QtCore/QModelIndex>
 #include <QtCore/QSize>
@@ -23,7 +25,7 @@
 #include "../../components/widgets/button.h"
 
 
-class FlipScrollButton : public ToolButton{
+class QFLUENTWIDGETS_EXPORT FlipScrollButton : public ToolButton{
     Q_OBJECT
 public:
     Q_PROPERTY(float opacity READ getOpacity WRITE setOpacity)
@@ -47,7 +49,7 @@ public:
 
 class FlipView;
 class HorizontalFlipView;
-class FlipImageDelegate : public QStyledItemDelegate{
+class QFLUENTWIDGETS_EXPORT FlipImageDelegate : public QStyledItemDelegate{
     Q_OBJECT
 public:
     FlipImageDelegate(QWidget *parent);
@@ -59,7 +61,7 @@ public:
 };
 
 
-class FlipView : public QListWidget{
+class QFLUENTWIDGETS_EXPORT FlipView : public QListWidget{
     Q_OBJECT
     Q_PROPERTY(QSize itemSize READ getItemSize WRITE setItemSize)
     Q_PROPERTY(int borderRadius READ getBorderRadius WRITE setBorderRadius)
@@ -84,7 +86,7 @@ public:
     void _adjustItemSize(QListWidgetItem *item);
     QImage itemImage(int index);
     void resizeEvent(QResizeEvent *event) override;
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void showEvent(QShowEvent *event) override;
     void wheelEvent(QWheelEvent *e) override;
@@ -110,13 +112,13 @@ public slots:
 };
 
 
-class HorizontalFlipView : public FlipView{
+class QFLUENTWIDGETS_EXPORT HorizontalFlipView : public FlipView{
     Q_OBJECT
 public:
     HorizontalFlipView(QWidget *parent);
 };
 
-class VerticalFlipView : public FlipView{
+class QFLUENTWIDGETS_EXPORT VerticalFlipView : public FlipView{
     Q_OBJECT
 public:
     VerticalFlipView(QWidget *parent);

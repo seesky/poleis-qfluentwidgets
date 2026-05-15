@@ -13,7 +13,7 @@
 #include "../../common/icon.h"
 #include "calendar_view.h"
 
-class CalendarPicker : public QPushButton{
+class QFLUENTWIDGETS_EXPORT CalendarPicker : public QPushButton{
     Q_OBJECT
     Q_PROPERTY(QDate date READ getDate WRITE setDate)
     Q_PROPERTY(QVariant * dateFormat READ getDateFormat WRITE setDateFormat)

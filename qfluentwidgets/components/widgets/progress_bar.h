@@ -14,7 +14,7 @@
 #include "math.h"
 
 
-class ProgressBar : public QProgressBar{
+class QFLUENTWIDGETS_EXPORT ProgressBar : public QProgressBar{
     Q_OBJECT
     Q_PROPERTY(bool useAni READ isUseAni WRITE setUseAni)
     Q_PROPERTY(float val READ getVal WRITE setVal)
@@ -53,7 +53,7 @@ public slots:
 };
 
 
-class IndeterminateProgressBar : public QProgressBar{
+class QFLUENTWIDGETS_EXPORT IndeterminateProgressBar : public QProgressBar{
     Q_OBJECT
     Q_PROPERTY(float shortPos READ getShortPos WRITE setShortPos)
     Q_PROPERTY(float longPos READ getLongPos WRITE setLongPos)

@@ -29,7 +29,7 @@ QSize CommandButton::sizeHint() const
         return this->isTight() ? QSize(36, 34) : QSize(48, 34);
     }
 
-    int tw = this->fontMetrics().width(this->text());
+    int tw = this->fontMetrics().horizontalAdvance(this->text());
 
     Qt::ToolButtonStyle style = this->toolButtonStyle();
 
@@ -93,7 +93,7 @@ void CommandButton::_onActionChanged()
         QVariant *iconQ = new QVariant();
         QIcon *i = ac->icon();
         Icon* ii = (Icon*)(i);
-        iconQ->setValue<Icon>(*ii);
+        iconQ->setValue(*ii);
         this->setIcon(iconQ);  //TODO:特殊关注
         this->setText(ac->text());
         this->setToolTip(ac->toolTip());
@@ -187,7 +187,7 @@ void MoreActionsButton::_postInit()
     FluentIcon *icon = new FluentIcon();
     icon->setIconName(QString("MORE"));
     QVariant *iconQVariant = new QVariant();
-    iconQVariant->setValue<FluentIcon>(*icon);
+    iconQVariant->setValue(*icon);
 
     this->setIcon(iconQVariant);
 }
@@ -785,7 +785,7 @@ void CommandBarView::setButtonTight(bool isThight)
 
 bool CommandBarView::isButtonTight()
 {
-    this->bar->isButtonTight();
+    return this->bar->isButtonTight();
 }
 
 void CommandBarView::setIconSize(QSize size)

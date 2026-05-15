@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/QEvent>
 #include <QtCore/Qt>
 #include <QtCore/QPropertyAnimation>
@@ -21,13 +23,13 @@
 #include "../../common/style_sheet.h"
 #include "setting_card.h"
 
-class ExpandButton : public QAbstractButton{
+class QFLUENTWIDGETS_EXPORT ExpandButton : public QAbstractButton{
     Q_OBJECT
     Q_PROPERTY(float angle READ getAngle WRITE setAngle)
 public:
     ExpandButton(QWidget *parent);
     void paintEvent(QPaintEvent *e) override;
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
@@ -47,14 +49,14 @@ public slots:
 };
 
 
-class SpaceWidget : public QWidget{
+class QFLUENTWIDGETS_EXPORT SpaceWidget : public QWidget{
     Q_OBJECT
 public:
     SpaceWidget(QWidget *parent);
 };
 
 class ExpandSettingCard;
-class HeaderSettingCard : public SettingCard{
+class QFLUENTWIDGETS_EXPORT HeaderSettingCard : public SettingCard{
     Q_OBJECT
 public:
     HeaderSettingCard(QVariant *icon, QString title, QString content, QWidget *parent);
@@ -66,7 +68,7 @@ public:
 };
 
 
-class ExpandBorderWidget : public QWidget{
+class QFLUENTWIDGETS_EXPORT ExpandBorderWidget : public QWidget{
     Q_OBJECT
 public:
     ExpandBorderWidget(QWidget *parent);
@@ -75,7 +77,7 @@ public:
 };
 
 
-class ExpandSettingCard : public QScrollArea{
+class QFLUENTWIDGETS_EXPORT ExpandSettingCard : public QScrollArea{
     Q_OBJECT
 public:
     ExpandSettingCard(QVariant *icon, QString title, QString content, QWidget *parent);
@@ -104,7 +106,7 @@ public slots:
 };
 
 
-class GroupSeparator : public QWidget{
+class QFLUENTWIDGETS_EXPORT GroupSeparator : public QWidget{
     Q_OBJECT
 public:
     GroupSeparator(QWidget *parent);
@@ -112,7 +114,7 @@ public:
 };
 
 
-class ExpandGroupSettingCard : public ExpandSettingCard{
+class QFLUENTWIDGETS_EXPORT ExpandGroupSettingCard : public ExpandSettingCard{
     Q_OBJECT
 public:
     ExpandGroupSettingCard(QVariant *icon, QString title, QString content, QWidget *parent);

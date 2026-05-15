@@ -9,7 +9,7 @@
 #include "../components/widgets/icon_widget.h"
 #include "../qframelesswindow/titlebar/titlebar.h"
 
-class SplashScreen : public QWidget{
+class QFLUENTWIDGETS_EXPORT SplashScreen : public QWidget{
     Q_OBJECT
 public:
     SplashScreen(QVariant *icon, QWidget *parent, bool enableShadow);

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/Qt>
 #include <QtCore/QRectF>
 #include <QtCore/QPoint>
@@ -8,7 +10,7 @@
 #include <QtGui/QFont>
 #include <QtGui/QHoverEvent>
 #include <QtWidgets/QWidget>
-#include <QtWidgets/QAction>
+#include <QtGui/QAction>
 #include <QtWidgets/QApplication>
 
 #include "../../common/font.h"
@@ -16,13 +18,13 @@
 #include "../../common/style_sheet.h"
 #include "../widgets/menu.h"
 
-class BreadcrumbWidget : public QWidget{
+class QFLUENTWIDGETS_EXPORT BreadcrumbWidget : public QWidget{
     Q_OBJECT
 public:
     BreadcrumbWidget(QWidget *parent);
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
 
     bool isHover;
@@ -33,7 +35,7 @@ signals:
 };
 
 
-class ElideButton : public BreadcrumbWidget{
+class QFLUENTWIDGETS_EXPORT ElideButton : public BreadcrumbWidget{
     Q_OBJECT
 public:
     ElideButton(QWidget *parent);
@@ -42,7 +44,7 @@ public:
 };
 
 
-class BreadcrumbItem : public BreadcrumbWidget{
+class QFLUENTWIDGETS_EXPORT BreadcrumbItem : public BreadcrumbWidget{
     Q_OBJECT
 public:
     BreadcrumbItem(QString routeKey, QString text, int index, QWidget *parent);
@@ -61,7 +63,7 @@ public:
 };
 
 
-class BreadcrumbBar : public QWidget{
+class QFLUENTWIDGETS_EXPORT BreadcrumbBar : public QWidget{
     Q_OBJECT
     Q_PROPERTY(int spacing READ getSpacing WRITE setSpacing)
 public:

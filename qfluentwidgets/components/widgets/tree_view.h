@@ -17,7 +17,7 @@
 #include "scroll_bar.h"
 
 class TreeView;
-class TreeItemDelegate : public QStyledItemDelegate{
+class QFLUENTWIDGETS_EXPORT TreeItemDelegate : public QStyledItemDelegate{
     Q_OBJECT
 public:
     TreeItemDelegate(QTreeView *parent);
@@ -27,7 +27,7 @@ public:
 
 
 
-class TreeWidget : public QTreeWidget{
+class QFLUENTWIDGETS_EXPORT TreeWidget : public QTreeWidget{
     Q_OBJECT
 public:
     TreeWidget(QWidget *parent);
@@ -40,7 +40,7 @@ public:
 
 
 
-class TreeView : public QTreeView{
+class QFLUENTWIDGETS_EXPORT TreeView : public QTreeView{
     Q_OBJECT
 public:
     TreeView(QWidget *parent);

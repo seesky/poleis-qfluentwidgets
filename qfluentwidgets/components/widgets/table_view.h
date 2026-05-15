@@ -23,7 +23,7 @@
 #include "line_edit.h"
 #include "scroll_bar.h"
 
-class TableItemDelegate : public QStyledItemDelegate{
+class QFLUENTWIDGETS_EXPORT TableItemDelegate : public QStyledItemDelegate{
     Q_OBJECT
 public:
     TableItemDelegate(QTableView *parent);
@@ -45,7 +45,7 @@ public:
 };
 
 
-class TableWidget : public QTableWidget{
+class QFLUENTWIDGETS_EXPORT TableWidget : public QTableWidget{
     Q_OBJECT
     Q_PROPERTY(bool selectRightClickedRow READ isSelectRightClickedRow WRITE setSelectRightClickedRow)
 public:
@@ -83,7 +83,7 @@ public slots:
 };
 
 
-class TableView : public QTableView{
+class QFLUENTWIDGETS_EXPORT TableView : public QTableView{
     Q_OBJECT
     Q_PROPERTY(bool selectRightClickedRow READ isSelectRightClickedRow WRITE setSelectRightClickedRow)
 public:

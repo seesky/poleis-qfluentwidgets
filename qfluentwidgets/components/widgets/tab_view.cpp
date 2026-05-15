@@ -212,7 +212,7 @@ void TabItem::resizeEvent(QResizeEvent *event)
     this->closeButton->move(this->width() - 6 - this->closeButton->width(), this->height() / 2 - this->closeButton->height() / 2);
 }
 
-void TabItem::enterEvent(QEvent *event)
+void TabItem::enterEvent(QEnterEvent *event)
 {
     PushButton::enterEvent(event);
     if(this->closeButtonDisplayMode == TabCloseButtonDisplayMode::ON_HOVER){
@@ -361,7 +361,7 @@ void TabItem::_drawNotSelectedBackground(QPainter *painter)
 void TabItem::_drawText(QPainter *painter)
 {
     //qDebug() << this->width();
-    int tw = this->fontMetrics().width(this->text());
+    int tw = this->fontMetrics().horizontalAdvance(this->text());
 
     int dw;
     QRectF rect;

@@ -16,28 +16,28 @@ IconWidget::IconWidget(QVariant *icon, QWidget *parent) : QWidget(parent)
 IconWidget::IconWidget(FluentIcon icon, QWidget *parent) : QWidget(parent)
 {
     QVariant *__icon = new QVariant();
-    __icon->setValue<FluentIcon>(icon);
+    __icon->setValue(icon);
     this->setIcon(__icon);
 }
 
 IconWidget::IconWidget(InfoBarIcon *icon, QWidget *parent)
 {
     QVariant *__icon = new QVariant();
-    __icon->setValue<InfoBarIcon*>(icon);
+    __icon->setValue(icon);
     this->setIcon(__icon);
 }
 
 IconWidget::IconWidget(QIcon icon, QWidget *parent) : QWidget(parent)
 {
     QVariant *__icon = new QVariant();
-    __icon->setValue<QIcon>(icon);
+    __icon->setValue(icon);
     this->setIcon(__icon);
 }
 
 IconWidget::IconWidget(QString icon, QWidget *parent)
 {
     QVariant *__icon = new QVariant();
-    __icon->setValue<QString>(icon);
+    __icon->setValue(icon);
     this->setIcon(__icon);
 }
 

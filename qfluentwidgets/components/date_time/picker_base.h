@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/Qt>
 #include <QtCore/QSize>
 #include <QtCore/QRectF>
@@ -26,14 +28,14 @@
 #include "../../common/icon.h"
 #include "../../common/style_sheet.h"
 
-class SeparatorWidget : public QWidget{
+class QFLUENTWIDGETS_EXPORT SeparatorWidget : public QWidget{
     Q_OBJECT
 public:
     SeparatorWidget(Qt::Orientation orient, QWidget *parent);
 };
 
 
-class ItemMaskWidget : public QWidget{
+class QFLUENTWIDGETS_EXPORT ItemMaskWidget : public QWidget{
     Q_OBJECT
 public:
     ItemMaskWidget(QList<CycleListWidget *> *listWidgets, QWidget *parent);
@@ -44,7 +46,7 @@ public:
 };
 
 
-class PickerColumnFormatter : public QObject{
+class QFLUENTWIDGETS_EXPORT PickerColumnFormatter : public QObject{
     Q_OBJECT
 public:
     PickerColumnFormatter() : QObject(){};
@@ -53,14 +55,14 @@ public:
 };
 
 
-class DigitFormatter : public PickerColumnFormatter{
+class QFLUENTWIDGETS_EXPORT DigitFormatter : public PickerColumnFormatter{
     Q_OBJECT
 public:
     QVariant decode(QString value) override;
 };
 
 
-class PickerColumnButton : public QPushButton{
+class QFLUENTWIDGETS_EXPORT PickerColumnButton : public QPushButton{
     Q_OBJECT
     //Q_PROPERTY(bool hasBorder READ getHasBorder WRITE setHasBorder)
     //Q_PROPERTY(QString __align READ getAlign WRITE setAlign)
@@ -91,7 +93,7 @@ public:
 
 
 class PickerPanel;
-class PickerBase : public QPushButton{
+class QFLUENTWIDGETS_EXPORT PickerBase : public QPushButton{
     Q_OBJECT
 public:
     PickerBase(QWidget *parent);
@@ -110,7 +112,7 @@ public:
     QVariant decodeValue(PickerBase *picker, int index, QString value);
     void setColumn(PickerBase *picker, int index, QString name, QList<QString> items, int width, Qt::AlignmentFlag align);
     void clearColumns();
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void mousePressEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
@@ -130,7 +132,7 @@ public slots:
 };
 
 
-class PickerToolButton : public TransparentToolButton{
+class QFLUENTWIDGETS_EXPORT PickerToolButton : public TransparentToolButton{
     Q_OBJECT
 public:
     PickerToolButton(FluentIcon *icon, QWidget *parent) : TransparentToolButton(icon, parent){};
@@ -139,7 +141,7 @@ public:
     void _drawIcon(QVariant *icon, QPainter *painter, QRect rect, QIcon::State state) override;
 };
 
-class PickerPanel : public QWidget{
+class QFLUENTWIDGETS_EXPORT PickerPanel : public QWidget{
     Q_OBJECT
 public:
     PickerPanel(QWidget *parent);

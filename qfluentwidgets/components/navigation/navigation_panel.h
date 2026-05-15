@@ -45,7 +45,7 @@ enum class NavigationItemPosition{
 };
 
 
-class NavigationToolTipFilter : public ToolTipFilter{
+class QFLUENTWIDGETS_EXPORT NavigationToolTipFilter : public ToolTipFilter{
     Q_OBJECT
 public:
     NavigationToolTipFilter(QWidget *parent, int showDelay, ToolTipPosition position);
@@ -53,13 +53,13 @@ public:
 };
 
 /*
-class RouteKeyError : public QException{
+class QFLUENTWIDGETS_EXPORT RouteKeyError : public QException{
     Q_OBJECT
 public:
 };
 */
 
-class NavigationItem{
+class QFLUENTWIDGETS_EXPORT NavigationItem{
 public:
     NavigationItem(QString routeKey, QString parentRouteKey, NavigationWidget *widget);
 
@@ -69,7 +69,7 @@ public:
 };
 
 class NavigationItemLayout;
-class NavigationPanel : public QFrame{
+class QFLUENTWIDGETS_EXPORT NavigationPanel : public QFrame{
     Q_OBJECT
 public:
     NavigationPanel(QWidget *parent, bool isMinimalEnabled);
@@ -143,7 +143,7 @@ public slots:
 
 
 
-class NavigationItemLayout : public QVBoxLayout{
+class QFLUENTWIDGETS_EXPORT NavigationItemLayout : public QVBoxLayout{
     Q_OBJECT
 public:
     NavigationItemLayout(QWidget *parent) : QVBoxLayout(parent){};

@@ -12,7 +12,7 @@
 #include <QtGui/QFont>
 #include <QtGui/QHoverEvent>
 #include <QtGui/QPainterPath>
-#include <QtWidgets/QAction>
+#include <QtGui/QAction>
 #include <QtWidgets/QLayoutItem>
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QFrame>
@@ -28,7 +28,7 @@
 #include "flyout.h"
 
 class CommandToolTipFilter;
-class CommandButton : public TransparentToggleToolButton{
+class QFLUENTWIDGETS_EXPORT CommandButton : public TransparentToggleToolButton{
     Q_OBJECT
 public:
     CommandButton(QWidget *parent) : TransparentToggleToolButton(parent){
@@ -65,7 +65,7 @@ public slots:
 };
 
 
-class CommandToolTipFilter : public ToolTipFilter{
+class QFLUENTWIDGETS_EXPORT CommandToolTipFilter : public ToolTipFilter{
     Q_OBJECT
 public:
     CommandToolTipFilter(QWidget *parent, int showDelay, ToolTipPosition position);
@@ -73,7 +73,7 @@ public:
 };
 
 
-class MoreActionsButton : public CommandButton{
+class QFLUENTWIDGETS_EXPORT MoreActionsButton : public CommandButton{
     Q_OBJECT
 public:
     MoreActionsButton(QWidget *parent) : CommandButton(parent){
@@ -95,7 +95,7 @@ public:
 };
 
 
-class CommandSeparator : public QWidget{
+class QFLUENTWIDGETS_EXPORT CommandSeparator : public QWidget{
     Q_OBJECT
 public:
     CommandSeparator(QWidget *parent);
@@ -103,14 +103,14 @@ public:
 };
 
 
-class CommandMenu : public RoundMenu{
+class QFLUENTWIDGETS_EXPORT CommandMenu : public RoundMenu{
     Q_OBJECT
 public:
     CommandMenu(QWidget *parent);
 
 };
 
-class CommandBar : public QFrame{
+class QFLUENTWIDGETS_EXPORT CommandBar : public QFrame{
     Q_OBJECT
 public:
     CommandBar(QWidget *parent);
@@ -163,7 +163,7 @@ public slots:
 };
 
 
-class CommandViewMenu : public CommandMenu{
+class QFLUENTWIDGETS_EXPORT CommandViewMenu : public CommandMenu{
     Q_OBJECT
 public:
     CommandViewMenu(QWidget *parent);
@@ -171,7 +171,7 @@ public:
 };
 
 class CommandBarView;
-class CommandViewBar : public CommandBar{
+class QFLUENTWIDGETS_EXPORT CommandViewBar : public CommandBar{
     Q_OBJECT
 public:
     CommandViewBar(QWidget *parent);
@@ -184,7 +184,7 @@ public slots:
 };
 
 
-class CommandBarView : public FlyoutViewBase{
+class QFLUENTWIDGETS_EXPORT CommandBarView : public FlyoutViewBase{
     Q_OBJECT
 public:
     CommandBarView(QWidget *parent);

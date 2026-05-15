@@ -18,11 +18,11 @@
 #include <QtGui/QScreen>
 #include "../../common/image_utils.h"
 
-static bool isAcrylicAvailable = false;  //TODO:需要动态判断是否支持
+static bool isAcrylicAvailable = false;  //TODO:需要动态判断是否支�?
 
 bool checkAcrylicAvailability();
 
-class BlurCoverThread : public QThread{
+class QFLUENTWIDGETS_EXPORT BlurCoverThread : public QThread{
     Q_OBJECT
 public:
     BlurCoverThread(QObject *parent);
@@ -38,7 +38,7 @@ signals:
 };
 
 
-class AcrylicTextureLabel : public QLabel{
+class QFLUENTWIDGETS_EXPORT AcrylicTextureLabel : public QLabel{
     Q_OBJECT
 public:
     AcrylicTextureLabel(QColor tintColor, QColor luminosityColor, float noiseOpacity, QWidget *parent);
@@ -52,7 +52,7 @@ public:
 };
 
 
-class AcrylicLabel : public QLabel{
+class QFLUENTWIDGETS_EXPORT AcrylicLabel : public QLabel{
     Q_OBJECT
 public:
     AcrylicLabel(int blurRadius, QColor tintColor, QColor luminosityColor, std::tuple<int,int> maxBlurSize, QWidget *parent);
@@ -70,7 +70,7 @@ public:
 };
 
 
-class AcrylicBrush{
+class QFLUENTWIDGETS_EXPORT AcrylicBrush{
 public:
     AcrylicBrush(QWidget *device, int blurRadius, QColor tintColor, QColor luminosityColor, float noiseOpacity);
     void setBlurRadius(int radius);

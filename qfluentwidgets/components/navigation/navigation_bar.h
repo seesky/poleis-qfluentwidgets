@@ -21,7 +21,7 @@
 #include "navigation_widget.h"
 #include "navigation_panel.h"
 
-class IconSlideAnimation : public QPropertyAnimation{
+class QFLUENTWIDGETS_EXPORT IconSlideAnimation : public QPropertyAnimation{
     Q_OBJECT
     Q_PROPERTY(float offset READ getOffset WRITE setOffset)
 public:
@@ -38,7 +38,7 @@ public:
 
 
 
-class NavigationBarPushButton : public NavigationPushButton{
+class QFLUENTWIDGETS_EXPORT NavigationBarPushButton : public NavigationPushButton{
     Q_OBJECT
 public:
     NavigationBarPushButton(QVariant *icon, QString text, bool isSelectable, QVariant *selectedIcon, QWidget *parent);
@@ -55,7 +55,7 @@ public:
 
 
 
-class NavigationBar : public QWidget{
+class QFLUENTWIDGETS_EXPORT NavigationBar : public QWidget{
     Q_OBJECT
 public:
     NavigationBar(QWidget *parent);

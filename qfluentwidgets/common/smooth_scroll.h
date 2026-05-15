@@ -21,7 +21,7 @@ enum class SmoothMode {
     COSINE
 };
 
-class SmoothScroll : public QObject{
+class QFLUENTWIDGETS_EXPORT SmoothScroll : public QObject{
     Q_OBJECT
 public:
     SmoothScroll(QAbstractScrollArea *widget, Qt::Orientation orient);

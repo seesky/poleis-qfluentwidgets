@@ -10,7 +10,7 @@
 #include "../utils/win32_utils.h"
 
 
-class WindowsWindowEffect{
+class QFLUENTWIDGETS_EXPORT WindowsWindowEffect{
 public:
     WindowsWindowEffect(void *window);
     void setAcrylicEffect(HWND hWnd, QString gradientColor, bool enableShadow, int animationId);

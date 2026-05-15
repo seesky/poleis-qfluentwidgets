@@ -226,7 +226,7 @@ void InfoBar::paintEvent(QPaintEvent *event)
     }
 
     QRect rect = this->rect().adjusted(1, 1, -1, -1);
-    painter.drawRoundRect(rect, 6, 6);
+    painter.drawRoundedRect(rect, 6, 6);
 }
 
 
@@ -391,12 +391,13 @@ void InfoBarManager::_updateDropAni(QObject *parent)
 
 QPoint InfoBarManager::_pos(InfoBar *infoBar, QSize parentSize)
 {
-
+    Q_UNUSED(parentSize);
+    return infoBar ? infoBar->pos() : QPoint();
 }
 
 QPoint InfoBarManager::_slideStartPos(InfoBar *infoBar)
 {
-
+    return infoBar ? infoBar->pos() : QPoint();
 }
 
 

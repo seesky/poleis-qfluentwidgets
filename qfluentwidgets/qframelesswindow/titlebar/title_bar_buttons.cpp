@@ -95,7 +95,7 @@ void TitleBarButton::setPressedBackgroundColor(QColor color)
     this->update();
 }
 
-void TitleBarButton::enterEvent(QEvent *event)
+void TitleBarButton::enterEvent(QEnterEvent *event)
 {
     setState(TitleBarButtonState::HOVER);
     QAbstractButton::enterEvent(event);

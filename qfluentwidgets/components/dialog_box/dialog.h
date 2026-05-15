@@ -16,7 +16,7 @@
 #include "mask_dialog_base.h"
 #include "../../common/auto_wrap.h"
 
-class Dialog : public FramelessDialog{
+class QFLUENTWIDGETS_EXPORT Dialog : public FramelessDialog{
     Q_OBJECT
 public:
     Dialog(QString title, QString content, QWidget *parent);
@@ -49,7 +49,7 @@ public slots:
 
 
 
-class MessageBoxF : public MaskDialogBase{
+class QFLUENTWIDGETS_EXPORT MessageBoxF : public MaskDialogBase{
     Q_OBJECT
 public:
     MessageBoxF(QString title, QString content, QWidget *parent);

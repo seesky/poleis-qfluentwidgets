@@ -8,7 +8,7 @@
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QWidget>
 
-class OpacityAniStackedWidget : public QStackedWidget{
+class QFLUENTWIDGETS_EXPORT OpacityAniStackedWidget : public QStackedWidget{
     Q_OBJECT
 public:
     OpacityAniStackedWidget(QWidget *parent);
@@ -26,7 +26,7 @@ public slots:
 };
 
 
-class PopUpAniInfo{
+class QFLUENTWIDGETS_EXPORT PopUpAniInfo{
 public:
     PopUpAniInfo(QWidget *widget, int deltaX, int deltaY, QPropertyAnimation *ani);
 
@@ -37,7 +37,7 @@ public:
 };
 
 
-class PopUpAniStackedWidget : public QStackedWidget{
+class QFLUENTWIDGETS_EXPORT PopUpAniStackedWidget : public QStackedWidget{
     Q_OBJECT
 public:
     PopUpAniStackedWidget(QWidget *parent);

@@ -12,13 +12,10 @@ int main(int argc, char *argv[])
 
     if(qconfig->get(QVariant::fromValue<OptionsConfigItem*>(galleryConfig->dpiScale)).value<QString>() == "auto"){
         QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
-        QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     }else{
         QApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
         qputenv("QT_SCALE_FACTOR", qconfig->get(QVariant::fromValue<OptionsConfigItem*>(galleryConfig->dpiScale)).value<QString>().toUtf8());
     }
-
-    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 
     
     //qputenv("QT_PLUGIN_PATH", "");

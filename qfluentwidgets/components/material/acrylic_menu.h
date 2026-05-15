@@ -16,7 +16,7 @@
 #include "../widgets/arcylic_label.h"
 #include "../../common/style_sheet.h"
 
-class AcrylicMenuActionListWidget : public MenuActionListWidget{
+class QFLUENTWIDGETS_EXPORT AcrylicMenuActionListWidget : public MenuActionListWidget{
     Q_OBJECT
 public:
     AcrylicMenuActionListWidget(QWidget *parent);
@@ -33,7 +33,7 @@ public:
 };
 
 
-class AcrylicMenu : public RoundMenu{
+class QFLUENTWIDGETS_EXPORT AcrylicMenu : public RoundMenu{
     Q_OBJECT
 public:
     AcrylicMenu(QString title, QWidget *parent);
@@ -42,7 +42,7 @@ public:
 };
 
 
-class AcrylicCompleterMenuActionListWidget : public AcrylicMenuActionListWidget{
+class QFLUENTWIDGETS_EXPORT AcrylicCompleterMenuActionListWidget : public AcrylicMenuActionListWidget{
     Q_OBJECT
 public:
     AcrylicCompleterMenuActionListWidget(QWidget *parent) : AcrylicMenuActionListWidget(parent){};
@@ -50,7 +50,7 @@ public:
 };
 
 
-class AcrylicCompleterMenu : public CompleterMenu{
+class QFLUENTWIDGETS_EXPORT AcrylicCompleterMenu : public CompleterMenu{
     Q_OBJECT
 public:
     AcrylicCompleterMenu(LineEdit *lineEdit);
@@ -60,7 +60,7 @@ public:
 };
 
 
-class AcrylicLineEditMenu : public LineEditMenu{
+class QFLUENTWIDGETS_EXPORT AcrylicLineEditMenu : public LineEditMenu{
     Q_OBJECT
 public:
     AcrylicLineEditMenu(QLineEdit *parent);
@@ -69,7 +69,7 @@ public:
 };
 
 
-class AcrylicCheckableMenu : public CheckableMenu{
+class QFLUENTWIDGETS_EXPORT AcrylicCheckableMenu : public CheckableMenu{
     Q_OBJECT
 public:
     AcrylicCheckableMenu(QString title, QWidget *parent, MenuIndicatorType indicatorType);
@@ -78,13 +78,13 @@ public:
 };
 
 
-class AcrylicSystemTrayMenu : public AcrylicMenu{
+class QFLUENTWIDGETS_EXPORT AcrylicSystemTrayMenu : public AcrylicMenu{
     Q_OBJECT
 public:
     void showEvent(QShowEvent *event);
 };
 
-class AcrylicCheckableSystemTrayMenu : public AcrylicCheckableMenu{
+class QFLUENTWIDGETS_EXPORT AcrylicCheckableSystemTrayMenu : public AcrylicCheckableMenu{
     Q_OBJECT
 public:
     void showEvent(QShowEvent *event);

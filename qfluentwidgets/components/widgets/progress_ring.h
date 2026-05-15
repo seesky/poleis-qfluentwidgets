@@ -17,7 +17,7 @@
 #include "../../common/style_sheet.h"
 
 
-class ProgressRing : public ProgressBar{
+class QFLUENTWIDGETS_EXPORT ProgressRing : public ProgressBar{
     Q_OBJECT
     Q_PROPERTY(int strokeWidth READ getStrokeWidth WRITE setStrokeWidth)
 public:
@@ -31,7 +31,7 @@ public:
 };
 
 
-class IndeterminateProgressRing : public QProgressBar{
+class QFLUENTWIDGETS_EXPORT IndeterminateProgressRing : public QProgressBar{
     Q_OBJECT
     Q_PROPERTY(int strokeWidth READ getStrokeWidth WRITE setStrokeWidth)
     Q_PROPERTY(int startAngle READ getStartAngle WRITE setStartAngle)

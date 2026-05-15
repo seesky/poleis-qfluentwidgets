@@ -13,7 +13,7 @@ NavigationWidget::NavigationWidget(bool isSelectable, QWidget *parent) : QWidget
 }
 
 
-void NavigationWidget::enterEvent(QEvent *event)
+void NavigationWidget::enterEvent(QEnterEvent *event)
 {
     this->isEnter = true;
     this->update();

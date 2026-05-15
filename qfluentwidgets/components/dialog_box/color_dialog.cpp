@@ -175,9 +175,9 @@ HexColorLineEdit::HexColorLineEdit(QColor color, QWidget *parent, bool enableAlp
     this->colorFormat = enableAlpha ? QColor::HexArgb : QColor::HexRgb;
 
     if(enableAlpha){
-        this->setValidator(new QRegExpValidator(QRegExp("[A-Fa-f0-9]{8}")));
+        this->setValidator(new QRegularExpressionValidator(QRegularExpression("[A-Fa-f0-9]{8}")));
     }else{
-        this->setValidator(new QRegExpValidator(QRegExp("[A-Fa-f0-9]{6}")));
+        this->setValidator(new QRegularExpressionValidator(QRegularExpression("[A-Fa-f0-9]{6}")));
     }
     this->setTextMargins(4, 0, 33, 0);
     this->prefixLabel = new QLabel(QString("#"), this);
@@ -194,7 +194,7 @@ void HexColorLineEdit::setColor(QColor color)
 
 OpacityLineEdit::OpacityLineEdit(int value, QWidget *parent, bool enableAlpha = false) : ColorLineEdit(int(float(value)/255*100), parent)
 {
-    this->setValidator(new QRegExpValidator(QRegExp("[0-9][0-9]{0,1}|100")));
+    this->setValidator(new QRegularExpressionValidator(QRegularExpression("[0-9][0-9]{0,1}|100")));
     this->setTextMargins(4, 0, 33, 0);
     this->suffixLabel = new QLabel(QString("%"), this);
     this->suffixLabel->setObjectName(QString("suffixLabel"));
@@ -211,7 +211,7 @@ void OpacityLineEdit::showEvent(QShowEvent *event)
 
 void OpacityLineEdit::_adjustSuffixPos()
 {
-    int x = this->fontMetrics().width(this->text()) + 18;
+    int x = this->fontMetrics().horizontalAdvance(this->text()) + 18;
     this->suffixLabel->move(x, 2);
 }
 

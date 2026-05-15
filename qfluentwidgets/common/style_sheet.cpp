@@ -1,7 +1,6 @@
 #include "style_sheet.h"
 #include "config.h"
 #include <regex>
-#include <QRegExp>
 #include <QFile>
 #include <QWidget>
 #include <QMutableMapIterator>
@@ -403,7 +402,7 @@ QColor *ThemeColor::color(QString themeColorValue)
     //QConfig *qconfig = new QConfig();
     //QColor color = (qconfig->get(qconfig->themeColor))->value<QColor>();
     QColor color = QColor("#009faa");
-    qreal h, s, v;
+    float h, s, v;
     color.getHsvF(&h, &s, &v);
 
     if(isDarkTheme())

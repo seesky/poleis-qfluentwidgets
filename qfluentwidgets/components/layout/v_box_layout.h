@@ -4,7 +4,7 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
-class VBoxLayout : public QVBoxLayout{
+class QFLUENTWIDGETS_EXPORT VBoxLayout : public QVBoxLayout{
     Q_OBJECT
 public:
     VBoxLayout(QWidget *parent);

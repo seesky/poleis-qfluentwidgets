@@ -49,9 +49,30 @@ void SmoothScroll::wheelEvent(QWheelEvent *e)
     float accerationRatio = qMin(float(this->scrollStamps->length()) / 15, float(1));
     if(!this->lastWheelEvent)
     {
-        this->lastWheelEvent = new QWheelEvent(*e);
+        this->lastWheelEvent = new QWheelEvent(
+            e->position(),
+            e->globalPosition(),
+            e->pixelDelta(),
+            e->angleDelta(),
+            e->buttons(),
+            e->modifiers(),
+            e->phase(),
+            e->inverted(),
+            e->source()
+        );
     }else{
-        this->lastWheelEvent = e;
+        delete this->lastWheelEvent;
+        this->lastWheelEvent = new QWheelEvent(
+            e->position(),
+            e->globalPosition(),
+            e->pixelDelta(),
+            e->angleDelta(),
+            e->buttons(),
+            e->modifiers(),
+            e->phase(),
+            e->inverted(),
+            e->source()
+        );
     }
 
     this->stepsTotal = this->fps * this->duration / 1000;
@@ -99,14 +120,15 @@ void SmoothScroll::__smoothMove()
     }
 
     QWheelEvent *e = new QWheelEvent(
-        this->lastWheelEvent->pos(),
-        this->lastWheelEvent->globalPos(),
+        this->lastWheelEvent->position(),
+        this->lastWheelEvent->globalPosition(),
         QPoint(),
         *p,
-        qRound(totalDelta),
-        this->orient,
         this->lastWheelEvent->buttons(),
-        Qt::NoModifier
+        this->lastWheelEvent->modifiers(),
+        Qt::ScrollUpdate,
+        this->lastWheelEvent->inverted(),
+        this->lastWheelEvent->source()
     );
 
     QApplication::sendEvent(bar, e);

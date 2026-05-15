@@ -24,7 +24,7 @@ enum class IndicatorPosition{
     RIGHT = 1
 };
 
-class Indicator : public ToolButton{
+class QFLUENTWIDGETS_EXPORT Indicator : public ToolButton{
     Q_OBJECT
     Q_PROPERTY(int sliderX READ getSliderX WRITE setSliderX)
 public:
@@ -53,7 +53,7 @@ public slots:
 };
 
 
-class SwitchButton : public QWidget{
+class QFLUENTWIDGETS_EXPORT SwitchButton : public QWidget{
     Q_OBJECT
     Q_PROPERTY(int spacing READ getSpacing WRITE setSpacing)
     Q_PROPERTY(bool checked READ isChecked WRITE setChecked)

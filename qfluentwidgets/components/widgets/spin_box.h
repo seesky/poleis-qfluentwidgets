@@ -27,7 +27,7 @@
 #include "button.h"
 #include "line_edit.h"
 
-class SpinButton : public QToolButton{
+class QFLUENTWIDGETS_EXPORT SpinButton : public QToolButton{
     Q_OBJECT
 public:
     SpinButton(SpinIcon *icon, QWidget *parent);
@@ -41,7 +41,7 @@ public:
 };
 
 
-class CompactSpinButton : public QToolButton{
+class QFLUENTWIDGETS_EXPORT CompactSpinButton : public QToolButton{
     Q_OBJECT
 public:
     CompactSpinButton(QWidget *parent);
@@ -49,7 +49,7 @@ public:
 };
 
 
-class SpinFlyoutView : public FlyoutViewBase{
+class QFLUENTWIDGETS_EXPORT SpinFlyoutView : public FlyoutViewBase{
     Q_OBJECT
 public:
     SpinFlyoutView(QWidget *parent);
@@ -60,7 +60,7 @@ public:
     QVBoxLayout *vBoxLayout;
 };
 
-class SpinBox : public QSpinBox{
+class QFLUENTWIDGETS_EXPORT SpinBox : public QSpinBox{
     Q_OBJECT
 public:
     SpinBox(QWidget *parent);
@@ -81,7 +81,7 @@ public slots:
 
 
 
-class CompactSpinBox : public QSpinBox{
+class QFLUENTWIDGETS_EXPORT CompactSpinBox : public QSpinBox{
     Q_OBJECT
 public:
     CompactSpinBox(QWidget *parent);
@@ -102,7 +102,7 @@ public slots:
 };
 
 
-class DoubleSpinBox : public QDoubleSpinBox{
+class QFLUENTWIDGETS_EXPORT DoubleSpinBox : public QDoubleSpinBox{
     Q_OBJECT
 public:
     DoubleSpinBox(QWidget *parent);
@@ -121,7 +121,7 @@ public slots:
 };
 
 
-class CompactDoubleSpinBox : public QDoubleSpinBox{
+class QFLUENTWIDGETS_EXPORT CompactDoubleSpinBox : public QDoubleSpinBox{
     Q_OBJECT
 public:
     CompactDoubleSpinBox(QWidget *parent);
@@ -143,7 +143,7 @@ public slots:
 
 
 
-class TimeEdit : public QTimeEdit{
+class QFLUENTWIDGETS_EXPORT TimeEdit : public QTimeEdit{
     Q_OBJECT
 public:
     TimeEdit(QWidget *parent);
@@ -163,7 +163,7 @@ public slots:
 
 
 
-class CompactTimeEdit : public QTimeEdit{
+class QFLUENTWIDGETS_EXPORT CompactTimeEdit : public QTimeEdit{
     Q_OBJECT
 public:
     CompactTimeEdit(QWidget *parent);
@@ -185,7 +185,7 @@ public slots:
 
 
 
-class DateTimeEdit : public QDateTimeEdit{
+class QFLUENTWIDGETS_EXPORT DateTimeEdit : public QDateTimeEdit{
     Q_OBJECT
 public:
     DateTimeEdit(QWidget *parent);
@@ -204,7 +204,7 @@ public slots:
 };
 
 
-class CompactDateTimeEdit : public QDateTimeEdit{
+class QFLUENTWIDGETS_EXPORT CompactDateTimeEdit : public QDateTimeEdit{
     Q_OBJECT
 public:
     CompactDateTimeEdit(QWidget *parent);
@@ -225,7 +225,7 @@ public slots:
 };
 
 
-class DateEdit : public QDateEdit{
+class QFLUENTWIDGETS_EXPORT DateEdit : public QDateEdit{
     Q_OBJECT
 public:
     DateEdit(QWidget *parent);
@@ -245,7 +245,7 @@ public slots:
 
 
 
-class CompactDateEdit : public QDateEdit{
+class QFLUENTWIDGETS_EXPORT CompactDateEdit : public QDateEdit{
     Q_OBJECT
 public:
     CompactDateEdit(QWidget *parent);

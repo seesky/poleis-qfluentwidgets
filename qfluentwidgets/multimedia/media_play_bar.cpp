@@ -23,7 +23,7 @@ void PlayButton::setPlay(bool isPlay)
         FluentIcon *icon = new FluentIcon();
         icon->setIconName(QString("PAUSE_BOLD"));
         QVariant *iconQVariant = new QVariant();
-        iconQVariant->setValue<FluentIcon>(*icon);
+        iconQVariant->setValue(*icon);
         this->setIcon(iconQVariant);
 
         this->setToolTip(this->tr("Pause"));
@@ -31,7 +31,7 @@ void PlayButton::setPlay(bool isPlay)
         FluentIcon *icon = new FluentIcon();
         icon->setIconName(QString("PLAY_SOLID"));
         QVariant *iconQVariant = new QVariant();
-        iconQVariant->setValue<FluentIcon>(*icon);
+        iconQVariant->setValue(*icon);
         this->setIcon(iconQVariant);
 
         this->setToolTip(this->tr("Play"));
@@ -62,7 +62,7 @@ void VolumeView::setMuted(bool isMute)
         FluentIcon *icon = new FluentIcon();
         icon->setIconName(QString("MUTE"));
         QVariant *iconQVariant = new QVariant();
-        iconQVariant->setValue<FluentIcon>(*icon);
+        iconQVariant->setValue(*icon);
         this->muteButton->setIcon(iconQVariant);
 
         this->muteButton->setToolTip(this->tr("Unmute"));
@@ -70,7 +70,7 @@ void VolumeView::setMuted(bool isMute)
         FluentIcon *icon = new FluentIcon();
         icon->setIconName(QString("VOLUME"));
         QVariant *iconQVariant = new QVariant();
-        iconQVariant->setValue<FluentIcon>(*icon);
+        iconQVariant->setValue(*icon);
         this->muteButton->setIcon(iconQVariant);
 
         this->muteButton->setToolTip(this->tr("Mute"));
@@ -131,13 +131,13 @@ void VolumeButton::setMuted(bool isMute)
         FluentIcon *icon = new FluentIcon();
         icon->setIconName(QString("MUTE"));
         QVariant *iconQVariant = new QVariant();
-        iconQVariant->setValue<FluentIcon>(*icon);
+        iconQVariant->setValue(*icon);
         this->setIcon(iconQVariant);
     }else{
         FluentIcon *icon = new FluentIcon();
         icon->setIconName(QString("VOLUME"));
         QVariant *iconQVariant = new QVariant();
-        iconQVariant->setValue<FluentIcon>(*icon);
+        iconQVariant->setValue(*icon);
         this->setIcon(iconQVariant);
     }
 }
@@ -311,7 +311,7 @@ SimpleMediaPlayBar::SimpleMediaPlayBar(QWidget *parent) : MediaPlayBarBase(paren
 
     this->setFixedHeight(48);
     QVariant *mediaPlayer = new QVariant();
-    mediaPlayer->setValue<MediaPlayer*>(new MediaPlayer(this));
+    mediaPlayer->setValue(new MediaPlayer(this));
     this->setMediaPlayer(mediaPlayer);
 }
 
@@ -381,7 +381,7 @@ void StandardMediaPlayBar::__initWidgets()
     this->buttonLayout->addWidget(this->rightButtonContainer, 0, Qt::AlignRight);
 
     QVariant *mediaPlayer = new QVariant();
-    mediaPlayer->setValue<MediaPlayer*>(new MediaPlayer(this));
+    mediaPlayer->setValue(new MediaPlayer(this));
     this->setMediaPlayer(mediaPlayer);
 
     connect(this->skipBackButton, &MediaPlayBarButton::clicked, this, [this](){

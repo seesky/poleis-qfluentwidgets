@@ -5,7 +5,7 @@
 #include <QtCore/QCalendar>
 #include "picker_base.h"
 
-class MonthFormatter : public PickerColumnFormatter{
+class QFLUENTWIDGETS_EXPORT MonthFormatter : public PickerColumnFormatter{
     Q_OBJECT
 public:
     MonthFormatter();
@@ -15,7 +15,7 @@ public:
     QList<QString> *months;
 };
 
-class DatePickerBase : public PickerBase{
+class QFLUENTWIDGETS_EXPORT DatePickerBase : public PickerBase{
     Q_OBJECT
 public:
     DatePickerBase(QWidget *parent);
@@ -39,7 +39,7 @@ signals:
 };
 
 
-class DatePicker : public DatePickerBase{
+class QFLUENTWIDGETS_EXPORT DatePicker : public DatePickerBase{
     Q_OBJECT
 public:
     DatePicker(QWidget *parent, int format, bool isMonthTight);
@@ -65,7 +65,7 @@ public:
 };
 
 
-class ZhFormatter : public PickerColumnFormatter{
+class QFLUENTWIDGETS_EXPORT ZhFormatter : public PickerColumnFormatter{
     Q_OBJECT
 public:
     ZhFormatter(){this->suffix = "";}
@@ -76,26 +76,26 @@ public:
 };
 
 
-class ZhYearFormatter : public ZhFormatter{
+class QFLUENTWIDGETS_EXPORT ZhYearFormatter : public ZhFormatter{
     Q_OBJECT
 public:
-    ZhYearFormatter(){this->suffix = "å¹´";};
+    ZhYearFormatter(){this->suffix = "å¹?;};
 };
 
-class ZhMonthFormatter : public ZhFormatter{
+class QFLUENTWIDGETS_EXPORT ZhMonthFormatter : public ZhFormatter{
     Q_OBJECT
 public:
-    ZhMonthFormatter(){this->suffix = "æœˆ";};
+    ZhMonthFormatter(){this->suffix = "æœ?;};
 };
 
-class ZhDayFormatter : public ZhFormatter{
+class QFLUENTWIDGETS_EXPORT ZhDayFormatter : public ZhFormatter{
     Q_OBJECT
 public:
-    ZhDayFormatter(){this->suffix = "æ—¥";};
+    ZhDayFormatter(){this->suffix = "æ—?;};
 };
 
 
-class ZhDatePicker : public DatePicker{
+class QFLUENTWIDGETS_EXPORT ZhDatePicker : public DatePicker{
     Q_OBJECT
 public:
     ZhDatePicker(QWidget *parent);

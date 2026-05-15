@@ -356,7 +356,7 @@ void ScrollBar::collapse()
     this->groove->fadeOut();
 }
 
-void ScrollBar::enterEvent(QEvent *event)
+void ScrollBar::enterEvent(QEnterEvent *event)
 {
     this->_isEnter = true;
     this->timer->stop();

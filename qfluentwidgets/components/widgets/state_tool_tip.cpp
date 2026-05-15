@@ -7,7 +7,7 @@ StateCloseButton::StateCloseButton(QWidget *parent) : QToolButton(parent)
     this->isEnter = false;
 }
 
-void StateCloseButton::enterEvent(QEvent *event)
+void StateCloseButton::enterEvent(QEnterEvent *event)
 {
     this->isEnter = true;
     this->update();

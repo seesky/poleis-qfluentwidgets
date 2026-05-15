@@ -353,7 +353,7 @@ void PipsPager::mouseReleaseEvent(QMouseEvent *e)
     this->delegate->setPressedRow(-1);
 }
 
-void PipsPager::enterEvent(QEvent *event)
+void PipsPager::enterEvent(QEnterEvent *event)
 {
     QListWidget::enterEvent(event);
     this->isHover = true;

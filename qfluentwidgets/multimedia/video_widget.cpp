@@ -7,24 +7,20 @@ void GraphicsVideoItem::paint(QPainter *painter, const QStyleOptionGraphicsItem 
 }
 */
 
-VideoWidget::VideoWidget(QWidget *parent) : QGraphicsView(parent)
+VideoWidget::VideoWidget(QWidget *parent) : QWidget(parent)
 {
     this->isHover = false;
     this->timer = new QTimer(this);
 
     this->vBoxLayout = new QVBoxLayout(this);
-    this->videoItem = new QGraphicsVideoItem();
-    this->graphicsScene = new QGraphicsScene(this);
+    this->videoItem = new QVideoWidget(this);
     this->playBar = new StandardMediaPlayBar(this);
 
     this->setMouseTracking(true);
-    this->setScene(this->graphicsScene);
-    this->graphicsScene->addItem(this->videoItem);
-    this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    this->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    this->vBoxLayout->setContentsMargins(0, 0, 0, 0);
+    this->vBoxLayout->addWidget(this->videoItem);
 
-    this->player()->value<MediaPlayer*>()->setVideoOutput(this->videoItem); //TODO:特殊关注
+    this->player()->value<MediaPlayer*>()->setVideoOutput(this->videoItem);
     FluentStyleSheet().apply(this, FluentStyleSheetMap.value("MEDIA_PLAYER"), Theme::AUTO);
 
     connect(this->timer, &QTimer::timeout, this, &VideoWidget::_onHideTimeOut);
@@ -34,7 +30,6 @@ VideoWidget::VideoWidget(QWidget *parent) : QGraphicsView(parent)
 void VideoWidget::setVideo(QUrl url)
 {
     this->player()->value<MediaPlayer*>()->setSource(url);
-    this->fitInView(this->videoItem, Qt::KeepAspectRatio);
 }
 
 
@@ -50,7 +45,7 @@ void VideoWidget::wheelEvent(QWheelEvent *event)
     return;
 }
 
-void VideoWidget::enterEvent(QEvent *event)
+void VideoWidget::enterEvent(QEnterEvent *event)
 {
     this->isHover = true;
     this->playBar->fadeIn();
@@ -100,9 +95,8 @@ void VideoWidget::togglePlayState()
 
 void VideoWidget::resizeEvent(QResizeEvent *event)
 {
-    QGraphicsView::resizeEvent(event);
-    this->videoItem->setSize(QSizeF(this->size()));
-    this->fitInView(this->videoItem, Qt::KeepAspectRatio);
+    QWidget::resizeEvent(event);
+    this->videoItem->setGeometry(this->rect());
     this->playBar->move(11, this->height() - this->playBar->height() - 11);
     this->playBar->setFixedSize(this->width() - 22, this->playBar->height());
 }

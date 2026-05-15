@@ -188,7 +188,7 @@ void MainWindow::initWindow()
     this->splashScreen->setIconSize(QSize(106, 106));
     this->splashScreen->raise();
 
-    QRect desktop = QApplication::desktop()->availableGeometry();
+    QRect desktop = QGuiApplication::primaryScreen()->availableGeometry();
     int w = desktop.width();
     int h = desktop.height();
     this->move(w / 2 - this->width() / 2, h / 2 - this->height() / 2);

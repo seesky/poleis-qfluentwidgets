@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/Qt>
 #include <QtGui/QIcon>
 #include <QtGui/QPainter>
@@ -24,7 +26,7 @@
 #include "stacked_widget.h"
 
 
-class FluentWindowBase : public WindowsFramelessWindow{
+class QFLUENTWIDGETS_EXPORT FluentWindowBase : public WindowsFramelessWindow{
     Q_OBJECT
     Q_PROPERTY(QColor backgroundColor READ getBackgroundColor WRITE setBackgroundColor)
 public:
@@ -72,7 +74,7 @@ public slots:
 };
 
 
-class FluentTitleBar : public TitleBar{
+class QFLUENTWIDGETS_EXPORT FluentTitleBar : public TitleBar{
     Q_OBJECT
 public:
     FluentTitleBar(QWidget *parent);
@@ -86,7 +88,7 @@ public:
 };
 
 
-class FluentWindow : public FluentWindowBase{
+class QFLUENTWIDGETS_EXPORT FluentWindow : public FluentWindowBase{
     Q_OBJECT
 public:
     FluentWindow(QWidget *parent);
@@ -97,7 +99,7 @@ public:
     QHBoxLayout *widgetLayout;
 };
 
-class MSFluentTitleBar : public FluentTitleBar{
+class QFLUENTWIDGETS_EXPORT MSFluentTitleBar : public FluentTitleBar{
     Q_OBJECT
 public:
     MSFluentTitleBar(QWidget *parent);
@@ -106,7 +108,7 @@ public:
 
 
 class MSBackgroundColorObject;
-class MSFluentWindow : public WindowsFramelessWindow{
+class QFLUENTWIDGETS_EXPORT MSFluentWindow : public WindowsFramelessWindow{
     Q_OBJECT
 public:
     MSFluentWindow(QWidget *parent);
@@ -150,7 +152,7 @@ public slots:
 
 };
 
-class MSBackgroundColorObject : public BackgroundColorObject{
+class QFLUENTWIDGETS_EXPORT MSBackgroundColorObject : public BackgroundColorObject{
     Q_OBJECT
 public:
     MSBackgroundColorObject(MSFluentWindow *parent);
@@ -159,7 +161,7 @@ public:
 };
 
 
-class SplitTitleBar : public TitleBar{
+class QFLUENTWIDGETS_EXPORT SplitTitleBar : public TitleBar{
     Q_OBJECT
 public:
     SplitTitleBar(QWidget *parent);
@@ -171,7 +173,7 @@ public:
 };
 
 
-class SplitFluentWindow : public FluentWindow{
+class QFLUENTWIDGETS_EXPORT SplitFluentWindow : public FluentWindow{
     Q_OBJECT
 public:
     SplitFluentWindow(QWidget *parent);

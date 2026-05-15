@@ -8,12 +8,14 @@
  */
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include "../../common/icon.h"
 #include "../../common/style_sheet.h"
 #include "../../common/font.h"
 #include "scroll_bar.h"
 #include "../../common/config.h"
-#include "../../qframelesswindow/windows/window_effect.h"
+#include "../../qframelesswindow/windows/qframe_less_window.h"
 #include <QtCore/QEasingCurve>
 #include <QtCore/QEvent>
 #include <QtCore/QPropertyAnimation>
@@ -39,7 +41,7 @@
 #include <QtGui/QKeySequence>
 #include <QtGui/QScreen>
 #include <QtGui/QClipboard>
-#include <QtWidgets/QAction>
+#include <QtGui/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QProxyStyle>
@@ -79,7 +81,7 @@ enum class MenuIndicatorType{
     SlotForwarder *memberFuncSlot = new SlotForwarder (std::tr1::bind(&MyClass::MemberFunc, &myClassObject));
     QObject::connect(ui.button,SIGNAL(clicked()),memberFuncSlot,SLOT(forward());
 */
-class SlotForwarder : public QObject
+class QFLUENTWIDGETS_EXPORT SlotForwarder : public QObject
 {
     Q_OBJECT
 public:
@@ -98,7 +100,7 @@ private:
 };
 
 
-class CustomMenuStyle : public QProxyStyle{
+class QFLUENTWIDGETS_EXPORT CustomMenuStyle : public QProxyStyle{
     Q_OBJECT
 public:
     CustomMenuStyle(int iconSize);
@@ -108,7 +110,7 @@ public:
 private:
 };
 
-class DWMMenu : public QMenu{
+class QFLUENTWIDGETS_EXPORT DWMMenu : public QMenu{
     Q_OBJECT
 public:
     DWMMenu(QString title, QWidget *parent);
@@ -119,11 +121,11 @@ private:
 };
 
 
-class SubMenuItemWidget : public QWidget{
+class QFLUENTWIDGETS_EXPORT SubMenuItemWidget : public QWidget{
     Q_OBJECT
 public:
     SubMenuItemWidget(QMenu *menu, QListWidgetItem *item, QWidget *parent);
-    void enterEvent(QEvent *event);
+    void enterEvent(QEnterEvent *event);
     void paintEvent(QPaintEvent *event);
 
     QMenu *menu;
@@ -134,7 +136,7 @@ signals:
 };
 
 
-class MenuItemDelegate : public QStyledItemDelegate{
+class QFLUENTWIDGETS_EXPORT MenuItemDelegate : public QStyledItemDelegate{
     Q_OBJECT
 public:
     MenuItemDelegate(QObject *parent) : QStyledItemDelegate(parent){};
@@ -143,7 +145,7 @@ public:
 private:
 };
 
-class ShortcutMenuItemDelegate : public MenuItemDelegate{
+class QFLUENTWIDGETS_EXPORT ShortcutMenuItemDelegate : public MenuItemDelegate{
     Q_OBJECT
 public:
     ShortcutMenuItemDelegate(QObject *parent) : MenuItemDelegate(parent){};
@@ -152,7 +154,7 @@ private:
 };
 
 
-class MenuActionListWidget : public QListWidget{
+class QFLUENTWIDGETS_EXPORT MenuActionListWidget : public QListWidget{
     Q_OBJECT
 public:
     MenuActionListWidget(QWidget *parent);
@@ -178,7 +180,7 @@ private:
 
 
 class MenuAnimationManager;
-class RoundMenu : public QMenu{
+class QFLUENTWIDGETS_EXPORT RoundMenu : public QMenu{
     Q_OBJECT
 public:
     RoundMenu(QString title, QWidget *parent);
@@ -258,7 +260,7 @@ public slots:
 };
 
 
-class MenuAnimationManager : public QObject{
+class QFLUENTWIDGETS_EXPORT MenuAnimationManager : public QObject{
     Q_OBJECT
 public:
     MenuAnimationManager() : QObject(){};
@@ -280,7 +282,7 @@ public slots:
     virtual void _updateMenuViewport();
 };
 
-class DummyMenuAnimationManager : public MenuAnimationManager{
+class QFLUENTWIDGETS_EXPORT DummyMenuAnimationManager : public MenuAnimationManager{
     Q_OBJECT
 public:
     DummyMenuAnimationManager(RoundMenu *menu) : MenuAnimationManager(menu){};
@@ -289,7 +291,7 @@ private:
 };
 
 
-class DropDownMenuAnimationManager : public MenuAnimationManager{
+class QFLUENTWIDGETS_EXPORT DropDownMenuAnimationManager : public MenuAnimationManager{
     Q_OBJECT
 public:
     DropDownMenuAnimationManager(RoundMenu *menu) : MenuAnimationManager(menu){};
@@ -301,7 +303,7 @@ public slots:
 };
 
 
-class PullUpMenuAnimationManager : public MenuAnimationManager{
+class QFLUENTWIDGETS_EXPORT PullUpMenuAnimationManager : public MenuAnimationManager{
     Q_OBJECT
 public:
     PullUpMenuAnimationManager(RoundMenu *menu) : MenuAnimationManager(menu){}
@@ -312,7 +314,7 @@ public slots:
     void _onValueChanged() override;
 };
 
-class FadeInDropDownMenuAnimationManager : public MenuAnimationManager{
+class QFLUENTWIDGETS_EXPORT FadeInDropDownMenuAnimationManager : public MenuAnimationManager{
     Q_OBJECT
 public:
     FadeInDropDownMenuAnimationManager(RoundMenu *menu);
@@ -324,7 +326,7 @@ public:
 };
 
 
-class FadeInPullUpMenuAnimationManager : public MenuAnimationManager{
+class QFLUENTWIDGETS_EXPORT FadeInPullUpMenuAnimationManager : public MenuAnimationManager{
     Q_OBJECT
 public:
     FadeInPullUpMenuAnimationManager(RoundMenu *menu);
@@ -337,7 +339,7 @@ public:
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-class MenuActionListAnimationManager : public QObject{
+class QFLUENTWIDGETS_EXPORT MenuActionListAnimationManager : public QObject{
     Q_OBJECT
 public:
     MenuActionListAnimationManager() : QObject(){};
@@ -360,7 +362,7 @@ public slots:
 };
 
 
-class DummyMenuActionListAnimationManager : public MenuActionListAnimationManager{
+class QFLUENTWIDGETS_EXPORT DummyMenuActionListAnimationManager : public MenuActionListAnimationManager{
     Q_OBJECT
 public:
     DummyMenuActionListAnimationManager(MenuActionListWidget *menu) : MenuActionListAnimationManager(menu){};
@@ -369,7 +371,7 @@ private:
 };
 
 
-class DropDownMenuActionListAnimationManager : public MenuActionListAnimationManager{
+class QFLUENTWIDGETS_EXPORT DropDownMenuActionListAnimationManager : public MenuActionListAnimationManager{
     Q_OBJECT
 public:
     DropDownMenuActionListAnimationManager(MenuActionListWidget *menu) : MenuActionListAnimationManager(menu){};
@@ -381,7 +383,7 @@ public slots:
 };
 
 
-class PullUpMenuActionListAnimationManager : public MenuActionListAnimationManager{
+class QFLUENTWIDGETS_EXPORT PullUpMenuActionListAnimationManager : public MenuActionListAnimationManager{
     Q_OBJECT
 public:
     PullUpMenuActionListAnimationManager(MenuActionListWidget *menu) : MenuActionListAnimationManager(menu){}
@@ -392,7 +394,7 @@ public slots:
     //void _onValueChanged();
 };
 
-class FadeInDropDownMenuActionListAnimationManager : public MenuActionListAnimationManager{
+class QFLUENTWIDGETS_EXPORT FadeInDropDownMenuActionListAnimationManager : public MenuActionListAnimationManager{
     Q_OBJECT
 public:
     FadeInDropDownMenuActionListAnimationManager(MenuActionListWidget *menu);
@@ -404,7 +406,7 @@ public:
 };
 
 
-class FadeInPullUpMenuActionListAnimationManager : public MenuActionListAnimationManager{
+class QFLUENTWIDGETS_EXPORT FadeInPullUpMenuActionListAnimationManager : public MenuActionListAnimationManager{
     Q_OBJECT
 public:
     FadeInPullUpMenuActionListAnimationManager(MenuActionListWidget *menu);
@@ -417,13 +419,13 @@ public:
 };
 
 
-class EditMenu : public RoundMenu{
+class QFLUENTWIDGETS_EXPORT EditMenu : public RoundMenu{
     Q_OBJECT
 public:
     EditMenu(QString title, QWidget *parent);
     void createActions();
-    QString _parentText(){};
-    QString _parentSelectedText(){};
+    QString _parentText(){ return QString(); };
+    QString _parentSelectedText(){ return QString(); };
     void exec(QPoint *pos, bool ani, MenuAnimationType aniType);
 
     QAction *cutAct;
@@ -436,7 +438,7 @@ private:
 };
 
 
-class LineEditMenu : public EditMenu{
+class QFLUENTWIDGETS_EXPORT LineEditMenu : public EditMenu{
     Q_OBJECT
 public:
     LineEditMenu(QLineEdit *parent);
@@ -450,7 +452,7 @@ public slots:
 };
 
 
-class TextEditMenu : public EditMenu{
+class QFLUENTWIDGETS_EXPORT TextEditMenu : public EditMenu{
     Q_OBJECT
 public:
     TextEditMenu(QTextEdit *parent);
@@ -463,7 +465,7 @@ public slots:
     void _onItemClicked(QListWidgetItem *item);
 };
 
-class TextEditMenu2QPlainTextEdit : public EditMenu{
+class QFLUENTWIDGETS_EXPORT TextEditMenu2QPlainTextEdit : public EditMenu{
     Q_OBJECT
 public:
     TextEditMenu2QPlainTextEdit(QPlainTextEdit *parent);
@@ -477,7 +479,7 @@ public slots:
 };
 
 
-class IndicatorMenuItemDelegate : public MenuItemDelegate{
+class QFLUENTWIDGETS_EXPORT IndicatorMenuItemDelegate : public MenuItemDelegate{
     Q_OBJECT
 public:
     IndicatorMenuItemDelegate(QObject *parent) : MenuItemDelegate(parent){};
@@ -485,7 +487,7 @@ public:
 };
 
 
-class CheckableMenuItemDelegate : public ShortcutMenuItemDelegate{
+class QFLUENTWIDGETS_EXPORT CheckableMenuItemDelegate : public ShortcutMenuItemDelegate{
     Q_OBJECT
 public:
     CheckableMenuItemDelegate(QObject *parent) : ShortcutMenuItemDelegate(parent){};
@@ -496,14 +498,14 @@ public:
 };
 
 
-class RadioIndicatorMenuItemDelegate : public CheckableMenuItemDelegate{
+class QFLUENTWIDGETS_EXPORT RadioIndicatorMenuItemDelegate : public CheckableMenuItemDelegate{
     Q_OBJECT
 public:
     RadioIndicatorMenuItemDelegate(QObject *parent) : CheckableMenuItemDelegate(parent){};
     void _drawIndicator(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 };
 
-class CheckIndicatorMenuItemDelegate : public CheckableMenuItemDelegate{
+class QFLUENTWIDGETS_EXPORT CheckIndicatorMenuItemDelegate : public CheckableMenuItemDelegate{
     Q_OBJECT
 public:
     CheckIndicatorMenuItemDelegate(QObject *parent) : CheckableMenuItemDelegate(parent){};
@@ -514,7 +516,7 @@ public:
 QVariant *createCheckableMenuItemDelegate(MenuIndicatorType style, MenuActionListWidget *view);
 
 
-class CheckableMenu : public RoundMenu{
+class QFLUENTWIDGETS_EXPORT CheckableMenu : public RoundMenu{
     Q_OBJECT
 public:
     CheckableMenu(QString title, QWidget *parent, MenuIndicatorType indicator);
@@ -522,7 +524,7 @@ public:
 };
 
 
-class SystemTrayMenu : public RoundMenu{
+class QFLUENTWIDGETS_EXPORT SystemTrayMenu : public RoundMenu{
     Q_OBJECT
 public:
     SystemTrayMenu(QString title, QWidget *parent) : RoundMenu(title, parent){};
@@ -530,7 +532,7 @@ public:
 };
 
 
-class CheckableSystemTrayMenu : public CheckableMenu{
+class QFLUENTWIDGETS_EXPORT CheckableSystemTrayMenu : public CheckableMenu{
     Q_OBJECT
 public:
     void showEvent(QShowEvent *event) override;

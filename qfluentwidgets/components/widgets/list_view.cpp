@@ -87,7 +87,7 @@ void ListItemDelegate::initStyleOption(QStyleOptionViewItem *option, const QMode
     }
 
     QColor textColor = isDarkTheme() ? Qt::white : Qt::black;
-    QBrush textBrush = index.data(Qt::TextColorRole).value<QBrush>();
+    QBrush textBrush = index.data(Qt::ForegroundRole).value<QBrush>();
     if(textBrush.color().isValid()){
         textColor = textBrush.color();
     }

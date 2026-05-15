@@ -14,7 +14,7 @@
 #include "pivot.h"
 
 
-class SegmentedItem : public PivotItem{
+class QFLUENTWIDGETS_EXPORT SegmentedItem : public PivotItem{
     Q_OBJECT
 public:
     SegmentedItem();
@@ -26,7 +26,7 @@ public:
 };
 
 
-class SegmentedToolItem : public ToolButton{
+class QFLUENTWIDGETS_EXPORT SegmentedToolItem : public ToolButton{
     Q_OBJECT
 public:
     SegmentedToolItem(QWidget *parent);
@@ -44,7 +44,7 @@ signals:
 };
 
 
-class SegmentedToggleToolItem : public TransparentToolButton{
+class QFLUENTWIDGETS_EXPORT SegmentedToggleToolItem : public TransparentToolButton{
     Q_OBJECT
 public:
     SegmentedToggleToolItem(QWidget *parent);
@@ -62,7 +62,7 @@ signals:
 };
 
 
-class SegmentedWidget : public Pivot{
+class QFLUENTWIDGETS_EXPORT SegmentedWidget : public Pivot{
     Q_OBJECT
 public:
     SegmentedWidget(QWidget *parent);
@@ -71,7 +71,7 @@ public:
 };
 
 
-class SegmentedToolWidget : public SegmentedWidget{
+class QFLUENTWIDGETS_EXPORT SegmentedToolWidget : public SegmentedWidget{
     Q_OBJECT
 public:
     SegmentedToolWidget(QWidget *parent);
@@ -96,7 +96,7 @@ public slots:
 };
 
 
-class SegmentedToggleToolWidget : public SegmentedToolWidget{
+class QFLUENTWIDGETS_EXPORT SegmentedToggleToolWidget : public SegmentedToolWidget{
     Q_OBJECT
 public:
     SegmentedToggleToolWidget(QWidget *parent);

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/QFile>
 #include <QtCore/QPointF>
 #include <QtCore/QRectF>
@@ -20,7 +22,7 @@ enum class TitleBarButtonState{
     PRESSED = 2
 };
 
-class TitleBarButton : public QAbstractButton{
+class QFLUENTWIDGETS_EXPORT TitleBarButton : public QAbstractButton{
     Q_OBJECT
     Q_PROPERTY(QColor normalColor READ getNormalColor WRITE setNormalColor)
     Q_PROPERTY(QColor hoverColor READ getHoverColor WRITE setHoverColor)
@@ -44,7 +46,7 @@ public:
     void setNormalBackgroundColor(QColor color);
     void setHoverBackgroundColor(QColor color);
     void setPressedBackgroundColor(QColor color);
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     std::tuple<QColor, QColor> _getColors();
@@ -59,7 +61,7 @@ public:
 private:
 };
 
-class SvgTitleBarButton : public TitleBarButton{
+class QFLUENTWIDGETS_EXPORT SvgTitleBarButton : public TitleBarButton{
     Q_OBJECT
 public:
     SvgTitleBarButton(QString iconPath, QWidget *parent);
@@ -70,7 +72,7 @@ public:
 private:
 };
 
-class MinimizeButton : public TitleBarButton{
+class QFLUENTWIDGETS_EXPORT MinimizeButton : public TitleBarButton{
     Q_OBJECT
 public:
     MinimizeButton(QWidget *parent) : TitleBarButton(parent){};
@@ -78,7 +80,7 @@ public:
 private:
 };
 
-class MaximizeButton : public TitleBarButton{
+class QFLUENTWIDGETS_EXPORT MaximizeButton : public TitleBarButton{
     Q_OBJECT
 public:
     MaximizeButton(QWidget *parent);
@@ -89,7 +91,7 @@ public:
 private: 
 };
 
-class CloseButton : public SvgTitleBarButton{
+class QFLUENTWIDGETS_EXPORT CloseButton : public SvgTitleBarButton{
     Q_OBJECT
 public:
     CloseButton(QWidget *parent);

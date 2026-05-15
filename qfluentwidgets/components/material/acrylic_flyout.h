@@ -19,7 +19,7 @@
 #include "../../components/widgets/arcylic_label.h"
 
 
-class AcrylicFlyoutViewBase : public FlyoutViewBase{
+class QFLUENTWIDGETS_EXPORT AcrylicFlyoutViewBase : public FlyoutViewBase{
     Q_OBJECT
 public:
     AcrylicFlyoutViewBase(QWidget* parent);
@@ -32,7 +32,7 @@ public:
 };
 
 
-class AcrylicFlyoutView : public FlyoutView{
+class QFLUENTWIDGETS_EXPORT AcrylicFlyoutView : public FlyoutView{
     Q_OBJECT
 public:
     AcrylicFlyoutView(QString title, QString content, QVariant *icon, QVariant *image, bool isClosable, QWidget *parent);
@@ -44,7 +44,7 @@ public:
     AcrylicBrush *acrylicBrush;
 };
 
-class AcrylicFlyout : public Flyout{
+class QFLUENTWIDGETS_EXPORT AcrylicFlyout : public Flyout{
     Q_OBJECT
 public:
     AcrylicFlyout(FlyoutViewBase *view, QWidget *parent, bool isDeleteOnClose);

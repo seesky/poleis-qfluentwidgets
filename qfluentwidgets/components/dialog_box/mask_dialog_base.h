@@ -15,7 +15,7 @@
 #include <QtWidgets/QFrame>
 #include "../../common/config.h"
 
-class MaskDialogBase : public QDialog{
+class QFLUENTWIDGETS_EXPORT MaskDialogBase : public QDialog{
     Q_OBJECT
 public:
     MaskDialogBase(QWidget *parent);

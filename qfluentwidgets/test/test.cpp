@@ -5,7 +5,7 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QDesktopWidget>
+#include <QtGui/QScreen>
 
 #include "../components/widgets/scroll_area.h"
 

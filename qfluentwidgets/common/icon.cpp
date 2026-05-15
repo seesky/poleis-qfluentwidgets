@@ -224,6 +224,8 @@ QIcon *FluentIconBase::qicon(bool reverse)
     //QVariant fib = QVariant::fromValue(this->t);
     //FluentIconEngine *fie = new FluentIconEngine(&fib, reverse); 
     //return &QIcon(FluentIconEngine(QVariant::fromValue(this), reverse);
+    Q_UNUSED(reverse);
+    return this->icon(Theme::AUTO, QColor());
 }
 
 //TODO:这个函数逻辑有问题，实际调试时需要确认

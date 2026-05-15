@@ -20,7 +20,7 @@ void BreadcrumbWidget::mouseReleaseEvent(QMouseEvent *event)
     emit(this->clicked());
 }
 
-void BreadcrumbWidget::enterEvent(QEvent *event)
+void BreadcrumbWidget::enterEvent(QEnterEvent *event)
 {
     this->isHover = true;
     this->update();

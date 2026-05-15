@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtGui/QEnterEvent>
+
 #include <QtCore/Qt>
 #include <QtCore/QRectF>
 #include <QtCore/QPropertyAnimation>
@@ -20,7 +22,7 @@
 #include "../../common/font.h"
 
 class CardWidget;
-class CardBackgroundColorObject : public BackgroundColorObject{
+class QFLUENTWIDGETS_EXPORT CardBackgroundColorObject : public BackgroundColorObject{
     Q_OBJECT
 public:
     CardBackgroundColorObject(CardWidget *parent);
@@ -29,7 +31,7 @@ public:
 };
 
 
-class CardWidget : public QFrame{
+class QFLUENTWIDGETS_EXPORT CardWidget : public QFrame{
     Q_OBJECT
     Q_PROPERTY(int borderRadius READ getBorderRadius WRITE setBorderRadius)
 public:
@@ -37,7 +39,7 @@ public:
     bool eventFilter(QObject *obj, QEvent *e) override;
     void mousePressEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
-    void enterEvent(QEvent *e) override;
+    void enterEvent(QEnterEvent *e) override;
     void leaveEvent(QEvent *e) override;
     void focusInEvent(QFocusEvent *e) override;
     virtual QColor _normalBackgroundColor();
@@ -68,7 +70,7 @@ signals:
 };
 
 
-class SimpleCardWidget : public CardWidget{
+class QFLUENTWIDGETS_EXPORT SimpleCardWidget : public CardWidget{
     Q_OBJECT
 public:
     SimpleCardWidget(QWidget *parent);
@@ -79,11 +81,11 @@ public:
 };
 
 
-class ElevatedCardWidget : public SimpleCardWidget{
+class QFLUENTWIDGETS_EXPORT ElevatedCardWidget : public SimpleCardWidget{
     Q_OBJECT
 public:
     ElevatedCardWidget(QWidget *parent);
-    void enterEvent(QEvent *e) override;
+    void enterEvent(QEnterEvent *e) override;
     void leaveEvent(QEvent *e) override;
     void mousePressEvent(QMouseEvent *e) override;
     void _startElevateAni(QPoint start, QPoint end);
@@ -96,7 +98,7 @@ public:
 };
 
 
-class CardSeparator : public QWidget{
+class QFLUENTWIDGETS_EXPORT CardSeparator : public QWidget{
     Q_OBJECT
 public:
     CardSeparator(QWidget *parent);
@@ -105,7 +107,7 @@ public:
 
 
 
-class HeaderCardWidget : public SimpleCardWidget{
+class QFLUENTWIDGETS_EXPORT HeaderCardWidget : public SimpleCardWidget{
     Q_OBJECT
     Q_PROPERTY(QString title READ getTitle WRITE setTitle)
 public:

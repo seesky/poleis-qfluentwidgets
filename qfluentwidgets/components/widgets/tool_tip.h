@@ -31,7 +31,7 @@ enum class ToolTipPosition{
     BOTTOM_RIGHT = 7
 };
 
-class ToolTip : public QFrame{
+class QFLUENTWIDGETS_EXPORT ToolTip : public QFrame{
     Q_OBJECT
 public:
     ToolTip(QString text, QWidget *parent);
@@ -56,7 +56,7 @@ public:
 };
 
 
-class ToolTipPositionManager{
+class QFLUENTWIDGETS_EXPORT ToolTipPositionManager{
 public:
     QPoint position(ToolTip *tooltip, QWidget *parent);
     virtual QPoint _pos(ToolTip *tooltip, QWidget *parent);
@@ -64,56 +64,56 @@ public:
 };
 
 
-class TopToolTipManager : public ToolTipPositionManager{
+class QFLUENTWIDGETS_EXPORT TopToolTipManager : public ToolTipPositionManager{
 public:
     QPoint _pos(ToolTip *tooltip, QWidget *parent) override;
 };
 
 
-class BottomToolTipManager : public ToolTipPositionManager{
+class QFLUENTWIDGETS_EXPORT BottomToolTipManager : public ToolTipPositionManager{
 public:
     QPoint _pos(ToolTip *tooltip, QWidget *parent) override;
 };
 
 
-class LeftToolTipManager : public ToolTipPositionManager{
+class QFLUENTWIDGETS_EXPORT LeftToolTipManager : public ToolTipPositionManager{
 public:
     QPoint _pos(ToolTip *tooltip, QWidget *parent) override;
 };
 
 
-class RightToolTipManager : public ToolTipPositionManager{
+class QFLUENTWIDGETS_EXPORT RightToolTipManager : public ToolTipPositionManager{
 public:
     QPoint _pos(ToolTip *tooltip, QWidget *parent) override;
 };
 
 
 
-class TopRightToolTipManager : public ToolTipPositionManager{
+class QFLUENTWIDGETS_EXPORT TopRightToolTipManager : public ToolTipPositionManager{
 public:
     QPoint _pos(ToolTip *tooltip, QWidget *parent) override;
 };
 
 
-class TopLeftToolTipManager : public ToolTipPositionManager{
+class QFLUENTWIDGETS_EXPORT TopLeftToolTipManager : public ToolTipPositionManager{
 public:
     QPoint _pos(ToolTip *tooltip, QWidget *parent) override;
 };
 
 
-class BottomRightToolTipManager : public ToolTipPositionManager{
+class QFLUENTWIDGETS_EXPORT BottomRightToolTipManager : public ToolTipPositionManager{
 public:
     QPoint _pos(ToolTip *tooltip, QWidget *parent) override;
 };
 
 
-class BottomLeftToolTipManager : public ToolTipPositionManager{
+class QFLUENTWIDGETS_EXPORT BottomLeftToolTipManager : public ToolTipPositionManager{
 public:
     QPoint _pos(ToolTip *tooltip, QWidget *parent) override;
 };
 
 
-class ToolTipFilter : public QObject{
+class QFLUENTWIDGETS_EXPORT ToolTipFilter : public QObject{
     Q_OBJECT
 public:
     ToolTipFilter(QWidget *parent, int showDelay, ToolTipPosition position);

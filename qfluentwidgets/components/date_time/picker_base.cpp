@@ -258,8 +258,9 @@ void PickerBase::setColumnTight(PickerBase *picker, int index)
     
     int b = 0;
     for(int i = 0; i < this->columns->at(index)->items()->length(); i++){
-        if(fm.width(i) > b){
-            b = fm.width(i);
+        int itemWidth = fm.horizontalAdvance(QString::number(i));
+        if(itemWidth > b){
+            b = itemWidth;
         }
     }
     int w = b + 30;
@@ -289,6 +290,7 @@ QList<QString> *PickerBase::value()
 QList<QString> *PickerBase::initialValue()
 {
     //TODO:return [c.initialValue() for c in self.columns if c.isVisible()] 函数未使用
+    return this->value();
 }
 
 void PickerBase::setColumnValue(PickerBase *picker, int index, QString value)
@@ -360,7 +362,7 @@ void PickerBase::clearColumns()
     }
 }
 
-void PickerBase::enterEvent(QEvent *event)
+void PickerBase::enterEvent(QEnterEvent *event)
 {
     this->_setButtonProperty("enter", true);
 }

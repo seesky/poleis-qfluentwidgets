@@ -23,7 +23,7 @@
 #include "../../common/icon.h"
 
 
-class SettingCard : public QFrame{
+class QFLUENTWIDGETS_EXPORT SettingCard : public QFrame{
     Q_OBJECT
 public:
     SettingCard(QVariant *icon, QString title, QString content, QWidget *parent);
@@ -44,7 +44,7 @@ public slots:
 
 
 
-class SwitchSettingCard : public SettingCard{
+class QFLUENTWIDGETS_EXPORT SwitchSettingCard : public SettingCard{
     Q_OBJECT
 public:
     SwitchSettingCard(QVariant *icon, QString title, QString content, QVariant configItem, QWidget *parent);
@@ -64,7 +64,7 @@ public slots:
 
 
 
-class RangeSettingCard : public SettingCard{
+class QFLUENTWIDGETS_EXPORT RangeSettingCard : public SettingCard{
     Q_OBJECT
 public:
     RangeSettingCard(QVariant configItem, QVariant *icon, QString title, QString content, QWidget *parent);
@@ -83,7 +83,7 @@ public slots:
 };
 
 
-class PushSettingCard : public SettingCard{
+class QFLUENTWIDGETS_EXPORT PushSettingCard : public SettingCard{
     Q_OBJECT
 public:
     PushSettingCard(QString text, QVariant *icon, QString title, QString content, QWidget *parent);
@@ -94,14 +94,14 @@ signals:
 };
 
 
-class PrimaryPushSettingCard : public PushSettingCard{
+class QFLUENTWIDGETS_EXPORT PrimaryPushSettingCard : public PushSettingCard{
     Q_OBJECT
 public:
     PrimaryPushSettingCard(QString text, QVariant *icon, QString title, QString content, QWidget *parent);
 };
 
 
-class HyperlinkCard : public SettingCard{
+class QFLUENTWIDGETS_EXPORT HyperlinkCard : public SettingCard{
     Q_OBJECT
 public:
     HyperlinkCard(QString url, QString text, QVariant *icon, QString title, QString content, QWidget *parent);
@@ -111,7 +111,7 @@ public:
 
 
 
-class ColorPickerButton : public QToolButton{
+class QFLUENTWIDGETS_EXPORT ColorPickerButton : public QToolButton{
     Q_OBJECT
 public:
     ColorPickerButton(QColor color, QString title, QWidget *parent, bool enableAlpha);
@@ -130,7 +130,7 @@ public slots:
 };
 
 
-class ColorSettingCard : public SettingCard{
+class QFLUENTWIDGETS_EXPORT ColorSettingCard : public SettingCard{
     Q_OBJECT
 public:
     ColorSettingCard(QVariant item, QVariant *icon, QString title, QString content, QWidget *parent, bool enableAlpha);
@@ -147,7 +147,7 @@ public slots:
 };
 
 
-class ComboBoxSettingCard : public SettingCard{
+class QFLUENTWIDGETS_EXPORT ComboBoxSettingCard : public SettingCard{
     Q_OBJECT
 public:
     ComboBoxSettingCard(QVariant configItem, QVariant *icon, QString title, QString content, QList<QString> texts, QWidget *parent);

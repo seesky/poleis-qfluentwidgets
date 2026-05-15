@@ -5,7 +5,6 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include <boost/any.hpp>
 #include <QtGui/QColor>
 #include <QtCore/QString>
 #include <QtCore/QObject>
@@ -18,8 +17,8 @@
 
 #include <QtCore/QSettings>
 #include <QtCore/QSharedPointer>
-#include <QtCore/QTextCodec>
 #include <QtCore/QCoreApplication>
+#include <json/json.h>
 
 
 //namespace Qfw{
@@ -39,17 +38,17 @@ const static QMap<QString, QString> ThemeOptionsMap = {
 const static QList<QString> ThemeOptionsList = {"light", "dark", "auto"};
 
 
-class  IniSettings
+class  QFLUENTWIDGETS_EXPORT IniSettings
 {
 public:
 	QSharedPointer<QSettings> m_iniFile;
 
 public:
     static IniSettings* getInstance();
-	void settings_init(const QString &path); //初始化QSettings对象，并读取ini配置文件,如果不存在配置文件，则创建
+	void settings_init(const QString &path); //初始化QSettings对象，并读取ini配置文件,如果不存在配置文件，则创�?
 	void setValue(const QString &section, const QString &key, const QVariant &value); //写入配置项（section:节点，key:键名，value:键值）
-	void removeNode(const QString &section);                           //移除节点(包括其中所有的键值)
-	void removeKey(const QString &section, const QString &key);               //移除节点中的某个键值
+	void removeNode(const QString &section);                           //移除节点(包括其中所有的键�?
+	void removeKey(const QString &section, const QString &key);               //移除节点中的某个键�?
 	QVariant getValue(const QString &section, const QString &key, const QVariant &defaultValue);  //读配置项
 
 private:
@@ -62,7 +61,7 @@ private:
 
 
 /*
-class ConfigValidator {
+class QFLUENTWIDGETS_EXPORT ConfigValidator {
 public:
     ConfigValidator(){};
     bool validate(QVariant *value);
@@ -71,7 +70,7 @@ private:
     QVariant *value;
 };
 
-class RangeValidator : public ConfigValidator
+class QFLUENTWIDGETS_EXPORT RangeValidator : public ConfigValidator
 {
 public:
     RangeValidator(int min, int max);
@@ -86,7 +85,7 @@ private:
 
 
 
-class OptionsValidator : public ConfigValidator{
+class QFLUENTWIDGETS_EXPORT OptionsValidator : public ConfigValidator{
 public:
     OptionsValidator(QVariant *options);
     bool validate(QVariant *value);
@@ -101,7 +100,7 @@ Q_DECLARE_METATYPE(QVariant *)
 
 
 
-class BoolValidator : public ConfigValidator
+class QFLUENTWIDGETS_EXPORT BoolValidator : public ConfigValidator
 {
 public:
     BoolValidator(){};
@@ -112,7 +111,7 @@ private:
 };
 
 
-class FolderValidator : public ConfigValidator
+class QFLUENTWIDGETS_EXPORT FolderValidator : public ConfigValidator
 {
 public:
     bool validate(QVariant *value);
@@ -121,7 +120,7 @@ public:
 
 
 
-class FolderListValidator : public ConfigValidator
+class QFLUENTWIDGETS_EXPORT FolderListValidator : public ConfigValidator
 {
 public:
     bool validate(QVariant *value);
@@ -130,7 +129,7 @@ public:
 
 
 
-class ColorValidator : public ConfigValidator
+class QFLUENTWIDGETS_EXPORT ColorValidator : public ConfigValidator
 {
 public:
     ColorValidator(QVariant *default_);
@@ -140,7 +139,7 @@ private:
     QColor *default_;
 };
 
-class ConfigSerializer {
+class QFLUENTWIDGETS_EXPORT ConfigSerializer {
 public:
     //serialize config value
     QVariant *serialize(QVariant *value) {
@@ -154,7 +153,7 @@ public:
 };
 
 
-class MapSerializer : public ConfigSerializer {
+class QFLUENTWIDGETS_EXPORT MapSerializer : public ConfigSerializer {
 public:
     MapSerializer(QMap<QString, QString> value);
     QString serialize(QMap<QString, QString> value);
@@ -163,13 +162,13 @@ private:
     QMap<QString, QString> mapClass;
 };
 
-class ColorSerializer : public ConfigSerializer {
+class QFLUENTWIDGETS_EXPORT ColorSerializer : public ConfigSerializer {
 public:
     QString serialize(QColor value);
     QColor deserialize(QString value);
 };
 
-class ConfigItem : public QObject
+class QFLUENTWIDGETS_EXPORT ConfigItem : public QObject
 {
     Q_OBJECT
 public:
@@ -194,7 +193,7 @@ signals:
 
 */
 
-class RangeConfigItem : public QObject
+class QFLUENTWIDGETS_EXPORT RangeConfigItem : public QObject
 {
     Q_OBJECT
 public:
@@ -225,7 +224,7 @@ signals:
 
 Q_DECLARE_METATYPE(RangeConfigItem*)
 
-class OptionsConfigItem : public QObject
+class QFLUENTWIDGETS_EXPORT OptionsConfigItem : public QObject
 {
     Q_OBJECT
 public:
@@ -254,7 +253,7 @@ signals:
 Q_DECLARE_METATYPE(OptionsConfigItem*)
 
 
-class ColorConfigItem : public QObject
+class QFLUENTWIDGETS_EXPORT ColorConfigItem : public QObject
 {
     Q_OBJECT
 public:
@@ -279,7 +278,7 @@ signals:
 
 Q_DECLARE_METATYPE(ColorConfigItem*)
 
-class QConfig : public QObject{
+class QFLUENTWIDGETS_EXPORT QConfig : public QObject{
     Q_OBJECT
 public:
     static QConfig* getInstance();
@@ -312,7 +311,7 @@ signals:
 
 /*
 
-class RangeConfigItem : public ConfigItem{
+class QFLUENTWIDGETS_EXPORT RangeConfigItem : public ConfigItem{
 public:
     int* range();
     
@@ -326,21 +325,21 @@ public:
 private:
 };
 
-class OptionsConfigItem : public ConfigItem{
+class QFLUENTWIDGETS_EXPORT OptionsConfigItem : public ConfigItem{
 public:
     OptionsConfigItem(QString group, QString name, QVariant *default_, bool restart);
     QList<QVariant *> options();
 };
 
 
-class ColorConfigItem : public ConfigItem{
+class QFLUENTWIDGETS_EXPORT ColorConfigItem : public ConfigItem{
 public:
     ColorConfigItem(QString group, QString name, QVariant *default_, bool restart);
 };
 
 
 
-class QConfig : public QObject{
+class QFLUENTWIDGETS_EXPORT QConfig : public QObject{
     Q_OBJECT
 public: 
     OptionsConfigItem *themeMode; 
