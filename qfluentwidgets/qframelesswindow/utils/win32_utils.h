@@ -10,6 +10,7 @@
 
 #include <windows.h>
 #include <winuser.h>
+#include <shellapi.h>
 #include <dwmapi.h>
 #include <QtCore/Qt>
 #include <QtCore/QDebug>
