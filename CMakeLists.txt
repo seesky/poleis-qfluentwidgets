@@ -10,6 +10,8 @@ include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
 option(QFLUENTWIDGETS_BUILD_EXAMPLES "Build demo/test executables" OFF)
+option(QFLUENTWIDGETS_BUILD_SHARED "Build qfluentwidgets as a shared library" ON)
+option(QFLUENTWIDGETS_BUILD_MULTIMEDIA "Build qfluentwidgets media player components" ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -21,7 +23,10 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
 endif()
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Svg Xml Multimedia MultimediaWidgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Svg Xml)
+if(QFLUENTWIDGETS_BUILD_MULTIMEDIA)
+    find_package(Qt6 REQUIRED COMPONENTS Multimedia MultimediaWidgets)
+endif()
 find_package(jsoncpp CONFIG REQUIRED)
 
 if(TARGET JsonCpp::JsonCpp)
@@ -33,7 +38,6 @@ endif()
 file(GLOB_RECURSE QFLUENTWIDGETS_HEADERS CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/common/*.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/components/*.h"
-    "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/multimedia/*.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/qframelesswindow/*.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/window/*.h"
 )
@@ -41,10 +45,20 @@ file(GLOB_RECURSE QFLUENTWIDGETS_HEADERS CONFIGURE_DEPENDS
 file(GLOB_RECURSE QFLUENTWIDGETS_SOURCES CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/common/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/components/*.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/multimedia/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/qframelesswindow/titlebar/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/window/*.cpp"
 )
+
+if(QFLUENTWIDGETS_BUILD_MULTIMEDIA)
+    file(GLOB_RECURSE QFLUENTWIDGETS_MULTIMEDIA_HEADERS CONFIGURE_DEPENDS
+        "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/multimedia/*.h"
+    )
+    file(GLOB_RECURSE QFLUENTWIDGETS_MULTIMEDIA_SOURCES CONFIGURE_DEPENDS
+        "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/multimedia/*.cpp"
+    )
+    list(APPEND QFLUENTWIDGETS_HEADERS ${QFLUENTWIDGETS_MULTIMEDIA_HEADERS})
+    list(APPEND QFLUENTWIDGETS_SOURCES ${QFLUENTWIDGETS_MULTIMEDIA_SOURCES})
+endif()
 
 list(APPEND QFLUENTWIDGETS_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/qfluentwidgets/_rc/resource.qrc"
@@ -64,7 +78,13 @@ else()
     )
 endif()
 
-add_library(qfluentwidgets SHARED
+if(QFLUENTWIDGETS_BUILD_SHARED)
+    set(QFLUENTWIDGETS_LIBRARY_TYPE SHARED)
+else()
+    set(QFLUENTWIDGETS_LIBRARY_TYPE STATIC)
+endif()
+
+add_library(qfluentwidgets ${QFLUENTWIDGETS_LIBRARY_TYPE}
     ${QFLUENTWIDGETS_HEADERS}
     ${QFLUENTWIDGETS_SOURCES}
     ${QFLUENTWIDGETS_PLATFORM_SOURCES}
@@ -85,17 +105,19 @@ target_link_libraries(qfluentwidgets
         Qt6::Widgets
         Qt6::Svg
         Qt6::Xml
-        Qt6::Multimedia
-        Qt6::MultimediaWidgets
         ${QFLUENTWIDGETS_JSONCPP_TARGET}
 )
+
+if(QFLUENTWIDGETS_BUILD_MULTIMEDIA)
+    target_link_libraries(qfluentwidgets PUBLIC Qt6::Multimedia Qt6::MultimediaWidgets)
+endif()
 
 target_compile_definitions(qfluentwidgets
     PRIVATE
         QFLUENTWIDGETS_LIBRARY
 )
 
-if(WIN32)
+if(WIN32 AND QFLUENTWIDGETS_BUILD_SHARED)
     target_compile_definitions(qfluentwidgets
         PRIVATE QFLUENTWIDGETS_EXPORT=__declspec\(dllexport\)
         INTERFACE QFLUENTWIDGETS_EXPORT=__declspec\(dllimport\)
@@ -188,7 +210,7 @@ if(QFLUENTWIDGETS_BUILD_EXAMPLES)
             RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/examples"
         )
 
-        if(WIN32)
+        if(WIN32 AND QFLUENTWIDGETS_BUILD_SHARED)
             add_custom_command(TARGET "${example_name}" POST_BUILD
                 COMMAND "${CMAKE_COMMAND}" -E copy_if_different
                     "$<TARGET_FILE:qfluentwidgets>"
