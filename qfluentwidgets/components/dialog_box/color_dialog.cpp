@@ -4,7 +4,7 @@
 HuePanel::HuePanel(QColor color, QWidget *parent) : QWidget(parent)
 {
     this->setFixedSize(256, 256);
-    this->huePixmap = QPixmap("qfluentwidgets/images/color_dialog/HuePanel.png");
+    this->huePixmap = QPixmap(":/qfluentwidgets/images/color_dialog/HuePanel.png");
     this->setColor(color);
 }
 

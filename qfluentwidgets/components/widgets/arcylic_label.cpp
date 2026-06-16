@@ -45,7 +45,7 @@ AcrylicTextureLabel::AcrylicTextureLabel(QColor tintColor, QColor luminosityColo
     this->tintColor = QColor(tintColor);
     this->luminosityColor = QColor(luminosityColor);
     this->nosieOpacity = nosieOpacity;
-    this->nosizeImage = QImage("qfluentwidgets/images/acrylic/noise.png");
+    this->nosizeImage = QImage(":/qfluentwidgets/images/acrylic/noise.png");
     this->setAttribute(Qt::WA_TranslucentBackground);
 }
 
@@ -124,7 +124,7 @@ AcrylicBrush::AcrylicBrush(QWidget *device, int blurRadius, QColor tintColor = Q
     this->tintColor = QColor(tintColor);
     this->luminosityColor = QColor(luminosityColor);
     this->noiseOpacity = noiseOpacity;
-    this->noiseImage = QImage("qfluentwidgets/images/acrylic/noise.png");
+    this->noiseImage = QImage(":/qfluentwidgets/images/acrylic/noise.png");
     this->originalImage = QPixmap();
     this->image = QPixmap();
     this->clipPath = QPainterPath();

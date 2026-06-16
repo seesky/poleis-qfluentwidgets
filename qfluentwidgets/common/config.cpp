@@ -4,6 +4,7 @@
 #include <vector>
 #include <stdexcept>
 #include <QtCore/QFileInfo>
+#include <QtCore/QStandardPaths>
 //#include "json/json.h"
 
 IniSettings* IniSettings::instance = nullptr;
@@ -12,10 +13,8 @@ QConfig* QConfig::instance = nullptr;
 IniSettings::IniSettings()
 {
     this->instance = nullptr;
-    QString fileName;
-	//fileName = QCoreApplication::applicationDirPath();
-	// fileName += QString("qfluentwidgets/config/config.ini");
-    fileName = QString("qfluentwidgets/config/config.ini");
+    const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    const QString fileName = dataDir + "/qfluentwidgets/config.ini";
     this->settings_init(fileName);
 }
 
@@ -81,7 +80,7 @@ RangeValidator::RangeValidator(int min, int max)
     this->min_value = min;
     this->max_value = max;
     this->range_value[0] = min;
-    this->range_value[1] = max;
+    this->range_value[1] = max;
     this->__value = this->correct(default_);
 }
 
@@ -411,7 +410,7 @@ RangeConfigItem::RangeConfigItem(QString group, QString name, int default_, int 
     this->defaultValue = default_;
     this->restart = restart;
     this->range_value[0] = min;
-    this->range_value[1] = max;
+    this->range_value[1] = max;
     this->__value = this->correct(default_);
 }
 
@@ -470,7 +469,7 @@ OptionsConfigItem::OptionsConfigItem(QString group, QString name, QString defaul
     this->name = name;
     this->defaultValue = default_;
     this->restart = restart;
-    this->_options = options;
+    this->_options = options;
     this->__value = this->correct(default_);
 }
 
@@ -534,7 +533,7 @@ ColorConfigItem::ColorConfigItem(QString group, QString name, QColor default_, b
     this->group = group;
     this->name = name;
     this->defaultValue = default_;
-    this->restart = restart;
+    this->restart = restart;
     this->__value = this->correct(default_);
 }
 

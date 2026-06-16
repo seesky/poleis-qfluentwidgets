@@ -234,10 +234,29 @@ void MaximizeButton::paintEvent(QPaintEvent *e)
     }
 }
 
-CloseButton::CloseButton(QWidget *parent) : SvgTitleBarButton("qfluentwidgets/images/close.svg", parent)
+CloseButton::CloseButton(QWidget *parent) : SvgTitleBarButton(QString(), parent)
 {
     setHoverColor(QColor(Qt::white));
     setPressedColor(QColor(Qt::white));
     setHoverBackgroundColor(QColor(232, 17, 35));
     setPressedBackgroundColor(QColor(241, 112, 122));
+}
+
+void CloseButton::paintEvent(QPaintEvent *)
+{
+    QPainter painter(this);
+    std::tuple<QColor, QColor> c = this->_getColors();
+    QColor color = std::get<0>(c);
+    QColor bgColor = std::get<1>(c);
+
+    painter.setBrush(bgColor);
+    painter.setPen(Qt::NoPen);
+    painter.drawRect(this->rect());
+
+    painter.setBrush(Qt::NoBrush);
+    QPen pen(color, 1);
+    pen.setCosmetic(true);
+    painter.setPen(pen);
+    painter.drawLine(18, 11, 28, 21);
+    painter.drawLine(28, 11, 18, 21);
 }

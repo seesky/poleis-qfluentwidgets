@@ -166,7 +166,7 @@ QString getStyleSheet(QVariant *source, Theme theme = Theme::AUTO) //这个函�
             themeOptionsName = "LIGHT";
         }
 
-        QString path = "qfluentwidgets/qss/" + ThemeOptionsMap.value(themeOptionsName, ThemeOptionsMap.value("LIGHT")) + "/" + source->value<QString>() + ".qss";
+        QString path = ":/qfluentwidgets/qss/" + ThemeOptionsMap.value(themeOptionsName, ThemeOptionsMap.value("LIGHT")) + "/" + source->value<QString>() + ".qss";
         //qDebug() << path;
         StyleSheetFile *f = new StyleSheetFile(path);
         s = f;
@@ -237,7 +237,7 @@ QString FluentStyleSheet::path(QString ThemeOptionsName, QString FluentStyleShee
         //TODO:theme = qconfig.theme if theme == Theme.AUTO else theme
         theme = Theme::LIGHT;
     }
-    return "qfluentwidgets/qss/" + ThemeOptionsMap.value(ThemeOptionsName) + "/" + FluentStyleSheetMap.value(FluentStyleSheetName) + ".qss";
+    return ":/qfluentwidgets/qss/" + ThemeOptionsMap.value(ThemeOptionsName) + "/" + FluentStyleSheetMap.value(FluentStyleSheetName) + ".qss";
 }
 
 void setCustomStyleSheet(QWidget *widget, QString lightQss, QString darkQss)

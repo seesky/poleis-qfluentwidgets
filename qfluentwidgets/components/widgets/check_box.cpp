@@ -3,7 +3,7 @@
 QString CheckBoxIcon::path(Theme theme = Theme::AUTO)
 {
     QString c = getIconColor(Theme::AUTO, true);
-    QString path = QString("qfluentwidgets/images/check_box/" + CheckBoxIconMap.at(this->iconName) + "_" + c + ".svg");
+    QString path = QString(":/qfluentwidgets/images/check_box/" + CheckBoxIconMap.at(this->iconName) + "_" + c + ".svg");
     return path;
 }
 

@@ -149,7 +149,7 @@ QIcon *FluentIcon::icon(Theme theme = Theme::AUTO, QColor color = nullptr)
 QString FluentIcon::path(Theme theme = Theme::AUTO)
 {
     //qDebug() << this->iconName;
-    QString path = QString("qfluentwidgets/images/icons/" + FluentIconMap.at(this->iconName) + "_" + getIconColor(theme) + ".svg");
+    QString path = QString(":/qfluentwidgets/images/icons/" + FluentIconMap.at(this->iconName) + "_" + getIconColor(theme) + ".svg");
     //qDebug() << path;
     return path;
 }
@@ -433,12 +433,12 @@ QString InfoBarIcon::path(Theme theme)
         }
     }
     //qDebug() << QString("qfluentwidgets/images/info_bar/%1_%2.svg").arg(InfoBarIconMap.value(this->iconName)).arg(color);
-    return QString("qfluentwidgets/images/info_bar/%1_%2.svg").arg(InfoBarIconMap.value(this->iconName)).arg(color);
+    return QString(":/qfluentwidgets/images/info_bar/%1_%2.svg").arg(InfoBarIconMap.value(this->iconName)).arg(color);
 }
 
 
 QString SpinIcon::path(Theme theme)
 {
     //qDebug() << QString("qfluentwidgets/images/spin_box/%1_%2.svg").arg(SpinIconMap.value(this->iconName)).arg(getIconColor(theme, false));
-    return QString("qfluentwidgets/images/spin_box/%1_%2.svg").arg(SpinIconMap.value(this->iconName)).arg(getIconColor(theme, false));
+    return QString(":/qfluentwidgets/images/spin_box/%1_%2.svg").arg(SpinIconMap.value(this->iconName)).arg(getIconColor(theme, false));
 }

@@ -95,5 +95,6 @@ class QFLUENTWIDGETS_EXPORT CloseButton : public SvgTitleBarButton{
     Q_OBJECT
 public:
     CloseButton(QWidget *parent);
+    void paintEvent(QPaintEvent *e) override;
 private:
 };
