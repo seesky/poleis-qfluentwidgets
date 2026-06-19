@@ -562,7 +562,11 @@ void TabBar::removeTab(int index)
         }
     }
 
-    TabItem *item = this->items.takeLast(); 
+    // Remove the tab at the REQUESTED index, not the last one. takeLast() here
+    // corrupted multi-tab state: removeTab(index) adjusts _currentIndex for `index`
+    // but then deleted a different (the last) item, leaving route keys/widgets
+    // mismatched — a source of phantom tab activation during multi-display churn.
+    TabItem *item = this->items.takeAt(index);
 
     this->itemMap.remove(item->routeKey());
     this->hBoxLayout->removeWidget(item);
