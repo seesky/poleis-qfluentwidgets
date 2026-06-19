@@ -148,10 +148,15 @@ QIcon *FluentIcon::icon(Theme theme = Theme::AUTO, QColor color = nullptr)
 
 QString FluentIcon::path(Theme theme = Theme::AUTO)
 {
-    //qDebug() << this->iconName;
-    QString path = QString(":/qfluentwidgets/images/icons/" + FluentIconMap.at(this->iconName) + "_" + getIconColor(theme) + ".svg");
-    //qDebug() << path;
-    return path;
+    // Use find() rather than at(): an unknown icon name must not throw
+    // std::out_of_range from inside paintEvent (which is noexcept-ish and would
+    // terminate the whole app). Fall back to no icon for an unmapped name.
+    auto it = FluentIconMap.find(this->iconName);
+    if (it == FluentIconMap.end()) {
+        qWarning() << "[FluentIcon] unknown icon name:" << this->iconName;
+        return QString();
+    }
+    return QString(":/qfluentwidgets/images/icons/" + it->second + "_" + getIconColor(theme) + ".svg");
 }
 
 void FluentIcon::render(QPainter *painter, QRect rect, Theme theme = Theme::AUTO, int indexes = 0, std::map<QString, QString> *attributes = nullptr)
