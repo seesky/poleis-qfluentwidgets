@@ -114,8 +114,11 @@ void ShortcutMenuItemDelegate::paint(QPainter *painter, const QStyleOptionViewIt
 RoundMenu::RoundMenu(QString title = QString(), QWidget *parent = nullptr) : QMenu(parent)
 {
     this->_title = title;
-    QVariant __icon = QVariant::fromValue<QIcon>(QIcon());
-    this->_icon = &__icon;
+    // Must outlive the constructor: _icon is read later (e.g. when this menu is
+    // added as a submenu, via _createItemIcon/_hasItemIcon). The previous code
+    // stored the address of a stack local here, leaving _icon dangling and
+    // crashing the first time a submenu's icon() was dereferenced.
+    this->_icon = new QVariant(QVariant::fromValue<QIcon>(QIcon()));
     this->_actions = new QList<QAction *>();
     this->_subMenus = new QList<RoundMenu *>();
 
